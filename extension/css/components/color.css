@@ -1,0 +1,12 @@
+/*
+
+  Chupy Color Variables
+
+*/
+
+:root{
+  --color-black : #303030;
+  --color-gray : #696969;
+  --color-primary : #68c1ef;
+  --color-error : #ff3d3d;
+}

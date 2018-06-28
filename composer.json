@@ -1,0 +1,22 @@
+{
+    "name": "Chupy ATOL",
+    "description": "Proyek dibuat untuk memenuhi tugas mata kuliah ATOL",
+    "authors": [
+        {
+            "name": "Daniyal Ahmad Rizaldhi",
+            "email": "onieln14@gmail.com"
+        },
+        {
+            "name": "Maulvi Inayat Ali",
+            "email": "onieln14@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+      "psr-4":{
+        "App\\":"app/",
+        "App\\Controllers\\":"app/controllers/",
+        "App\\Models\\":"app/models/"
+      }
+    }
+}
