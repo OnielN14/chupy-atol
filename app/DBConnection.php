@@ -7,9 +7,9 @@ use PDO;
 class DBConnection{
 
   private $host = "localhost";
-  private $user = "root";
-  private $pass = "1234";
-  private $dbname = "chupy";
+  private $user = "root"; # isi dengan username database
+  private $pass = "1234"; # isi dengan password database
+  private $dbname = "db_atol_chupy";
   private $error;
   private $koneksi;
 
