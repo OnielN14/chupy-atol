@@ -12,9 +12,9 @@
 
 <body>
   <main class="container text-center">
-    <header class="text-center">
-      <img class="img-fluid chupy-simple-header-img" src="/extension/img/chupy_icon-light.png" alt="">
-    </header>
+
+    <?php include('template/header-secure.php') ?>
+
     <h1>Kesulitan Mengakses Akun?</h1>
     <p>Lupa kata sandi? Masukkan email login kamu di bawah ini.</p>
     <p>Kami akan mengirimkan pesan ke email berupa tautan untuk reset kata sandi kamu.</p>
@@ -31,9 +31,9 @@
 
   </main>
 
-  <footer class="text-center">
-    <p><img class="img-fluid chupy-simple-footer-img" src="/extension/img/chupy_icon-dark.png" alt=""> &copy; 2018</p>
-  </footer>
+  <?php
+    include('template/footer-secure.php');
+  ?>
 
   <script src="/extension/plugins/jquery-3.3.1/jquery-3.3.1.js"></script>
   <script src="/extension/plugins/popper-js-1.14.3/popper-1.14.3.js"></script>

@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `barangdanhewan` (
-  `id` int(3) NOT NULL,
+  `id` int(3) PRIMARY KEY AUTO_INCREMENT,
   `nama` int(255) NOT NULL,
   `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `stok` int(7) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `daftarkeinginan` (
 --
 
 CREATE TABLE `fotobarangdanhewan` (
-  `id` int(3) NOT NULL,
+  `id` int(3) PRIMARY KEY AUTO_INCREMENT,
   `gambar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` date NOT NULL,
   `updatedAt` date NOT NULL
@@ -68,7 +68,7 @@ CREATE TABLE `fotobarangdanhewan` (
 --
 
 CREATE TABLE `hakakses` (
-  `id` int(3) NOT NULL,
+  `id` int(3) PRIMARY KEY AUTO_INCREMENT,
   `levelAkses` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -90,7 +90,7 @@ CREATE TABLE `keranjang` (
 --
 
 CREATE TABLE `kotaksarandankeluhan` (
-  `id` int(3) NOT NULL,
+  `id` int(3) PRIMARY KEY AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `isiPesan` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` date NOT NULL
@@ -103,7 +103,7 @@ CREATE TABLE `kotaksarandankeluhan` (
 --
 
 CREATE TABLE `pemesanan` (
-  `id` varchar(101) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(101) COLLATE utf8mb4_unicode_ci PRIMARY KEY,
   `tanggalPemesanan` date NOT NULL,
   `idPengguna` int(3) NOT NULL,
   `idBarangDanHewan` int(3) NOT NULL
@@ -116,7 +116,7 @@ CREATE TABLE `pemesanan` (
 --
 
 CREATE TABLE `pengguna` (
-  `id` int(3) NOT NULL,
+  `id` int(3) PRIMARY KEY AUTO_INCREMENT,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `tempatLahir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -125,7 +125,8 @@ CREATE TABLE `pengguna` (
   `noTelepon` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` date NOT NULL,
-  `updateAt` date NOT NULL,
+  `updatedAt` date NOT NULL,
+  `fotoProfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'none',
   `idHakAkses` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -137,7 +138,6 @@ CREATE TABLE `pengguna` (
 -- Indexes for table `barangdanhewan`
 --
 ALTER TABLE `barangdanhewan`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_gambar` (`idGambar`);
 
 --
@@ -148,18 +148,6 @@ ALTER TABLE `daftarkeinginan`
   ADD KEY `fk_dk_id_barang_dan_hewan` (`idBarangDanHewan`);
 
 --
--- Indexes for table `fotobarangdanhewan`
---
-ALTER TABLE `fotobarangdanhewan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `hakakses`
---
-ALTER TABLE `hakakses`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
@@ -167,16 +155,9 @@ ALTER TABLE `keranjang`
   ADD KEY `fk_id_barang_dan_hewan` (`idBarangDanHewan`);
 
 --
--- Indexes for table `kotaksarandankeluhan`
---
-ALTER TABLE `kotaksarandankeluhan`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_order_id_pengguna` (`idPengguna`),
   ADD KEY `fk_order_id_barang_dan_hewan` (`idBarangDanHewan`);
 
@@ -184,7 +165,6 @@ ALTER TABLE `pemesanan`
 -- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_hak_akses` (`idHakAkses`);
 
 --
