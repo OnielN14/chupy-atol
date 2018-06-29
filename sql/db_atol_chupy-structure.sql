@@ -119,11 +119,13 @@ CREATE TABLE `pengguna` (
   `id` int(3) NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tempatLahir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggalLahir` date NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `noTelepon` varchar(65) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` date NOT NULL,
-  `updateAt` int(11) NOT NULL,
+  `updateAt` date NOT NULL,
   `idHakAkses` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
