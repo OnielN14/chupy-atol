@@ -112,5 +112,8 @@
     include('template/footer-secure.php');
   ?>
 
+
+  <script src="/extension/js/validation.js"></script>
+
 </body>
 </html>

@@ -17,7 +17,6 @@
     </main>
 
     <?php include('template/footer.php');?>
-    <script type="text/javascript" src="/extension/js/navbar-tweaks.js">
 
     </script>
 </body>
