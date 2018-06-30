@@ -19,6 +19,13 @@ abstract class Controller{
 
       $output = ob_get_clean();
     }
+    else{
+      ob_start();
+
+      include(ROOTPATH.'/view/404.php');
+
+      $output = ob_get_clean();
+    }
 
     if ($print) {
       echo $output;

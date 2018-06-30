@@ -8,6 +8,18 @@ use App\Models\Pengguna;
 
 class PenggunaController extends Controller{
 
+  public function index_register(){
+    $this->render_page('registrasi');
+  }
+
+  public function index_login(){
+    $this->render_page('login');
+  }
+
+  public function index_forgot_password(){
+    $this->render_page('forgot-password');
+  }
+
   public function fetch(){
     $user = new Pengguna();
     return json_encode($user->fetch());

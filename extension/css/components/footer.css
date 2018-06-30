@@ -40,7 +40,7 @@ a.chupy-footer-brand:hover{
   min-width: 100px;
 }
 
-.chupy-footer-description p, h2{
+.chupy-footer-description p, .chupy-footer-description h2{
   color:white;
 }
 
@@ -53,5 +53,5 @@ a.chupy-footer-brand:hover{
   color: white;
   margin: 0;
   font-weight: 300;
-  font-size: 0.9em;
+  font-size: 1em;
 }
