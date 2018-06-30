@@ -37,3 +37,71 @@
 #chupy-hero footer a:hover{
   text-decoration: none;
 }
+
+#chupy-hero + section{
+  padding-top:calc(var(--navbar-size) + 16px);
+  padding-bottom:calc(var(--navbar-size) + 16px);
+}
+
+#chupy-hero + section > header{
+  margin-bottom: 32px;
+}
+
+a.chupy-category-option{
+  box-sizing: content-box;
+  border:2px solid transparent;
+}
+
+a.chupy-category-option:hover{
+  text-decoration: none;
+  border-bottom:2px solid var(--color-primary);
+}
+
+.chupy-category{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chupy-category-option{
+  position: relative;
+  max-width:300px;
+  padding:16px;
+  margin:0px auto;
+  display: block;
+  text-align: center;
+}
+
+.chupy-category-option img{
+  height: 100px;
+  margin-bottom:16px;
+}
+
+.chupy-category-option p{
+  text-align: center;
+  /* font-weight: 300; */
+  font-size: 1.25em;
+  margin:0px;
+}
+
+.chupy-divider{
+  font-weight: 300;
+  color:var(--color-gray);
+}
+
+@media screen and (max-width:991px){
+  .chupy-category-option{
+    padding:0;
+  }
+
+  .chupy-category-option img{
+    height: 80px;
+  }
+
+  .chupy-divider{
+    margin-top:32px;
+    margin-bottom:32px;
+    font-weight: 300;
+    color:var(--color-gray);
+  }
+}

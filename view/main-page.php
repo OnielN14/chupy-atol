@@ -18,11 +18,32 @@
     <main>
       <section id="chupy-hero">
         <h1 class="chupy-welcome-text">Selamat Datang</h1>
-        <footer class="text-center"> <a href="#">Temukan yang kamu cari <br /> di sini </br> <i class="fas fa-angle-down"></i></a> </footer>
+        <footer class="text-center"> <a href="#options">Temukan yang kamu cari <br /> di sini </br> <i class="fas fa-angle-down"></i></a> </footer>
       </section>
 
-      <section>
-
+      <section id="options" class="container-fluid">
+        <header class="row">
+          <div class="col">
+            <h2 class="text-center">Apa yang kamu cari?</h2>
+          </div>
+        </header>
+        <div class="row">
+          <div class="col-md-5 chupy-category">
+            <a href="#" class="chupy-category-option">
+                <img src="/extension/img/chupy-option-tulang.png" alt="Tulang">
+                <p class="btn btn-primary">Kebutuhan Hewan Peliharaan</p>
+            </a>
+          </div>
+          <div class="col chupy-category  ">
+            <h1 class="text-center chupy-divider">Atau</h1>
+          </div>
+          <div class="col-md-5 chupy-category">
+            <a href="#" class="chupy-category-option">
+                <img src="/extension/img/chupy-option-hewan.png" alt="Tulang">
+                <p class="btn btn-primary">Hewan Peliharaan</p>
+            </a>
+          </div>
+        </div>
       </section>
 
     </main>
