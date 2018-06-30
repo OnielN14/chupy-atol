@@ -4,16 +4,27 @@ namespace App\Controllers;
 
 use App\Validation;
 use App\Controller;
-use App\Models\User;
+use App\Models\Pengguna;
 
-class UserController extends Controller{
+class PenggunaController extends Controller{
+
+  public function fetch(){
+    $user = new Pengguna();
+    return json_encode($user->fetch());
+  }
+
+  public function fetch_by_id($id){
+    $user = new Pengguna();
+
+    return json_encode($user->fetch_by_id($id));
+  }
 
   public function resetPassword($request){
     $attempData = Validation::clearInput($request);
 
     if(Validation::emailValidation($attempData)){
 
-      $user = new User();
+      $user = new Pengguna();
       $result = $user->check_user_by_email($attempData);
 
       if (count($result) > 0) {
