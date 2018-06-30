@@ -30,11 +30,21 @@ class ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb
         ),
     );
 
+    public static $classMap = array (
+        'App\\Controller' => __DIR__ . '/../..' . '/app/Controller.php',
+        'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
+        'App\\DBConnection' => __DIR__ . '/../..' . '/app/DBConnection.php',
+        'App\\Model' => __DIR__ . '/../..' . '/app/Model.php',
+        'App\\Models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
+        'App\\Validation' => __DIR__ . '/../..' . '/app/Validation.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb::$classMap;
 
         }, null, ClassLoader::class);
     }
