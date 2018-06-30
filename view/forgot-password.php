@@ -35,6 +35,8 @@
     include('template/footer-secure.php');
   ?>
 
+  <script src="/extension/js/validation.js"></script>
+
   <script>
     let emailPhoneElement = $('input[name="email_or_phone"]')
     let errorMsg = $('#error-msg')

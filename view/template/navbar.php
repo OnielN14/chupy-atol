@@ -1,4 +1,4 @@
-<nav class="chupy-navbar navbar navbar-expand-lg navbar-light">
+<nav class="chupy-navbar navbar fixed-top navbar-expand-lg navbar-light">
   <a href="#" class="navbar-brand">
     <img src="/extension/img/chupy_icon-light.png" alt="Chupy Brand">
   </a>
