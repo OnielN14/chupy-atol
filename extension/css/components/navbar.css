@@ -6,6 +6,7 @@
   --navbar-size:80px;
 }
 
+
 .chupy-navbar.navbar{
   min-height: var(--navbar-size);
   background-color: white!important;

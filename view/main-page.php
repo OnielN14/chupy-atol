@@ -17,7 +17,12 @@
 
     <main>
       <section id="chupy-hero">
+        <h1 class="chupy-welcome-text">Selamat Datang</h1>
         <footer class="text-center"> <a href="#">Temukan yang kamu cari <br /> di sini </br> <i class="fas fa-angle-down"></i></a> </footer>
+      </section>
+
+      <section>
+
       </section>
 
     </main>
