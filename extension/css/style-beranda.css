@@ -1,0 +1,21 @@
+#chupy-hero{
+    height: 100vh;
+    padding-top: var(--navbar-size);
+    position: relative;
+}
+
+#chupy-hero footer{
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+#chupy-hero footer a{
+  font-size: 1.25em;
+  font-weight: 300;
+}
+
+#chupy-hero footer a:hover{
+  text-decoration: none;
+}

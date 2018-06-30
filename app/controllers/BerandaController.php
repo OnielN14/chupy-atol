@@ -17,7 +17,7 @@ class BerandaController extends Controller
 
     public function index()
     {
-        $this->render_page('main-page', ['title' => 'huehuehue']);
+        $this->render_page('main-page');
     }
 
     public function error_404(){
