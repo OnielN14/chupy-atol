@@ -16,9 +16,7 @@
 <body>
 
   <main class="container">
-    <header class="text-center">
-      <img class="img-fluid chupy-simple-header-img" src="extension/img/chupy_icon-light.png" alt="">
-    </header>
+    <?php include('template/header-secure.php') ?>
     <section class=" text-center">
       <h1>Registrasi</h1>
       <p>Silakan mengisi isian di bawah untuk membuat akun baru.</p>
@@ -110,9 +108,9 @@
 
   </main>
 
-  <footer class="text-center">
-    <p><img class="img-fluid chupy-simple-footer-img" src="./extension/img/chupy_icon-dark.png" alt=""> &copy; 2018</p>
-  </footer>
+  <?php
+    include('template/footer-secure.php');
+  ?>
 
 </body>
 </html>
