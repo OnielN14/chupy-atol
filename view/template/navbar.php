@@ -14,7 +14,7 @@
     </li>
     <li class="nav-item">
       <div class="dropdown">
-          <a class="nav-link" href="#" role="button" id="produk-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produk</a>
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="produk-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produk</a>
 
           <div class="chupy-dropdown dropdown-menu" aria-labelledby="produk-menu-link">
             <a class="dropdown-item" href="#">Hewan Peliharaan</a>

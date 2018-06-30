@@ -5,6 +5,10 @@
   border: none;
 }
 
+.chupy-dropdown.dropdown-menu > .dropdown-item{
+  color:rgba(0,0,0,.5);
+}
+
 .chupy-dropdown .dropdown-item:focus, .chupy-dropdown .dropdown-item:hover {
   background-color: var(--color-primary);
   color: white!important;
@@ -12,7 +16,8 @@
 }
 
 @media screen and (min-width:992px){
-  .dropdown-item{
+
+  .chupy-dropdown.dropdown-menu > .dropdown-item{
     padding-top:8px;
     padding-bottom:8px;
   }
