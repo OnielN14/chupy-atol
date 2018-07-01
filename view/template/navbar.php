@@ -25,10 +25,10 @@
 
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Tentang Kami</a>
+      <a class="nav-link" href="/about">Tentang Kami</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Masuk/Daftar</a>
+      <a class="nav-link" href="/login">Masuk/Daftar</a>
     </li>
   </ul>
 </div>

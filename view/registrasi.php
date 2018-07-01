@@ -20,7 +20,7 @@
     <section class=" text-center">
       <h1>Registrasi</h1>
       <p>Silakan mengisi isian di bawah untuk membuat akun baru.</p>
-      <p>Sudah punya akun? <a href="login">Login Di sini</a></p>
+      <p>Sudah punya akun? <a href="/login">Login di sini</a></p>
     </section>
 
     <div class="row">
