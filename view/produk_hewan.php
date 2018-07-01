@@ -19,11 +19,21 @@
     include('template/navbar.php');
   ?>
 
-  <main>
+  <main class="container-fluid chupy-product">
     <header>
       <?php
         include('template/breadcrumb.php')
       ?>
+
+      <section class="chupy-product-header row">
+        <div class="col-md-3 header-img">
+          <img src="/extension/img/chupy-option-hewan.png" alt="Hewan Peliharaan">
+        </div>
+        <div class="col-md">
+          <h1>Temukan Teman Sejatimu</h1>
+          <h3>Menemanimu setiap saat</h3>
+        </div>
+      </section>
     </header>
   </main>
 

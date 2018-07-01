@@ -1,3 +1,31 @@
 main{
   padding-top: calc(var(--navbar-size) + 16px);
 }
+
+.chupy-product > header{
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+  padding-bottom: 16px;
+}
+
+.header-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width:768px) and (max-width:1365px) {
+  .chupy-product-header img{
+      width: 100%;
+  }
+}
+
+
+@media screen and (max-width:767px) {
+  .header-img{
+    justify-content: flex-start;
+  }
+  .chupy-product-header img{
+      height: 100px;
+      width: auto;
+  }
+}
