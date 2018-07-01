@@ -35,6 +35,57 @@
         </div>
       </section>
     </header>
+
+    <section>
+        <header class="container chupy-filter">
+          <div class="form-row">
+            <div class="col-md form-inline">
+              <label class="my-1 mr-2" for="filter-kategori">Kategori</label>
+              <select class="form-control my-1 mr-2" id="filter-kategori" name="">
+                <option value="0">Reptil</option>
+                <option value="1">Mamalia</option>
+                <option value="2">Burung</option>
+              </select>
+            </div>
+            <div class="col-md form-inline">
+              <label class="my-1 mr-2" for="filter-cari">Pencarian</label>
+              <div class="input-group">
+                <input type="text" id="filter-cari"
+                class="form-control my-1" name="" value="">
+                <div class="input-group-append my-1">
+                  <button class="btn btn-primary" type="button">Cari</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md form-inline">
+              <label class="my-1 mr-2" for="filter-harga">Harga</label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <input id="filter-harga" type="text" class="form-control" name="" value="" placeholder="Minimum">
+                </div>
+                <input type="text" class="form-control" name="" value="" placeholder="Maksimum">
+
+              </div>
+            </div>
+            <div class="col-md form-inline">
+              <label class="my-1 mr-2" for="filter-urut">Urutkan</label>
+              <select class="form-control my-1 mr-2" id="filter-urut" name="">
+                <option value="0">A-Z</option>
+                <option value="1">Z-A</option>
+                <option value="2">Harga Terendah</option>
+                <option value="3">Harga Tertinggi</option>
+              </select>
+            </div>
+          </div>
+
+        </header>
+    </section>
+
+
   </main>
 
   <?php

@@ -7,10 +7,29 @@ main{
   padding-bottom: 16px;
 }
 
+.chupy-product-header h1,
+.chupy-product-header h3{
+  font-weight: 300;
+}
+
+.chupy-filter .divider{
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+
+
 .header-img{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (min-width:768px){
+  .chupy-product-header{
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
 }
 
 @media screen and (min-width:768px) and (max-width:1365px) {
