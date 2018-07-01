@@ -20,7 +20,7 @@
     <section class=" text-center">
       <h1>Registrasi</h1>
       <p>Silakan mengisi isian di bawah untuk membuat akun baru.</p>
-      <p>Sudah punya akun? <a href="login">Login Di sini</a></p>
+      <p>Sudah punya akun? <a href="/login">Login di sini</a></p>
     </section>
 
     <div class="row">
@@ -96,6 +96,9 @@
 
         <div class="form-check">
           <input id="form-aggrement" class="form-check-input" type="checkbox" name="aggrement" value="1" required> <label for="form-aggrement">Saya setuju akan syarat dan ketentuan yang berlaku.</label>
+          <div class="invalid-feedback">
+            <span>Anda harus menyetujui syarat dan ketentuan yang berlaku</span>
+          </div>
         </div>
 
         <input type="submit" class="btn btn-primary" value="Daftar">
