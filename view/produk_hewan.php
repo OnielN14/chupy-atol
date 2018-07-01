@@ -64,9 +64,7 @@
               <label class="my-1 mr-2" for="filter-harga">Harga</label>
 
               <div class="input-group">
-                <div class="input-group-prepend">
-                  <input id="filter-harga" type="text" class="form-control" name="" value="" placeholder="Minimum">
-                </div>
+                <input id="filter-harga" type="text" class="form-control" name="" value="" placeholder="Minimum">
                 <input type="text" class="form-control" name="" value="" placeholder="Maksimum">
 
               </div>
