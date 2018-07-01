@@ -9,9 +9,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Chupy | Registrasi</title>
-  <link rel="stylesheet" href="extension/plugins/bootstrap-4.1.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="extension/css/chupy-style.css">
-  <link rel="stylesheet" href="extension/css/style-registrasi.css">
+  <link rel="stylesheet" href="/extension/plugins/bootstrap-4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/extension/css/chupy-style.css">
+  <link rel="stylesheet" href="/extension/css/style-registrasi.css">
 </head>
 <body>
 
