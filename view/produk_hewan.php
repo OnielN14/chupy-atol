@@ -37,7 +37,7 @@
       </section>
     </header>
 
-    <section>
+    <section class="chupy-product-content">
         <header class="container chupy-filter">
           <div class="form-row">
             <div class="col-md form-inline">
@@ -80,8 +80,51 @@
               </select>
             </div>
           </div>
-
         </header>
+
+        <section class="container chupy-product-list">
+          <div class="row">
+            <article class="col-md-3 chupy-product-card">
+              <div class="card">
+                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Title</h5>
+                  <p class="card-text">Rp. 69696969</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="col-md-3 chupy-product-card">
+              <div class="card">
+                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Title</h5>
+                  <p class="card-text">Rp. 69696969</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="col-md-3 chupy-product-card">
+              <div class="card">
+                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Title</h5>
+                  <p class="card-text">Rp. 69696969</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="col-md-3 chupy-product-card">
+              <div class="card">
+                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">Title</h5>
+                  <p class="card-text">Rp. 69696969</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
     </section>
 
 

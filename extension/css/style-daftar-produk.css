@@ -12,12 +12,16 @@ main{
   font-weight: 300;
 }
 
+.chupy-product-content,
+.chupy-product-list{
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
 .chupy-filter .divider{
   padding-left: 2px;
   padding-right: 2px;
 }
-
-
 
 .header-img{
   display: flex;

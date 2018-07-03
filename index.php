@@ -13,7 +13,7 @@ $router->get("/", function(){
   BerandaController::getInstance()->index();
 });
 
-$router->map(['GET'],['/produk',"/produk/"], function(){
+$router->map(['GET'],'/produk',"/produk/", function(){
   header('Location: /#produk');
 });
 
@@ -34,6 +34,10 @@ $router->get("/forgot-password", function(){
 
 $router->get("/produk/hewan", function(){
   BerandaController::getInstance()->index_daftar_hewan();
+});
+
+$router->get("/test", function(){
+  echo json_encode($_GET);
 });
 
 
