@@ -35,6 +35,9 @@ $router->get("/forgot-password", function(){
 $router->get("/produk/hewan", function(){
   BerandaController::getInstance()->index_daftar_hewan();
 });
+$router->get("/produk/kebutuhan", function(){
+  BerandaController::getInstance()->index_daftar_kebutuhan();
+});
 
 $router->get("/test", function(){
   echo json_encode($_GET);
