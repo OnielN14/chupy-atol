@@ -2,6 +2,10 @@ main{
   padding-top: calc(var(--navbar-size) + 16px);
 }
 
+.chupy.chupy-product-pagination a{
+  color: var(--color-primary);
+}
+
 .chupy-product > header{
   border-bottom: 2px solid rgba(0,0,0,0.3);
   padding-bottom: 16px;
@@ -12,12 +16,16 @@ main{
   font-weight: 300;
 }
 
+.chupy-product-content,
+.chupy-product-list{
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
 .chupy-filter .divider{
   padding-left: 2px;
   padding-right: 2px;
 }
-
-
 
 .header-img{
   display: flex;

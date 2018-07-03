@@ -24,6 +24,10 @@ class BerandaController extends Controller
       $this->render_page('produk_hewan');
     }
 
+    public function index_daftar_kebutuhan(){
+      $this->render_page('produk_barang');
+    }
+
     public function error_404(){
       $this->render_page('404');
     }
