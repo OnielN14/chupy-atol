@@ -1,5 +1,5 @@
 <nav class="chupy-navbar navbar fixed-top navbar-expand-lg navbar-light">
-  <a href="#" class="navbar-brand">
+  <a href="/" class="navbar-brand">
     <img src="/extension/img/chupy_icon-light.png" alt="Chupy Brand">
   </a>
 
@@ -10,15 +10,15 @@
   <div class="chupy-navbar nav justify-content-end collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/">Beranda</a>
     </li>
     <li class="nav-item">
       <div class="dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" id="produk-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produk</a>
 
           <div class="chupy-dropdown dropdown-menu" aria-labelledby="produk-menu-link">
-            <a class="dropdown-item" href="#">Hewan Peliharaan</a>
-            <a class="dropdown-item" href="#">Kebutuhan Hewan Peliharaan</a>
+            <a class="dropdown-item" href="/produk/hewan">Hewan Peliharaan</a>
+            <a class="dropdown-item" href="/produk/kebutuhan">Kebutuhan Hewan Peliharaan</a>
           </div>
       </div>
 

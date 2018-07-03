@@ -38,11 +38,31 @@ class ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb
         ),
     );
 
+    public static $classMap = array (
+        'App\\Controller' => __DIR__ . '/../..' . '/app/Controller.php',
+        'App\\Controllers\\BerandaController' => __DIR__ . '/../..' . '/app/controllers/BerandaController.php',
+        'App\\Controllers\\PenggunaController' => __DIR__ . '/../..' . '/app/controllers/PenggunaController.php',
+        'App\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/controllers/TestController.php',
+        'App\\DBConnection' => __DIR__ . '/../..' . '/app/DBConnection.php',
+        'App\\Model' => __DIR__ . '/../..' . '/app/Model.php',
+        'App\\Models\\Pengguna' => __DIR__ . '/../..' . '/app/models/Pengguna.php',
+        'App\\Validation' => __DIR__ . '/../..' . '/app/Validation.php',
+        'MiladRahimi\\PHPRouter\\Exceptions\\BadController' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Exceptions/BadController.php',
+        'MiladRahimi\\PHPRouter\\Exceptions\\BadMiddleware' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Exceptions/BadMiddleware.php',
+        'MiladRahimi\\PHPRouter\\Exceptions\\FileNotFoundException' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Exceptions/FileNotFoundException.php',
+        'MiladRahimi\\PHPRouter\\Exceptions\\HttpError' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Exceptions/HttpError.php',
+        'MiladRahimi\\PHPRouter\\Exceptions\\InvalidArgumentException' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Exceptions/InvalidArgumentException.php',
+        'MiladRahimi\\PHPRouter\\Request' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Request.php',
+        'MiladRahimi\\PHPRouter\\Response' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Response.php',
+        'MiladRahimi\\PHPRouter\\Router' => __DIR__ . '/..' . '/miladrahimi/phprouter/src/MiladRahimi/PHPRouter/Router.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit4f2dfbd05e901af769254cb5b4e2d4eb::$classMap;
 
         }, null, ClassLoader::class);
     }

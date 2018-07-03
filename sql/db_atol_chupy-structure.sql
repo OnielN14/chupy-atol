@@ -23,18 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barangdanhewan`
+-- Table structure for table `produk`
 --
 
-CREATE TABLE `barangdanhewan` (
+CREATE TABLE `produk` (
   `id` int(3) PRIMARY KEY AUTO_INCREMENT,
-  `nama` int(255) NOT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `stok` int(7) NOT NULL,
   `harga` int(9) NOT NULL,
   `createdAt` date NOT NULL,
   `updatedAt` date NOT NULL,
-  `idGambar` int(3) NOT NULL
+  `idKategori` int(3) NOT NULL,
+  `idJenis` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -45,20 +46,44 @@ CREATE TABLE `barangdanhewan` (
 
 CREATE TABLE `daftarkeinginan` (
   `idPengguna` int(3) NOT NULL,
-  `idBarangDanHewan` int(3) NOT NULL
+  `idProduk` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fotobarangdanhewan`
+-- Table structure for table `jenisproduk`
 --
 
-CREATE TABLE `fotobarangdanhewan` (
+CREATE TABLE `jenisproduk` (
+  `id` int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategoriproduk`
+--
+
+CREATE TABLE `kategoriproduk` (
+  `id` int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idJenis` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fotoproduk`
+--
+
+CREATE TABLE `fotoproduk` (
   `id` int(3) PRIMARY KEY AUTO_INCREMENT,
   `gambar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `createdAt` date NOT NULL,
-  `updatedAt` date NOT NULL
+  `updatedAt` date NOT NULL,
+  `idProduk` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,7 +105,9 @@ CREATE TABLE `hakakses` (
 
 CREATE TABLE `keranjang` (
   `idPengguna` int(3) NOT NULL,
-  `idBarangDanHewan` int(3) NOT NULL
+  `idProduk` int(3) NOT NULL,
+  `createdAt` date NOT NULL,
+  `updatedAt` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -106,7 +133,7 @@ CREATE TABLE `pemesanan` (
   `id` varchar(101) COLLATE utf8mb4_unicode_ci PRIMARY KEY,
   `tanggalPemesanan` date NOT NULL,
   `idPengguna` int(3) NOT NULL,
-  `idBarangDanHewan` int(3) NOT NULL
+  `idProduk` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -135,31 +162,44 @@ CREATE TABLE `pengguna` (
 --
 
 --
--- Indexes for table `barangdanhewan`
+-- Indexes for table `produk`
 --
-ALTER TABLE `barangdanhewan`
-  ADD KEY `fk_gambar` (`idGambar`);
+ALTER TABLE `produk`
+  ADD KEY `fk_produk_jenis` (`idJenis`),
+  ADD KEY `fk_kategori` (`idKategori`);
+
+--
+-- Indexes for table `kategoriproduk`
+--
+ALTER TABLE `kategoriproduk`
+  ADD KEY `fk_jenis` (`idJenis`);
+
+--
+-- Indexes for table `fotoproduk`
+--
+ALTER TABLE `fotoproduk`
+  ADD KEY `fk_produk` (`idProduk`);
 
 --
 -- Indexes for table `daftarkeinginan`
 --
 ALTER TABLE `daftarkeinginan`
   ADD KEY `fk_dk_id_pengguna` (`idPengguna`),
-  ADD KEY `fk_dk_id_barang_dan_hewan` (`idBarangDanHewan`);
+  ADD KEY `fk_dk_id_produk` (`idProduk`);
 
 --
 -- Indexes for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD KEY `fk_id_pengguna` (`idPengguna`),
-  ADD KEY `fk_id_barang_dan_hewan` (`idBarangDanHewan`);
+  ADD KEY `fk_cart_id_pengguna` (`idPengguna`),
+  ADD KEY `fk_cart_id_produk` (`idProduk`);
 
 --
 -- Indexes for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD KEY `fk_order_id_pengguna` (`idPengguna`),
-  ADD KEY `fk_order_id_barang_dan_hewan` (`idBarangDanHewan`);
+  ADD KEY `fk_order_id_produk` (`idProduk`);
 
 --
 -- Indexes for table `pengguna`
@@ -174,28 +214,41 @@ ALTER TABLE `pengguna`
 --
 -- Constraints for table `barangdanhewan`
 --
-ALTER TABLE `barangdanhewan`
-  ADD CONSTRAINT `fk_gambar` FOREIGN KEY (`idGambar`) REFERENCES `fotobarangdanhewan` (`id`);
+ALTER TABLE `produk`
+  ADD CONSTRAINT `fk_produk_jenis` FOREIGN KEY (`idJenis`) REFERENCES `jenisproduk` (`id`),
+  ADD CONSTRAINT `fk_kategori` FOREIGN KEY (`idKategori`) REFERENCES `kategoriproduk` (`id`);
+
+--
+-- Constraints for table `fotoproduk`
+--
+ALTER TABLE `fotoproduk`
+  ADD CONSTRAINT `fk_produk` FOREIGN KEY (`idProduk`) REFERENCES `produk` (`id`);
+
+--
+-- Constraints for table `kategoriproduk`
+--
+ALTER TABLE `kategoriproduk`
+  ADD CONSTRAINT `fk_jenis` FOREIGN KEY (`idJenis`) REFERENCES `jenisproduk` (`id`);
 
 --
 -- Constraints for table `daftarkeinginan`
 --
 ALTER TABLE `daftarkeinginan`
-  ADD CONSTRAINT `fk_dk_id_barang_dan_hewan` FOREIGN KEY (`idBarangDanHewan`) REFERENCES `barangdanhewan` (`id`),
+  ADD CONSTRAINT `fk_dk_id_barang_dan_hewan` FOREIGN KEY (`idProduk`) REFERENCES `produk` (`id`),
   ADD CONSTRAINT `fk_dk_id_pengguna` FOREIGN KEY (`idPengguna`) REFERENCES `pengguna` (`id`);
 
 --
 -- Constraints for table `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD CONSTRAINT `fk_id_barang_dan_hewan` FOREIGN KEY (`idBarangDanHewan`) REFERENCES `barangdanhewan` (`id`),
-  ADD CONSTRAINT `fk_id_pengguna` FOREIGN KEY (`idPengguna`) REFERENCES `pengguna` (`id`);
+  ADD CONSTRAINT `fk_cart_id_produk` FOREIGN KEY (`idProduk`) REFERENCES `produk` (`id`),
+  ADD CONSTRAINT `fk_cart_id_pengguna` FOREIGN KEY (`idPengguna`) REFERENCES `pengguna` (`id`);
 
 --
 -- Constraints for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  ADD CONSTRAINT `fk_order_id_barang_dan_hewan` FOREIGN KEY (`idBarangDanHewan`) REFERENCES `barangdanhewan` (`id`),
+  ADD CONSTRAINT `fk_order_id_produk` FOREIGN KEY (`idProduk`) REFERENCES `produk` (`id`),
   ADD CONSTRAINT `fk_order_id_pengguna` FOREIGN KEY (`idPengguna`) REFERENCES `pengguna` (`id`);
 
 --

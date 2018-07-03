@@ -20,6 +20,10 @@ class BerandaController extends Controller
         $this->render_page('main-page');
     }
 
+    public function index_daftar_hewan(){
+      $this->render_page('produk_hewan');
+    }
+
     public function error_404(){
       $this->render_page('404');
     }
