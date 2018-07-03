@@ -84,45 +84,47 @@
 
         <section class="container chupy-product-list">
           <div class="row">
-            <article class="col-md-3 chupy-product-card">
-              <div class="card">
+            <article class="col-6 col-md-3 chupy-product-card">
+              <a href="/" class="card">
                 <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">Title</h5>
                   <p class="card-text">Rp. 69696969</p>
                 </div>
-              </div>
+              </a>
             </article>
 
-            <article class="col-md-3 chupy-product-card">
-              <div class="card">
+            <article class="col-6 col-md-3 chupy-product-card">
+              <a href="/" class="card">
                 <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">Title</h5>
                   <p class="card-text">Rp. 69696969</p>
                 </div>
-              </div>
+              </a>
             </article>
 
-            <article class="col-md-3 chupy-product-card">
-              <div class="card">
+            <article class="col-6 col-md-3 chupy-product-card">
+              <a href="/" class="card">
                 <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">Title</h5>
                   <p class="card-text">Rp. 69696969</p>
                 </div>
-              </div>
+              </a>
             </article>
 
-            <article class="col-md-3 chupy-product-card">
-              <div class="card">
+            <article class="col-6 col-md-3 chupy-product-card">
+              <a href="/" class="card">
                 <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
                 <div class="card-body">
                   <h5 class="card-title">Title</h5>
                   <p class="card-text">Rp. 69696969</p>
                 </div>
-              </div>
+              </a>
             </article>
+
+
           </div>
         </section>
 
