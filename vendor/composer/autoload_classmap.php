@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Controller' => $baseDir . '/app/Controller.php',
+    'App\\Controllers\\AdminController' => $baseDir . '/app/controllers/AdminController.php',
     'App\\Controllers\\BerandaController' => $baseDir . '/app/controllers/BerandaController.php',
     'App\\Controllers\\PenggunaController' => $baseDir . '/app/controllers/PenggunaController.php',
     'App\\Controllers\\TestController' => $baseDir . '/app/controllers/TestController.php',

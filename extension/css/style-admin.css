@@ -1,0 +1,57 @@
+:root{
+  --side-nav-size:250px;
+}
+
+.chupy-admin .chupy-admin-aside{
+  background-color: var(--color-gray);
+  top: var(--navbar-size);
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: var(--side-nav-size);
+}
+
+.chupy-admin-aside .nav-item .nav-link:hover,
+.chupy-admin-aside .nav-item .nav-link.active{
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  font-weight: bold;
+}
+.chupy-admin-aside .nav-item .nav-link{
+  color:white;
+  border-bottom: 1px solid gray;
+}
+
+.chupy-admin-aside .nav-item *{
+  color:inherit;
+}
+
+.chupy-admin.toggled{
+  padding-left:var(--side-nav-size);
+}
+
+.chupy-admin #page-wrapper > main{
+  padding-top: var(--navbar-size);
+  height: 100vh;
+  position: relative;
+}
+
+/* .chupy-admin #page-wrapper */
+
+#logout.chupy-dropdown{
+  right: 0px;
+  left:auto;
+}
+
+footer{
+  padding-top:16px;
+  padding-bottom: 16px;
+  background-color: var(--color-primary)!important;
+
+}
+
+footer p{
+  font-weight: bold;
+  color:white;
+  font-size: 1.25em;
+}

@@ -8,6 +8,12 @@ use App\Models\Pengguna;
 
 class PenggunaController extends Controller{
 
+  private $pengguna;
+
+  public function __construct(){
+    $this->pengguna = new Pengguna();
+  }
+
   public function index_register(){
     $this->render_page('registrasi');
   }
@@ -18,6 +24,33 @@ class PenggunaController extends Controller{
 
   public function index_forgot_password(){
     $this->render_page('forgot-password');
+  }
+
+  public function login(){
+    $request = $_POST;
+    $requestUser = [
+      'email' => $_POST['user_email'],
+      'password' => sha1($_POST['user_pass'])
+    ];
+
+    $userData = $this->pengguna->get_user_by_email($requestUser['email'])[0];
+
+    if (strcmp($requestUser['password'], $userData['password']) == 0) {
+
+      session_start();
+      $_SESSION['login_user'] = $userData;
+
+      if ($userData['idHakAkses'] == 1) {
+        header('Location: /admin/dashboard');
+      }
+      else if($userData['idHakAkses'] == 2){
+        header('Location: /');
+      }
+
+    }
+    else{
+      echo 'wew';
+    }
   }
 
   public function fetch(){

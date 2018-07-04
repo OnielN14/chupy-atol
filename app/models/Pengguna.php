@@ -8,7 +8,7 @@ class Pengguna extends Model{
 
   protected $modelName = "pengguna";
 
-  public function check_user_by_email($userEmail){
+  public function get_user_by_email($userEmail){
     $stmt = $this->connection->getConnected()->prepare('SELECT * FROM '.$this->modelName.' WHERE email=?');
 
     $stmt->execute(array($userEmail));
@@ -16,7 +16,7 @@ class Pengguna extends Model{
     return $stmt->fetchAll();
   }
 
-  public function fetch_by_id($userId){
+  public function get_user_by_id($userId){
     $stmt = $this->connection->getConnected()->prepare('SELECT * FROM '.$this->modelName.' WHERE id=?');
 
     $stmt->execute(array($userId));
