@@ -35,7 +35,6 @@
     <main>
       <?php
           $uri = explode('/',$_SERVER['REQUEST_URI']);
-          // echo json_encode($uri);
           if (count($uri) != 4) {
             include('page/overview.php');
           }
