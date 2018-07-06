@@ -36,8 +36,8 @@
 }
 
 .chupy-admin #page-wrapper > main{
-  padding-top: var(--navbar-size);
-  height: 100vh;
+  /* padding-top: var(--navbar-size); */
+  min-height: 100vh;
   position: relative;
 }
 
@@ -68,6 +68,10 @@ a.chupy-admin-dashboard-card:hover{
 
 .chupy-admin-dashboard-card .data-name-indicator{
   font-weight: 300;
+}
+
+.chupy-admin-panel{
+  margin-bottom:16px;
 }
 
 #logout.chupy-dropdown{

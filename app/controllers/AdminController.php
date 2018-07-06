@@ -22,7 +22,6 @@ class AdminController extends Controller
       echo 'Something wrong happens';
       session_destroy();
     }
-
   }
 
 }

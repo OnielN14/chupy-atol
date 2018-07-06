@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Validation;
 use App\Controller;
 use App\Models\Pengguna;
+use App\Models\HakAkses;
+use App\Models\ApiKey;
+use App\Controllers\ApiController;
 
 class PenggunaController extends Controller{
 
@@ -15,7 +18,8 @@ class PenggunaController extends Controller{
   }
 
   public function index_register(){
-    $this->render_page('registrasi');
+
+    $this->render_page('registrasi', ['apiKey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
   }
 
   public function index_login(){
@@ -55,13 +59,76 @@ class PenggunaController extends Controller{
 
   public function fetch(){
     $user = new Pengguna();
-    return json_encode($user->fetch());
+
+    $data = [
+      'data' => $user->fetch()
+    ];
+
+    echo json_encode($data);
   }
 
-  public function fetch_by_id($id){
-    $user = new Pengguna();
+  public function insert(){
+    session_start();
+    $hakAkses = new HakAkses();
+    $pengguna = new Pengguna();
+    $request = $_POST;
 
-    return json_encode($user->fetch_by_id($id));
+    if (isset($request['front_end_key'])) {
+      $userFrontAPI = 'front_end';
+      $apiKeyData = ApiController::getInstance()->fetch_by(['user'=>$userFrontAPI]);
+
+      if (count($apiKeyData) > 0) {
+        $apiData = $apiKeyData[0];
+
+        if (strcmp($request['front_end_key'],$apiData['apikey']) == 0) {
+
+          $userData = [
+            'nama' => $request['nama'],
+            'alamat' => $request['alamat'],
+            'gender' => $request['gender'],
+            'tempatLahir' => $request['tempatLahir'],
+            'tanggalLahir' => $request['tanggalLahir'],
+            'email' => $request['email'],
+            'noTelepon' => $request['noTelepon'],
+            'password' => sha1($request['noTelepon']),
+            'idHakAkses' => 2
+          ];
+
+          $pengguna->insert($userData);
+        }
+        else{
+          echo "Not Allowed";
+        }
+      }
+      else{
+        echo "Not Allowed";
+      }
+    }
+    else if (isset($_SESSION['login_user'])) {
+      if ($_SESSION['login_user']['idHakAkses'] == 1) {
+
+        $userData = [
+          'nama' => $request['nama'],
+          'alamat' => $request['alamat'],
+          'gender' => $request['gender'],
+          'tempatLahir' => $request['tempatLahir'],
+          'tanggalLahir' => $request['tanggalLahir'],
+          'email' => $request['email'],
+          'noTelepon' => $request['noTelepon'],
+          'password' => sha1($request['noTelepon']),
+          'idHakAkses' => $request['idHakAkses']
+        ];
+
+        $pengguna->insert($userData);
+      }
+      else{
+        print "User rendahan nggk boleh";
+      }
+    }
+    else{
+      print "Mo ngaps!!??";
+    }
+    // print_r($request);
   }
 
   public function resetPassword($request){

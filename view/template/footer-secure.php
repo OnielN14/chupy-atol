@@ -1,5 +1,5 @@
 <footer class="text-center">
-  <p><img class="img-fluid chupy-simple-footer-img" src="./extension/img/chupy_icon-dark.png" alt=""> &copy; <?php echo date('Y') ?></p>
+  <p><img class="img-fluid chupy-simple-footer-img" src="/extension/img/chupy_icon-dark.png" alt=""> &copy; <?php echo date('Y') ?></p>
 </footer>
 
 <script src="/extension/plugins/jquery-3.3.1/jquery-3.3.1.js"></script>

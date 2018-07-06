@@ -63,6 +63,18 @@ CREATE TABLE `jenisproduk` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `apikey`
+--
+
+CREATE TABLE `apikey` (
+  `id` int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL UNIQUE,
+  `apikey` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kategoriproduk`
 --
 
