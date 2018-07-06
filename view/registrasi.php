@@ -28,7 +28,8 @@
       <div class="col-md col-xs">
 
       </div>
-      <form class="col-md-8 col-xs-12" action="registrasi.php" method="post" id="form-registrasi">
+      <form class="col-md-8 col-xs-12" action="/api/pengguna/tambah" method="post" id="form-registrasi">
+        <input type="hidden" name="front_end_key" value="<?php echo $apiKey; ?>">
         <div class="form-group">
             <label for="form-nama">Nama</label>
             <input id="form-nama" class="form-control" type="text" name="nama" placeholder="Nama Lengkap" autofocus required>
@@ -40,10 +41,10 @@
             <label for="">Jenis Kelamin</label>
           </div>
           <div class="form-check form-check-inline">
-            <input id="gender-laki" class="form-check-input" type="radio" name="gender" value="laki_laki" required> <label for="gender-laki" class="form-check-label">Laki-laki</label>
+            <input id="gender-laki" class="form-check-input" type="radio" name="gender" value="pria" required> <label for="gender-laki" class="form-check-label">Laki-laki</label>
           </div>
           <div class="form-check form-check-inline">
-            <input id="gender-perempuan" class="form-check-input" type="radio" name="gender" value="perempuan"> <label for="gender-perempuan" class="form-check-label">Perempuan</label>
+            <input id="gender-perempuan" class="form-check-input" type="radio" name="gender" value="wanita"> <label for="gender-perempuan" class="form-check-label">Perempuan</label>
           </div>
           <div class="invalid-feedback">Harap pilih jenis kelamin.</div>
         </div>
@@ -52,14 +53,14 @@
           <label for="form-tempat">Tempat, Tanggal Lahir</label>
           <div class="form-row">
             <div class="form-group col-6">
-              <input id="form-tempat" class="form-control" type="text" name="tempat_lahir" placeholder="Kota/Kabupaten Kelahiran" required>
+              <input id="form-tempat" class="form-control" type="text" name="tempatLahir" placeholder="Kota/Kabupaten Kelahiran" required>
               <div class="invalid-feedback">Harap masukkan kota/kabupaten kelahiran dengan benar.</div>
             </div>
             <div class="col form-divider">
               <label for="">-</label>
             </div>
             <div class="form-group col-5">
-              <input id="form-tanggal" class="form-control" type="date" name="tanggal_lahir" required>
+              <input id="form-tanggal" class="form-control" type="date" name="tanggalLahir" required>
               <div class="invalid-feedback">Harap masukkan tanggal kelahiran dengan benar.</div>
             </div>
           </div>
@@ -67,13 +68,13 @@
 
         <div class="form-group">
             <label for="form-no-telepon">No. Telepon</label>
-            <input id="form-no-telepon" class="form-control" type="text" name="no_telepon" placeholder="Contoh: 08XXXXXXXXX" required>
+            <input id="form-no-telepon" class="form-control" type="text" name="noTelepon" placeholder="Contoh: 08XXXXXXXXX" required>
             <div class="invalid-feedback">Harap masukkan nomor telepon dengan benar.</div>
         </div>
 
         <div class="form-group">
             <label for="form-email">Email</label>
-            <input id="form-email" class="form-control" type="email" name="no_telepon" placeholder="Contoh: emailmu@email.com" required>
+            <input id="form-email" class="form-control" type="email" name="email" placeholder="Contoh: emailmu@email.com" required>
             <div class="invalid-feedback">Harap masukkan nomor telepon dengan benar.</div>
         </div>
 

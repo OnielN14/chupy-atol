@@ -4,6 +4,7 @@
 
 :root{
   --navbar-size:80px;
+  --navbar-shadow: 0px 5px 10px 1px rgba(0,0,0,0.2);
 }
 
 
