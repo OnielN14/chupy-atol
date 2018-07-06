@@ -9,7 +9,9 @@ use App\Models\HakAkses;
 class HakAksesController extends Controller{
 
   public function __construct(){
-    session_start();
+    if(session_id() == ''){
+      session_start();
+    }
     if (isset($_SESSION['login_user'])) {
       if ($_SESSION['login_user']['idHakAkses'] != 1) {
         header('Location: / ');

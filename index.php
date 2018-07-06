@@ -73,13 +73,23 @@ $router->get('/api/hak_akses', function(){
 });
 
 $router->get('/api/pengguna', function(){
-  $produk = new PenggunaController();
-  $produk->fetch();
+  $pengguna = new PenggunaController();
+  $pengguna->fetch();
 });
 
-$router->post('/api/pengguna/registrasi', function(){
-  $produk = new PenggunaController();
-  $produk->insert();
+$router->post('/api/pengguna/tambah', function(){
+  $pengguna = new PenggunaController();
+  $pengguna->insert();
+});
+
+$router->post('/api/pengguna/hapus', function(){
+  $pengguna = new PenggunaController();
+  $pengguna->delete();
+});
+
+$router->post('/api/pengguna/ubah', function(){
+  $pengguna = new PenggunaController();
+  $pengguna->update();
 });
 
 $router->get("/logout", function () {
@@ -90,8 +100,10 @@ $router->get("/logout", function () {
     }
 });
 
-$router->get("/test", function () {
-    print_r(ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]);
+$router->post("/test", function () {
+    // print_r(ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]);
+    // $pengguna = new PenggunaController();
+    // $pengguna->delete();
 });
 
 

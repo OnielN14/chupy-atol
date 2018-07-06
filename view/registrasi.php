@@ -28,7 +28,7 @@
       <div class="col-md col-xs">
 
       </div>
-      <form class="col-md-8 col-xs-12" action="/api/pengguna/registrasi" method="post" id="form-registrasi">
+      <form class="col-md-8 col-xs-12" action="/api/pengguna/tambah" method="post" id="form-registrasi">
         <input type="hidden" name="front_end_key" value="<?php echo $apiKey; ?>">
         <div class="form-group">
             <label for="form-nama">Nama</label>

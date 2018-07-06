@@ -28,6 +28,28 @@ abstract class Model{
     return $stmt->fetchAll();
   }
 
+  public function delete_by($data = array())
+  {
+      $condition = '';
+      $i = 0;
+      foreach ($data as $key => $value) {
+          if ($i != 0) {
+              $condition .= ", ";
+          }
+          $condition .= $key.'=:'.$key;
+          $i += 1;
+      }
+      $query = 'DELETE FROM '.$this->modelName.' WHERE '.$condition;
+
+      $stmt = $this->connection->getConnected()->prepare($query);
+
+      foreach ($data as $key => &$value) {
+          $stmt->bindParam(":".$key, $value);
+      }
+
+      return $stmt->execute();
+  }
+
   public function fetch_by($data = array())
   {
       $condition = '';

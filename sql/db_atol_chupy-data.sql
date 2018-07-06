@@ -1,9 +1,7 @@
-
 INSERT
 	INTO apikey (`user`,`apikey`)
     VALUES
     	('front_end',SHA1('public_access'));
-
 
 INSERT
   INTO `hakakses`
@@ -12,10 +10,10 @@ INSERT
     (2, 'pelanggan');
 
 INSERT
-  INTO `pengguna` (`nama`,`alamat`,`tempatLahir`,`tanggalLahir`,`email`,`noTelepon`,`password`,`createdAt`,`updatedAt`,`idHakAkses`)
+  INTO `pengguna` (`nama`,`gender`,`alamat`,`tempatLahir`,`tanggalLahir`,`email`,`noTelepon`,`password`,`createdAt`,`updatedAt`,`idHakAkses`, `confirmed`)
   VALUES
-    ('Admin Chupy', 'Bandung', 'Bandung', DATE('2018-06-27'), 'admin@chupy.com', '085724268541', SHA1('admin'), NOW(), NOW(), 1),
-    ('Daniyal Ahmad Rizaldhi', 'kp. Pasanggrahan RT/RW 003/004 desa Pasawahan kec. Takokak kab. Cianjur', 'Cianjur', DATE('1997-01-3'), 'onieln14@gmail.com', '085724268541', SHA1('1234'), NOW(), NOW(), 2);
+    ('Admin Chupy','pria', 'Bandung', 'Bandung', DATE('2018-06-27'), 'admin@chupy.com', '085724268541', SHA1('admin'), NOW(), NOW(), 1,1),
+    ('Daniyal Ahmad Rizaldhi','pria', 'kp. Pasanggrahan RT/RW 003/004 desa Pasawahan kec. Takokak kab. Cianjur', 'Cianjur', DATE('1997-01-3'), 'onieln14@gmail.com', '085724268541', SHA1('1234'), NOW(), NOW(), 2,1);
 
 INSERT
   INTO `jenisproduk`

@@ -9,7 +9,7 @@ class Pengguna extends Model{
   protected $modelName = "pengguna";
 
   public function fetch(){
-    $stmt = $this->connection->getConnected()->prepare('SELECT id,nama,alamat,email,noTelepon,confirmed FROM '.$this->modelName);
+    $stmt = $this->connection->getConnected()->prepare('SELECT id,nama,alamat,gender,tempatLahir, tanggalLahir,email,noTelepon, idHakAkses, confirmed FROM '.$this->modelName);
 
     $stmt->execute();
     $result = $stmt->setFetchMode($this->fetchMode);
@@ -17,11 +17,8 @@ class Pengguna extends Model{
   }
 
   public function insert($userData){
-
-    try{
       $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(nama,alamat,gender,tempatLahir, tanggalLahir, email,noTelepon,password,createdAt,updatedAt,fotoProfile,idHakAkses,confirmed) VALUES (:nama,:alamat,:gender,:tempatLahir,DATE(:tanggalLahir), :email,:noTelepon,:password,NOW(),NOW(),"none",:hakAkses,0)');
 
-      // echo json_encode($userData);
       $stmt->bindParam(':nama',$userData['nama']);
       $stmt->bindParam(':alamat',$userData['alamat']);
       $stmt->bindParam(':gender',$userData['gender']);
@@ -32,27 +29,23 @@ class Pengguna extends Model{
       $stmt->bindParam(':password',$userData['password']);
       $stmt->bindParam(':hakAkses',$userData['idHakAkses']);
 
-      $stmt->execute();
-    }
-    catch(PDOException $e){
-      print_r($e);
-    }
-
+      return $stmt->execute();
   }
 
-  public function get_user_by_email($userEmail){
-    $stmt = $this->connection->getConnected()->prepare('SELECT * FROM '.$this->modelName.' WHERE email=?');
+  public function update($newUserData)
+  {
+    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat, gender=:gender, tempatLahir=:tempatLahir, tanggalLahir=DATE(:tanggalLahir), noTelepon=:noTelepon, password=:password, idHakAkses=:idHakAkses, updatedAt=NOW() WHERE id=:id');
 
-    $stmt->execute(array($userEmail));
-    $result = $stmt->setFetchMode($this->fetchMode);
-    return $stmt->fetchAll();
-  }
+    $stmt->bindParam(':id',$newUserData['id']);
+    $stmt->bindParam(':nama',$newUserData['nama']);
+    $stmt->bindParam(':alamat',$newUserData['alamat']);
+    $stmt->bindParam(':gender',$newUserData['gender']);
+    $stmt->bindParam(':tempatLahir',$newUserData['tempatLahir']);
+    $stmt->bindParam(':tanggalLahir',$newUserData['tanggalLahir']);
+    $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
+    $stmt->bindParam(':password',$newUserData['password']);
+    $stmt->bindParam(':idHakAkses',$newUserData['idHakAkses']);
 
-  public function get_user_by_id($userId){
-    $stmt = $this->connection->getConnected()->prepare('SELECT * FROM '.$this->modelName.' WHERE id=?');
-
-    $stmt->execute(array($userId));
-    $result = $stmt->setFetchMode($this->fetchMode);
-    return $stmt->fetchAll();
+    return $stmt->execute();
   }
 }

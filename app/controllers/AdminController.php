@@ -8,7 +8,9 @@ class AdminController extends Controller
 {
 
   public function __construct(){
-    session_start();
+    if(session_id() == ''){
+      session_start();
+    }
   }
 
   public function index(){
@@ -16,10 +18,10 @@ class AdminController extends Controller
       if ($_SESSION['login_user']['idHakAkses'] == 1) {
           $this->render_page('admin/utama.dashboard');
       }else{
-        echo 'Did you lost??';
+        header('Location: /');
       }
     }else{
-      echo 'Something wrong happens';
+      header('Location: /');
       session_destroy();
     }
   }

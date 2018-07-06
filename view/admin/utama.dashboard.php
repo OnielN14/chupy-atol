@@ -34,6 +34,12 @@
   <section id="page-wrapper">
     <!-- content -->
     <main>
+    <div id="chupy-msg" class="chupy-alert fixed alert alert-warning alert-dismissible fade" role="alert">
+      <strong>Holy guacamole!</strong> <span> You should check in on some of those fields below.</span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
       <?php
           $uri = explode('/',$_SERVER['REQUEST_URI']);
           if (count($uri) != 4) {
@@ -64,63 +70,9 @@
   ?>
     <script type="text/javascript" src="/extension/plugins/datatables-1.10.18/datatables.min.js">
     </script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-
-        // User Data List
-        $.ajax({
-          url:'/api/pengguna',
-          method: 'GET',
-          dataType: 'json'
-        }).done(function(response){
-          let dataSet = []
-
-          for(let index in response.data){
-            user = {
-              nama:response.data[index].nama,
-              alamat:response.data[index].alamat,
-              email:response.data[index].email,
-              noTelepon:response.data[index].noTelepon,
-              opsi:'<button class="btn btn-primary my-1" href="/api/pengguna/'+response.data[index].id+'">Edit</button><button class="btn btn-primary my-1" href="/api/pengguna/'+response.data[index].id+'">Hapus</button> '
-            }
-
-            dataSet.push(user)
-          }
-
-          result = {'data':dataSet}
-          // console.log(result);
-          $('#table-user-list').DataTable({
-            data:result.data,
-            columns:[
-              {data:"nama"},
-              {data:"alamat"},
-              {data:"email"},
-              {data:"noTelepon"},
-              {data:"opsi"}
-            ]
-          })
-        })
-
-        // Jenis Produk
-        $.ajax({
-          url:'/api/hak_akses',
-          method:'get',
-          dataType:'json'
-        }).done(function(response){
-          let elements = []
-          let option = document.createElement('option')
-          for(let index in response.data){
-            let option = document.createElement('option')
-            option.setAttribute('value',response.data[index].id)
-            option.innerHTML = response.data[index].levelAkses
-
-            elements.push(option)
-          }
-          $('select#form-hak-akses').append(elements)
-        })
-
-      })
-
+    <script type="text/javascript" src="/extension/js/chupy-admin-sidebar-behaviour.js">
+    </script>
+    <script type="text/javascript" src="/extension/js/page/dashboard.utama.js">
     </script>
   </section>
 
