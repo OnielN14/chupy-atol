@@ -141,6 +141,10 @@ $router->get("/profil/keranjang",function(){
   $pengguna->index_keranjang();
 });
 
+$router->get("/profil/pengaturan", function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_pengaturan();
+});
 $router->post('/api/pengguna/hapus', function(){
   $pengguna = new PenggunaController();
   $pengguna->delete();
