@@ -11,6 +11,7 @@ use App\Controllers\JenisProdukController;
 use App\Controllers\KategoriProdukController;
 use App\Controllers\HakAksesController;
 use App\Controllers\ApiController;
+use App\Controllers\KotakSaranController;
 
 
 $router = new Router();
@@ -154,6 +155,12 @@ $router->post('/api/produk/hapus', function(){
   $produk = new ProdukController();
   $request = $_POST;
   $produk->delete($request);
+});
+
+$router->post('/kotak_saran', function(){
+  $kotakSaran = new KotakSaranController();
+  $request = $_POST;
+  $kotakSaran->insert($request);
 });
 
 $router->get("/logout", function () {
