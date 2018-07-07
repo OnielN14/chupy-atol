@@ -19,6 +19,15 @@ class PenggunaController extends Controller{
   public function index_forgot_password(){
     $this->render_page('forgot-password');
   }
+  
+  public function index_keranjang(){
+    $this->render_page('keranjang');
+  }
+
+  public function index_profil(){
+    $this->render_page('profil');
+  }
+
 
   public function fetch(){
     $user = new Pengguna();
@@ -30,6 +39,8 @@ class PenggunaController extends Controller{
 
     return json_encode($user->fetch_by_id($id));
   }
+
+  
 
   public function resetPassword($request){
     $attempData = Validation::clearInput($request);

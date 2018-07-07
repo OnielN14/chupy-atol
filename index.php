@@ -27,6 +27,17 @@ $router->get("/registrasi", function(){
   $pengguna->index_register();
 });
 
+
+$router->get("/profil",function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_profil();
+});
+
+$router->get("/profil/keranjang",function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_keranjang();
+});
+
 $router->get("/forgot-password", function(){
   $pengguna = new PenggunaController();
   $pengguna->index_forgot_password();
@@ -38,6 +49,8 @@ $router->get("/produk/hewan", function(){
 $router->get("/produk/kebutuhan", function(){
   BerandaController::getInstance()->index_daftar_kebutuhan();
 });
+
+
 
 $router->get("/test", function(){
   echo json_encode($_GET);
