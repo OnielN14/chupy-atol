@@ -36,6 +36,10 @@ $router->get("/produk/hewan", function(){
   BerandaController::getInstance()->index_daftar_hewan();
 });
 
+$router->get("/profil/pengaturan", function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_pengaturan();
+});
 
 try {
     $router->dispatch();

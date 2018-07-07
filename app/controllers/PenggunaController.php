@@ -16,6 +16,10 @@ class PenggunaController extends Controller{
     $this->render_page('login');
   }
 
+  public function index_pengaturan(){
+    $this->render_page('pengaturan');
+  }
+
   public function index_forgot_password(){
     $this->render_page('forgot-password');
   }
