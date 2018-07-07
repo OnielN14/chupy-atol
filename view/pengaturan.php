@@ -35,13 +35,14 @@
                     </section>
             </header>
 
-            <section>
+            <section class="chupy-form-profil">
                 <div class="container-fluid">
-                    <div class="card">
+                    <div class="card card-profile">
                         <div class="card-body">
+
                             <div class="row">
                                 <div class="col-md">
-                                    <h4>Biodata</h4>
+                                    <h4 class="font-card-header">Biodata</h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -49,22 +50,22 @@
                                 <div class="col-md-6">
                                     <form action="#" method="post" id="form-profil">
                                         <div class="form-group">
-                                            <label for="nama">Nama</label>
+                                            <label for="nama" class="font-card-input">Nama</label>
                                             <input type="text" name="nama" id="nama" class="form-control" value="Asep Saepudin">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="nohp">No Handphone</label>
+                                            <label for="nohp" class="font-card-input">No Handphone</label>
                                             <input type="text" name="nohp" id="nohp" class="form-control" value="+62 857 2426 8541">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="email">Email</label>
+                                            <label for="email" class="font-card-input">Email</label>
                                             <input type="text" name="email" id="email" class="form-control" value="asep@chupy.com">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="alamat">Alamat</label>
+                                            <label for="alamat" class="font-card-input">Alamat</label>
                                             <textarea name="alamat" id="alamat" cols="7" rows="5" style="width:300px" class="form-control">Jl. Tubagus Ismail Dalam</textarea>
                                         </div>
 
@@ -76,8 +77,7 @@
                                             <button class="form-control btn btn-primary">Ubah</button>
                                         </div>
                                         <div class="form-group">
-                                            <input type="submit" value="Simpan Perubahan" id="btn-profile" name="btn-profile"
-                                                class="form-control btn btn-primary">
+                                            <input type="submit" value="Simpan Perubahan" id="btn-profile" name="btn-profile" class="form-control btn btn-primary">
                                         </div>
                                     </div>
                                 </div>
@@ -89,18 +89,55 @@
                         </div>
                     </div>
                 </div>
-                </div>
             </section>
 
-            <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
+            <section class="chupy-form-sandi">
+                <div class="container-fluid">
+                    <div class="card card-profile">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md">
+                                    <h4 class="font-card-header">Ubah Kata Sandi</h4>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md">
+                                <div class="form-sandi-center">
+                                    <form action="#" method="post" id="form-password">
+                                        <div class="form-group">
+                                            <label for="ksLama" class="font-card-input">Kata Sandi Lama</label>
+                                            <input type="text" name="ksLama" id="ksLama" class="form-control" value="xxxxxxx">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="ksBaru" class="font-card-input">Kata Sandi Baru</label>
+                                            <input type="text" name="ksBaru" id="ksBaru" class="form-control" value="xxxxxxx">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="kksBaru" class="font-card-input">Ketik Ulang Kata Sandi Baru</label>
+                                            <input type="text" name="kksBaru" id="kksBaru" class="form-control" value="xxxxxxx">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary form-control" value="Ubah Kata Sandi">
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
+
+        <?php
+    include('template/footer.php');
+  ?>
 </body>
 
 </html>
