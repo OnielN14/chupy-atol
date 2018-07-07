@@ -12,6 +12,7 @@
   width: var(--side-nav-size);
 }
 
+.chupy-admin-aside .nav-item .nav-link:focus,
 .chupy-admin-aside .nav-item .nav-link:hover, .chupy-admin-aside .nav-item .nav-link.active {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
@@ -48,6 +49,10 @@
   transform: translateX(-50%);
   margin-top: 15px;
   z-index: 99;
+}
+
+.chupy-admin #page-wrapper>main .chupy-alert.fixed:not(.show){
+  z-index:-1;
 }
 
 .chupy-admin #page-wrapper .container, .chupy-admin #page-wrapper .container-fluid {

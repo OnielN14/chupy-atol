@@ -8,6 +8,7 @@ use App\Controllers\PenggunaController;
 use App\Controllers\AdminController;
 use App\Controllers\ProdukController;
 use App\Controllers\JenisProdukController;
+use App\Controllers\KategoriProdukController;
 use App\Controllers\HakAksesController;
 use App\Controllers\ApiController;
 
@@ -67,6 +68,16 @@ $router->get('/api/jenis_produk', function(){
   $jenisProduk->fetch();
 });
 
+$router->get('/api/kategori_produk', function(){
+  $jenisProduk = new KategoriProdukController();
+  $jenisProduk->fetch();
+});
+
+$router->get('/api/kategori_produk/jenis/{idjenis}', function($idjenis){
+  $jenisProduk = new KategoriProdukController();
+  $jenisProduk->fetch_by(['idJenis'=>$idjenis]);
+});
+
 $router->get('/api/hak_akses', function(){
   $hakAkses = new HakAksesController();
   $hakAkses->fetch();
@@ -90,6 +101,23 @@ $router->post('/api/pengguna/hapus', function(){
 $router->post('/api/pengguna/ubah', function(){
   $pengguna = new PenggunaController();
   $pengguna->update();
+});
+
+$router->post('/api/produk/tambah', function(){
+  $produk = new ProdukController();
+  $request = $_POST;
+  $produk->insert($request);
+});
+$router->post('/api/produk/ubah', function(){
+  $produk = new ProdukController();
+  $request = $_POST;
+  $produk->update($request);
+});
+$router->post('/api/produk/hapus', function(){
+  $produk = new ProdukController();
+  $request = $_POST;
+  $produk->delete($request);
+  // echo json_encode($_POST);
 });
 
 $router->get("/logout", function () {
