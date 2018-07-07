@@ -62,9 +62,9 @@ class PenggunaController extends Controller
         $fetchedData = $user->fetch();
 
         $data = [
-      'data' => $fetchedData,
-      'count' =>count($fetchedData)
-    ];
+          'data' => $fetchedData,
+          'count' =>count($fetchedData)
+        ];
 
         echo json_encode($data);
     }

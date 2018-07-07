@@ -72,17 +72,61 @@
     </script>
     <script type="text/javascript" src="/extension/js/chupy-admin-sidebar-behaviour.js">
     </script>
+    <script type="text/javascript" src="/extension/js/page/dashboard.overview.js">
+    </script>
     <script type="text/javascript">
+    $(document).ready(function(){
+
+      // alert close button behaviour
       $(function(){
         $("[data-hide]").on("click", function(){
             $(this).closest("." + $(this).attr("data-hide")).removeClass("show");
         });
       });
+    })
     </script>
+
+    <?php
+        $uri = explode('/',$_SERVER['REQUEST_URI']);
+        if (count($uri) == 4) {
+          switch($uri[3]){
+            case 'user':
+    ?>
     <script type="text/javascript" src="/extension/js/page/dashboard.user.js">
     </script>
+    <?php
+
+              break;
+            case 'produk':
+    ?>
+
     <script type="text/javascript" src="/extension/js/page/dashboard.produk.js">
     </script>
+
+    <?php
+              break;
+            case 'kategori':
+    ?>
+
+    <script type="text/javascript" src="/extension/js/page/dashboard.kategori-produk.js">
+    </script>
+
+    <?php
+              break;
+            case 'jenis':
+    ?>
+
+    <script type="text/javascript" src="/extension/js/page/dashboard.jenis-produk.js">
+    </script>
+
+    <?php
+              break;
+          }
+        }
+
+    ?>
+
+
   </section>
 
 </main>
