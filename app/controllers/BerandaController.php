@@ -28,6 +28,10 @@ class BerandaController extends Controller
       $this->render_page('produk_barang');
     }
 
+    public function index_pembayaran(){
+      $this->render_page('pembayaran');
+    }
+
     public function error_404(){
       $this->render_page('404');
     }

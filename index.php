@@ -50,6 +50,10 @@ $router->get("/forgot-password", function () {
     $pengguna->index_forgot_password();
 });
 
+$router->get("/pembayaran",function(){
+    BerandaController::getInstance()->index_pembayaran();
+});
+
 $router->get("/produk/hewan", function () {
     BerandaController::getInstance()->index_daftar_hewan();
 });

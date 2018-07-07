@@ -1,0 +1,8 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-pembayaran-header h1,
+.chupy-pembayaran-header h5 {
+    font-weight: 300;
+}
