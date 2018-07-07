@@ -78,6 +78,24 @@ $router->get('/api/kategori_produk/jenis/{idjenis}', function($idjenis){
   $jenisProduk->fetch_by(['idJenis'=>$idjenis]);
 });
 
+$router->post('/api/kategori_produk/tambah', function(){
+  $kategoriProduk = new KategoriProdukController();
+  $requestData = $_POST;
+  $kategoriProduk->insert($requestData);
+});
+
+$router->post('/api/kategori_produk/ubah', function(){
+  $kategoriProduk = new KategoriProdukController();
+  $requestData = $_POST;
+  $kategoriProduk->update($requestData);
+});
+
+$router->post('/api/kategori_produk/hapus', function(){
+  $kategoriProduk = new KategoriProdukController();
+  $requestData = $_POST;
+  $kategoriProduk->delete($requestData);
+});
+
 $router->get('/api/hak_akses', function(){
   $hakAkses = new HakAksesController();
   $hakAkses->fetch();

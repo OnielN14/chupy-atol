@@ -79,10 +79,43 @@
         });
       });
     </script>
+
+    <?php
+        $uri = explode('/',$_SERVER['REQUEST_URI']);
+        if (count($uri) == 4) {
+          switch($uri[3]){
+            case 'user':
+    ?>
     <script type="text/javascript" src="/extension/js/page/dashboard.user.js">
     </script>
+    <?php
+
+              break;
+            case 'produk':
+    ?>
+
     <script type="text/javascript" src="/extension/js/page/dashboard.produk.js">
     </script>
+
+    <?php
+              break;
+            case 'kategori':
+    ?>
+
+    <script type="text/javascript" src="/extension/js/page/dashboard.kategori-produk.js">
+    </script>
+
+    <?php
+              break;
+            case 'jenis':
+              // include('page/jenis.management.php');
+              break;
+          }
+        }
+
+    ?>
+
+
   </section>
 
 </main>
