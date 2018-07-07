@@ -36,7 +36,7 @@
     <main>
     <div id="chupy-msg" class="chupy-alert fixed alert alert-warning alert-dismissible fade" role="alert">
       <strong>Holy guacamole!</strong> <span> You should check in on some of those fields below.</span>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-hide="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -72,7 +72,16 @@
     </script>
     <script type="text/javascript" src="/extension/js/chupy-admin-sidebar-behaviour.js">
     </script>
-    <script type="text/javascript" src="/extension/js/page/dashboard.utama.js">
+    <script type="text/javascript">
+      $(function(){
+        $("[data-hide]").on("click", function(){
+            $(this).closest("." + $(this).attr("data-hide")).removeClass("show");
+        });
+      });
+    </script>
+    <script type="text/javascript" src="/extension/js/page/dashboard.user.js">
+    </script>
+    <script type="text/javascript" src="/extension/js/page/dashboard.produk.js">
     </script>
   </section>
 
