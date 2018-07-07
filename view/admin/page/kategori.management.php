@@ -85,7 +85,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="submit" form="form-kategori-edit" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="submit" form="form-kategori-edit" data-dismiss="modal" class="btn btn-primary">Simpan Perubahan</button>
       </div>
 
     </div>

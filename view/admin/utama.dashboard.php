@@ -72,12 +72,18 @@
     </script>
     <script type="text/javascript" src="/extension/js/chupy-admin-sidebar-behaviour.js">
     </script>
+    <script type="text/javascript" src="/extension/js/page/dashboard.overview.js">
+    </script>
     <script type="text/javascript">
+    $(document).ready(function(){
+
+      // alert close button behaviour
       $(function(){
         $("[data-hide]").on("click", function(){
             $(this).closest("." + $(this).attr("data-hide")).removeClass("show");
         });
       });
+    })
     </script>
 
     <?php
@@ -108,7 +114,12 @@
     <?php
               break;
             case 'jenis':
-              // include('page/jenis.management.php');
+    ?>
+
+    <script type="text/javascript" src="/extension/js/page/dashboard.jenis-produk.js">
+    </script>
+
+    <?php
               break;
           }
         }

@@ -68,6 +68,25 @@ $router->get('/api/jenis_produk', function(){
   $jenisProduk->fetch();
 });
 
+$router->post('/api/jenis_produk/tambah', function(){
+  $jenisProduk = new JenisProdukController();
+  $requestData = $_POST;
+  $jenisProduk->insert($requestData);
+});
+
+$router->post('/api/jenis_produk/ubah', function(){
+  $jenisProduk = new JenisProdukController();
+  $requestData = $_POST;
+  $jenisProduk->update($requestData);
+});
+
+$router->post('/api/jenis_produk/hapus', function(){
+  $jenisProduk = new JenisProdukController();
+  $requestData = $_POST;
+  $jenisProduk->delete($requestData);
+});
+
+
 $router->get('/api/kategori_produk', function(){
   $jenisProduk = new KategoriProdukController();
   $jenisProduk->fetch();
@@ -135,7 +154,6 @@ $router->post('/api/produk/hapus', function(){
   $produk = new ProdukController();
   $request = $_POST;
   $produk->delete($request);
-  // echo json_encode($_POST);
 });
 
 $router->get("/logout", function () {
@@ -146,11 +164,6 @@ $router->get("/logout", function () {
     }
 });
 
-$router->post("/test", function () {
-    // print_r(ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]);
-    // $pengguna = new PenggunaController();
-    // $pengguna->delete();
-});
 
 
 try {

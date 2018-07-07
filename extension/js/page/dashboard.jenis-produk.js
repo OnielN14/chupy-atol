@@ -1,35 +1,32 @@
-let kategoriProdukData = []
 let jenisProdukData = []
 
 $(document).ready(function(){
   // Kategori Produk Data List
   $.ajax({
-    url: '/api/kategori_produk',
+    url: '/api/jenis_produk',
     method: 'GET',
     dataType: 'json'
   }).done(function(response) {
     let dataSet = []
-    kategoriProdukData = response.data
+    jenisProdukData = response.data
     for (let item of response.data) {
-       kategori = {
+       jenis = {
         id: item.id,
         nama: item.nama,
-        jenis: item.namaJenis,
-        aksi: '<button class="btn btn-success my-1 mr-1" data-toggle="modal" data-target="#edit-modal-kategori" data-kategori-id="' + item.id + '">Ubah</button><button data-toggle="modal" data-target="#hapus-modal-kategori" class="btn btn-danger my-1 mr-1" data-kategori-id="' + item.id + '">Hapus</button> '
+        aksi: '<button class="btn btn-success my-1 mr-1" data-toggle="modal" data-target="#edit-modal-jenis" data-jenis-id="' + item.id + '">Ubah</button><button data-toggle="modal" data-target="#hapus-modal-jenis" class="btn btn-danger my-1 mr-1" data-jenis-id="' + item.id + '">Hapus</button> '
       }
 
-      dataSet.push(kategori)
+      dataSet.push(jenis)
     }
 
     result = {
       'data': dataSet
     }
-    $('#table-produk-list').DataTable({
+    $('#table-jenis-list').DataTable({
       data: result.data,
       columns: [
         {data: "id"},
         {data: "nama"},
-        {data: "jenis"},
         {data: "aksi"}
       ]
     })
@@ -37,94 +34,8 @@ $(document).ready(function(){
   }
 )
 
-  // Kategori Produk
-$.ajax({
-    url: '/api/jenis_produk',
-    method: 'get',
-    dataType: 'json'
-  }).done(function(response) {
-
-    jenisProdukData = response.data
-
-    let elements = []
-    let option = document.createElement('option')
-    for (let item of response.data) {
-      let option = document.createElement('option')
-      option.setAttribute('value', item.id)
-      option.innerHTML = item.nama
-
-      elements.push(option)
-    }
-
-    let jElements = $(elements)
-    $('select#form-jenis').append(jElements.clone())
-    $('select#form-edit-jenis').append(jElements.clone())
-  })
-//
-//
-// $('#form-jenis').on('change', function(){
-//   let idJenis = $(this).val()
-//   let defaultOption = document.createElement('option')
-//   defaultOption.setAttribute('disabled', true)
-//   defaultOption.setAttribute('selected', true)
-//   defaultOption.innerHTML = "Pilih Kategori Produk"
-//
-//   $('#form-kategori').empty()
-//   $('#form-kategori').append($(defaultOption).clone())
-//
-//   let data = kategoriProdukData.filter(function(item){
-//     return item.idJenis == idJenis
-//   })
-//
-//   elements = []
-//   for (let item of data) {
-//     let option = document.createElement('option')
-//     option.setAttribute('value',item.id)
-//     option.innerHTML = item.nama
-//
-//     elements.push(option)
-//   }
-//
-//   let jElements = $(elements)
-//   $('#form-kategori').prop('disabled',false)
-//   $('#form-kategori').append(jElements.clone())
-//
-// })
-//
-//
-// $('#form-edit-jenis').on('change', function(){
-//   let idJenis = $(this).val()
-//   let defaultOption = document.createElement('option')
-//   defaultOption.setAttribute('disabled', true)
-//   defaultOption.setAttribute('selected', true)
-//   defaultOption.innerHTML = "Pilih Kategori Produk"
-//
-//   $('#form-edit-kategori').empty()
-//   $('#form-edit-kategori').append($(defaultOption).clone())
-//
-//   let data = kategoriProdukData.filter(function(item){
-//     return item.idJenis == idJenis
-//   })
-//
-//   console.log(kategoriProdukData);
-//   elements = []
-//   for (let item of data) {
-//     let option = document.createElement('option')
-//     option.setAttribute('value',item.id)
-//     option.innerHTML = item.nama
-//
-//     elements.push(option)
-//   }
-//
-//   let jElements = $(elements)
-//   $('#form-edit-kategori').prop('disabled',false)
-//   $('#form-edit-kategori').append(jElements.clone())
-//
-// })
-//
-//
 // disable normal form behaviour
-$('form#form-kategori-new').on('keyup keypress', function(e) {
+$('form#form-jenis-new').on('keyup keypress', function(e) {
   var keyCode = e.keyCode || e.which;
   if (keyCode === 13) {
     e.preventDefault();
@@ -132,14 +43,14 @@ $('form#form-kategori-new').on('keyup keypress', function(e) {
   }
 });
 
-$('form#form-kategori-new').submit(function(e) {
-  tambahKategoriProduk()
+$('form#form-jenis-new').submit(function(e) {
+  tambahJenisProduk()
   return false
 })
 
 
 // disable normal form behaviour
-$('form#form-kategori-edit').on('keyup keypress', function(e) {
+$('form#form-jenis-edit').on('keyup keypress', function(e) {
   var keyCode = e.keyCode || e.which;
   if (keyCode === 13) {
     e.preventDefault();
@@ -147,47 +58,44 @@ $('form#form-kategori-edit').on('keyup keypress', function(e) {
   }
 });
 
-$('form#form-kategori-edit').submit(function(e) {
-  ubahKategoriProduk()
+$('form#form-jenis-edit').submit(function(e) {
+  ubahJenisProduk()
   return false
 })
 
 
-$('#hapus-modal-kategori').on('show.bs.modal', function(event) {
+$('#hapus-modal-jenis').on('show.bs.modal', function(event) {
   let button = $(event.relatedTarget)
-  let kategoriId = button.data('kategori-id')
+  let jenisiId = button.data('jenis-id')
   let modal = $(this)
 
-  let data = kategoriProdukData.find(function(item) {
-    return item.id == kategoriId
+  let data = jenisProdukData.find(function(item) {
+    return item.id == jenisiId
   })
 
-  modal.find('#hapus-modal-nama-produk').text(data.nama)
+  modal.find('#hapus-modal-nama-jenis').text(data.nama)
   modal.find('#hapus-modal-confirm').attr('data-id', data.id)
 })
 
-$('#edit-modal-kategori').on('show.bs.modal', function(event) {
+$('#edit-modal-jenis').on('show.bs.modal', function(event) {
   let button = $(event.relatedTarget)
-  let kategoriId = button.data('kategori-id')
+  let jenisiId = button.data('jenis-id')
   let modal = $(this)
 
-  let data = kategoriProdukData.find(function(item) {
-    return item.id == kategoriId
+  let data = jenisProdukData.find(function(item) {
+    return item.id == jenisiId
   })
 
   modal.find('form #form-edit-id').val(data.id)
   modal.find('form #form-edit-nama').val(data.nama)
-  modal.find('form #form-edit-jenis').val(data.idJenis)
-
-  modal.find('form #form-edit-kategori').val(data.idKategori)
 })
 
 
-function deleteKategoriProduk(target) {
+function deleteJenisProduk(target) {
   let element = $(target)
 
   $.ajax({
-    url: '/api/kategori_produk/hapus',
+    url: '/api/jenis_produk/hapus',
     method: 'post',
     dataType: 'json',
     data: {
@@ -210,7 +118,7 @@ function deleteKategoriProduk(target) {
     $('#chupy-msg').addClass('alert-success')
 
     $('#chupy-msg').find('strong').text('Sukses')
-    $('#chupy-msg').find('strong + span').text('Kategori produk berhasil dihapus.')
+    $('#chupy-msg').find('strong + span').text('Jenis produk berhasil dihapus.')
     $('#chupy-msg').addClass('show')
     setTimeout(function() {
       location.reload();
@@ -226,15 +134,15 @@ function deleteKategoriProduk(target) {
   })
 }
 
-function ubahKategoriProduk() {
-  let form = document.querySelector('form#form-kategori-edit')
+function ubahJenisProduk() {
+  let form = document.querySelector('form#form-jenis-edit')
 
   let data = new FormData(form)
   data.append('id', $('#form-edit-id').val())
 
   $('#edit-modal-kategori').modal('toggle')
   $.ajax({
-    url: '/api/kategori_produk/ubah',
+    url: '/api/jenis_produk/ubah',
     method: 'post',
     dataType: 'json',
     contentType: false,
@@ -257,7 +165,7 @@ function ubahKategoriProduk() {
     $('#chupy-msg').addClass('alert-success')
 
     $('#chupy-msg').find('strong').text('Sukses')
-    $('#chupy-msg').find('strong + span').text('Kategori produk berhasil diubah.')
+    $('#chupy-msg').find('strong + span').text('Jenis produk berhasil diubah.')
     $('#chupy-msg').addClass('show')
     setTimeout(function() {
       location.reload();
@@ -273,13 +181,13 @@ function ubahKategoriProduk() {
 }
 
 
-function tambahKategoriProduk() {
-  let form = document.querySelector('form#form-kategori-new')
+function tambahJenisProduk() {
+  let form = document.querySelector('form#form-jenis-new')
   let data = new FormData(form)
 
-  $('#input-modal-kategori').modal('toggle')
+  $('#input-modal-jenis').modal('toggle')
   $.ajax({
-    url: '/api/kategori_produk/tambah',
+    url: '/api/jenis_produk/tambah',
     method: 'post',
     dataType: 'json',
     contentType: false,
@@ -302,7 +210,7 @@ function tambahKategoriProduk() {
     $('#chupy-msg').addClass('alert-success')
 
     $('#chupy-msg').find('strong').text('Sukses')
-    $('#chupy-msg').find('strong + span').text('Kategori produk berhasil ditambahkan.')
+    $('#chupy-msg').find('strong + span').text('Jenis produk berhasil ditambahkan.')
     $('#chupy-msg').addClass('show')
     setTimeout(function() {
       location.reload();

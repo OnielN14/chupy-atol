@@ -193,7 +193,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="submit" form="form-user-edit" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="submit" data-dismiss="modal" form="form-user-edit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
 
     </div>
