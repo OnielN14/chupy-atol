@@ -27,9 +27,41 @@
     <li class="nav-item">
       <a class="nav-link" href="/about">Tentang Kami</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/login">Masuk/Daftar</a>
-    </li>
+  <?php
+    if (isset($_SESSION['login_user'])) {
+  ?>
+  <li class="nav-item">
+
+    <div class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button"  data-toggle="dropdown"><?php echo $_SESSION['login_user']['nama'] ?></a>
+
+        <div class="chupy-dropdown dropdown-menu" aria-labelledby="produk-menu-link" style="right:0px;left:auto;">
+  <?php
+    if ($_SESSION['login_user']['idHakAkses'] == 1) {
+  ?>
+      <a class="dropdown-item" href="/admin/dashboard">Dashboard</a>
+
+  <?php
+    }
+  ?>
+          <a class="dropdown-item" href="/profile">Profile</a>
+          <a class="dropdown-item" href="/profile/keranjang">Keranjang</a>
+          <a class="dropdown-item" href="/profile/wishlist">WishList</a>
+          <a class="dropdown-item" href="/logout">Logout</a>
+        </div>
+    </div>
+
+  </li>
+  <?php
+    }
+    else{
+  ?>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Masuk/Daftar</a>
+      </li>
+  <?php
+    }
+  ?>
   </ul>
 </div>
 </nav>
