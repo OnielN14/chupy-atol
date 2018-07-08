@@ -13,6 +13,9 @@ class PenggunaController extends Controller
 {
     public function __construct()
     {
+      if(session_id() == ''){
+        session_start();
+      }
     }
 
     public function index_register()
@@ -33,13 +36,26 @@ class PenggunaController extends Controller
     {
         $this->render_page('forgot-password');
     }
-  
+
   public function index_keranjang(){
     $this->render_page('keranjang');
   }
 
   public function index_profil(){
-    $this->render_page('profil');
+    $pengguna = new Pengguna();
+    if (isset($_SESSION['login_user'])) {
+        if ($_SESSION['login_user']['idHakAkses'] == 1 || $_SESSION['login_user']['idHakAkses'] == 2) {
+          $userData = $pengguna->fetch_by(['id' => $_SESSION['login_user']['id']]);
+          $this->render_page('profil',['pengguna'=>$userData[0]]);
+        }
+        else{
+          header('Location: /');
+        }
+    }
+    else{
+      header('Location: /');
+    }
+
   }
 
     public function login()
@@ -54,7 +70,6 @@ class PenggunaController extends Controller
         $userData = $pengguna->fetch_by(['email'=>$requestUser['email']])[0];
 
         if (strcmp($requestUser['password'], $userData['password']) == 0) {
-            session_start();
             $_SESSION['login_user'] = $userData;
 
             if ($userData['idHakAkses'] == 1) {

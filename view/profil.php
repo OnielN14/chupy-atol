@@ -1,6 +1,4 @@
-<?php
 
-?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -53,8 +51,8 @@
                                 <div class="col-md-4">
                                     <table>
                                         <tr>
-                                            <td colspan="2">
-                                                <h5>Asep Saepundin</h5>
+                                            <td colspan="3">
+                                                <h5><?php echo $pengguna['nama'] ?></h5>
                                             </td>
                                         </tr>
                                         <tr>
@@ -63,7 +61,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <h6>+62 857 2426 8541</h6>
+                                                <h6><?php echo $pengguna['noTelepon'] ?></h6>
                                             </td>
                                         </tr>
                                         <tr>
@@ -72,7 +70,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <h6>asep@chupy.com</h6>
+                                                <h6><?php echo $pengguna['email'] ?></h6>
                                             </td>
                                         </tr>
                                         <tr>
@@ -81,7 +79,7 @@
                                             </td>
                                             <td>:</td>
                                             <td>
-                                                <h6>Jl. Tubagus Ismail Dalam</h6>
+                                                <h6><?php echo $pengguna['alamat'] ?></h6>
                                             </td>
                                         </tr>
                                     </table>
@@ -172,7 +170,7 @@
                                 </div>
                                 <div class="container py-3">
                                 <div class="row">
-                                   
+
                                         <div class="col-md">
                                             <nav class="chupy chupy-product-pagination">
                                                 <ul class="pagination justify-content-center">
@@ -212,7 +210,7 @@
 
 
         </main>
-        
+
   <?php
     include('template/footer.php');
   ?>

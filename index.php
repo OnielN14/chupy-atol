@@ -132,17 +132,17 @@ $router->post('/api/pengguna/tambah', function(){
 });
 
 
-$router->get("/profil",function(){
+$router->get("/profile",function(){
   $pengguna = new PenggunaController();
   $pengguna->index_profil();
 });
 
-$router->get("/profil/keranjang",function(){
+$router->get("/profile/keranjang",function(){
   $pengguna = new PenggunaController();
   $pengguna->index_keranjang();
 });
 
-$router->get("/profil/pengaturan", function(){
+$router->get("/profile/pengaturan", function(){
   $pengguna = new PenggunaController();
   $pengguna->index_pengaturan();
 });
