@@ -7,6 +7,7 @@
 @import url("components/dropdown.css");
 @import url("components/breadcrumb.css");
 @import url("components/form.css");
+@import url("components/cover-message.css");
 
 a{
   color:var(--color-primary);
