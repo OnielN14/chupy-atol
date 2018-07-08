@@ -22,6 +22,17 @@ class FotoProdukController extends Controller{
     echo json_encode($data);
   }
 
+  public function fetch_by_produk($produkData)
+  {
+    $fotoProduk = new FotoProduk();
+    $fetchedData = $fotoProduk->fetch_by_produk($produkData);
+    return $fetchedData;
+  }
+
+  public function update($data){
+
+  }
+
   public function insertMultiple($data){
     $uploadDir = 'extension/upload/';
       if (session_id() == '') {
@@ -42,78 +53,46 @@ class FotoProdukController extends Controller{
 
     }
 
-    public function update($data){
+    public function delete($requestData){
+      $targetDir = 'extension/upload/';
         if (session_id() == '') {
             session_start();
         }
 
-        $jenisProduk = new JenisProduk();
-        $request = $data;
+        $fotoProduk = new FotoProduk();
 
+        $deletedFoto = $fotoProduk->fetch_by($requestData);
+        foreach($deletedFoto as $foto){
+          unlink($targetDir.$foto['gambar']);
+        }
+
+        $response = '';
         if (isset($_SESSION['login_user'])) {
             if ($_SESSION['login_user']['idHakAkses'] == 1) {
-
-                $result = $jenisProduk->update($request);
-
-                $response = [
-                  'status' => 200,
-                  'pesan' => $result
-                ];
-
-            } else {
-                $response = [
-                  'status' => 502,
-                  'pesan' => 'Akses tidak dikenali'
-                ];
-            }
-        }
-        else {
-            $response = [
-              'status' => 501,
-              'pesan' => 'Akses tidak diizinkan'
-            ];
-        }
-        echo json_encode($response);
-      }
-
-      public function delete($requestData){
-          if (session_id() == '') {
-              session_start();
-          }
-
-          $jenisProduk = new JenisProduk();
-          $request = $requestData;
-          $data = [
-            'id' => $request['id']
-          ];
-
-          $response = '';
-          if (isset($_SESSION['login_user'])) {
-              if ($_SESSION['login_user']['idHakAkses'] == 1) {
-                  if ($jenisProduk->delete_by($data)) {
-                      $response = [
-                        'status' => 200,
-                        'message' => 'Jenis produk berhasil dihapus'
-                      ];
-                  } else {
-                      $response = [
-                        'status' => 200,
-                        'message' => 'Akses diizinkan tapi terjadi kesalahan saat menghapus'
-                      ];
-                  }
-              } else {
+                if ($fotoProduk->delete_by($requestData)) {
                     $response = [
-                      'status' => 502,
-                      'pesan' => 'Akses tidak dikenali'
+                      'status' => 200,
+                      'message' => 'Foto produk berhasil dihapus'
                     ];
-              }
-          } else {
-            $response = [
-              'status' => 501,
-              'pesan' => 'Akses tidak diizinkan'
-            ];
-          }
+                } else {
+                    $response = [
+                      'status' => 200,
+                      'message' => 'Akses diizinkan tapi terjadi kesalahan saat menghapus'
+                    ];
+                }
+            } else {
+                  $response = [
+                    'status' => 502,
+                    'pesan' => 'Akses tidak dikenali'
+                  ];
+            }
+        } else {
+          $response = [
+            'status' => 501,
+            'pesan' => 'Akses tidak diizinkan'
+          ];
+        }
 
-          echo json_encode($response);
-      }
+        return $response;
+    }
 }

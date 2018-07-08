@@ -42,10 +42,6 @@
             <label for="form-nama" class="col-form-label">Nama</label>
             <input type="text" class="form-control" id="form-nama" name="nama" required autofocus>
           </div>
-          <div class="form-group">
-            <label for="input-foto">Pilih foto</label>
-            <input id="input-foto" type="file" class="form-control-file" name="fotoProduk[]" value="" multiple accept="image/*">
-          </div>
           <div class="form-row">
             <div class="form-group col">
               <label for="form-stok" class="col-form-label">Stok</label>
@@ -76,6 +72,11 @@
                 <option value="0" disabled selected>Pilih Kategori Produk</option>
               </select>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-foto">Pilih foto</label>
+            <input id="input-foto" type="file" class="form-control-file" name="fotoProduk[]" value="" multiple accept="image/*">
           </div>
 
         </form>
@@ -138,11 +139,16 @@
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="input-foto">Pilih foto</label>
+            <input id="input-foto" type="file" class="form-control-file" name="fotoProduk[]" value="" multiple accept="image/*">
+          </div>
+
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="submit" form="form-produk-edit" data-dismiss="modal" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="submit" form="form-produk-edit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
 
     </div>

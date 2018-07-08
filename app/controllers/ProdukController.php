@@ -12,9 +12,22 @@ class ProdukController extends Controller{
   public function __construct(){
   }
 
-  public function fetch(){
+  public function fetch($data = ""){
     $produk = new Produk();
-    $fetchedData = $produk->fetch();
+    $fotoProduk = new FotoProdukController();
+    $fetchedData= '';
+    if ($data == '') {
+      $fetchedData = $produk->fetch();
+    }
+    else{
+      $fetchedData = $produk->fetch_by($data);
+    }
+
+    for ($i=0; $i <count($fetchedData) ; $i++) {
+      $fotoProdukData = $fotoProduk->fetch_by_produk(['idProduk' => $fetchedData[$i]['id']]);
+      array_push($fetchedData[$i], $fotoProdukData);
+    }
+
     $data = [
       "count" =>count($fetchedData),
       "data" => $fetchedData
@@ -35,10 +48,6 @@ public function insert($data){
     if (session_id() == '') {
         session_start();
     }
-
-    // Processing foto
-
-
     $produk = new Produk();
     $fotoProdukController = new FotoProdukController();
 
@@ -50,7 +59,8 @@ public function insert($data){
         if ($_SESSION['login_user']['idHakAkses'] == 1) {
 
             $result = $produk->insert($request);
-            $produkData = $produk->fetch_by(['nama' => $request['nama']])[0];
+            $fetchedData = $produk->fetch_by(['nama' => $request['nama']]);
+            $produkData = end($fetchedData);
 
             foreach ($rawFotoData as $fotoData) {
               $newName = strtolower(Date('Ymd').'-'.rand().'-'.$produkData['id'].'.'.explode('/',$fotoData['type'])[1]);
@@ -74,7 +84,7 @@ public function insert($data){
 
             $response = [
               'status' => 200,
-              'pesan' => $result
+              'pesan' => $summary
             ];
 
         } else {
@@ -100,16 +110,42 @@ public function insert($data){
       }
 
       $produk = new Produk();
-      $request = $data;
+      $fotoProdukController = new FotoProdukController();
+      $request = $data['produkData'];
+      $rawFotoData = $data['foto'];
+      $requestFoto = [];
 
       if (isset($_SESSION['login_user'])) {
           if ($_SESSION['login_user']['idHakAkses'] == 1) {
 
               $result = $produk->update($request);
 
+              // deleting previous data
+              $fotoProdukController->delete(['idProduk'=>$request['id']]);
+
+              foreach ($rawFotoData as $fotoData) {
+                $newName = strtolower(Date('Ymd').'-'.rand().'-'.$request['id'].'.'.explode('/',$fotoData['type'])[1]);
+                $foto = [
+                  'name' => $newName,
+                  'type' => $fotoData['type'],
+                  'tmp_name' => $fotoData['tmp_name'],
+                  'size' => $fotoData['size'],
+                  'idProduk' => $request['id']
+                ];
+
+                array_push($requestFoto, $foto);
+              }
+
+              $resultFoto = $fotoProdukController->insertMultiple($requestFoto);
+
+              $summary = [
+                $result,
+                $resultFoto
+              ];
+
               $response = [
                 'status' => 200,
-                'pesan' => $result
+                'pesan' => $summary
               ];
 
           } else {
@@ -133,6 +169,7 @@ public function insert($data){
             session_start();
         }
         $produk = new Produk();
+        $fotoProdukController = new FotoProdukController();
         $request = $requestData;
         $data = [
           'id' => $request['id']
@@ -141,6 +178,9 @@ public function insert($data){
         $response = '';
         if (isset($_SESSION['login_user'])) {
             if ($_SESSION['login_user']['idHakAkses'] == 1) {
+
+              // deleting previous data
+              $fotoProdukController->delete(['idProduk'=>$request['id']]);
                 if ($produk->delete_by($data)) {
                     $response = [
                       'status' => 200,

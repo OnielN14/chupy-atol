@@ -64,6 +64,16 @@ $router->get('/api/produk', function(){
   $produk->fetch();
 });
 
+$router->get('/api/produk/hewan', function(){
+  $produk = new ProdukController();
+  $produk->fetch(['idJenis' => 1]);
+});
+
+$router->get('/api/produk/kebutuhan', function(){
+  $produk = new ProdukController();
+  $produk->fetch(['idJenis' => 2]);
+});
+
 $router->get('/api/jenis_produk', function(){
   $jenisProduk = new JenisProdukController();
   $jenisProduk->fetch();
@@ -171,8 +181,15 @@ $router->post('/api/produk/tambah', function(){
 });
 $router->post('/api/produk/ubah', function(){
   $produk = new ProdukController();
-  $request = $_POST;
+  $arrangeArray = $produk->reArrangeFotoData($_FILES['fotoProduk']);
+
+  $request = [
+    'produkData' => $_POST,
+    'foto' => $arrangeArray
+    ];
+
   $produk->update($request);
+  // echo json_encode($request);
 });
 $router->post('/api/produk/hapus', function(){
   $produk = new ProdukController();

@@ -8,6 +8,17 @@ class FotoProduk extends Model{
 
   protected $modelName = 'fotoproduk';
 
+  public function fetch_by_produk($produkData)
+  {
+    $stmt = $this->connection->getConnected()->prepare('SELECT fotoproduk.id AS id, gambar, produk.id AS idProduk FROM fotoproduk LEFT JOIN produk ON fotoproduk.idProduk = produk.id WHERE fotoproduk.idProduk = :idProduk');
+
+    $stmt->bindParam(':idProduk',$produkData['idProduk']);
+
+    $stmt->execute();
+    $stmt->setFetchMode($this->fetchMode);
+    return $stmt->fetchAll();
+  }
+
   public function insert($fotoData){
     $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(gambar,createdAt,updatedAt, idProduk) VALUES (:gambar,NOW(),NOW(),:idProduk)');
 
