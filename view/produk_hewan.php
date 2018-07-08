@@ -43,9 +43,8 @@
             <div class="col-md form-inline">
               <label class="my-1 mr-2" for="filter-kategori">Kategori</label>
               <select class="form-control my-1 mr-2" id="filter-kategori" name="">
-                <option value="0">Reptil</option>
-                <option value="1">Mamalia</option>
-                <option value="2">Burung</option>
+                <option value="-1" disabled selected>Pilih Kategori</option>
+                <option value="0">Semua</option>
               </select>
             </div>
             <div class="col-md form-inline">
@@ -85,45 +84,7 @@
         <section class="container chupy-product-list">
           <div class="row">
 
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
+            <!-- Populated by javascript -->
 
           </div>
         </section>
@@ -156,5 +117,6 @@
     include('template/footer.php');
   ?>
 
+  <script src="/extension/js/page/home.produk-hewan.js" charset="utf-8"></script>
 </body>
 </html>

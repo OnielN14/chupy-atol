@@ -25,7 +25,8 @@ class ProdukController extends Controller{
 
     for ($i=0; $i <count($fetchedData) ; $i++) {
       $fotoProdukData = $fotoProduk->fetch_by_produk(['idProduk' => $fetchedData[$i]['id']]);
-      array_push($fetchedData[$i], $fotoProdukData);
+      
+      $fetchedData[$i]['foto'] = $fotoProdukData;
     }
 
     $data = [

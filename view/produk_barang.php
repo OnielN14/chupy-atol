@@ -156,7 +156,5 @@
     include('template/footer.php');
   ?>
 
-  <script src="/extension/js/page/home.produk-hewan.js" charset="utf-8"></script>
-
 </body>
 </html>

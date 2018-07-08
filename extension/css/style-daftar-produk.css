@@ -20,6 +20,11 @@ main{
   padding-bottom: 16px;
 }
 
+.chupy-product-card img{
+  height: calc((100vw * 0.25) * 0.7);
+  object-fit: cover;
+}
+
 .chupy-product-card a.card,
 .chupy-product-card .card{
   transition: box-shadow 0.3s ease;
@@ -71,5 +76,9 @@ main{
   .chupy-product-header img{
       height: 100px;
       width: auto;
+  }
+
+  .chupy-product-card img{
+    height: calc((100vw * 0.5) * 0.7);
   }
 }
