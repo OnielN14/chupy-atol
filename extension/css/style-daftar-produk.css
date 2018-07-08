@@ -2,6 +2,10 @@ main{
   padding-top: calc(var(--navbar-size) + 16px);
 }
 
+.chupy.chupy-product-pagination.hide{
+  display: none
+}
+
 .chupy.chupy-product-pagination a{
   color: var(--color-primary);
 }
@@ -18,6 +22,11 @@ main{
 
 .chupy-product-card{
   padding-bottom: 16px;
+}
+
+.chupy-product-card img{
+  height: calc((100vw * 0.25) * 0.7);
+  object-fit: cover;
 }
 
 .chupy-product-card a.card,
@@ -71,5 +80,9 @@ main{
   .chupy-product-header img{
       height: 100px;
       width: auto;
+  }
+
+  .chupy-product-card img{
+    height: calc((100vw * 0.5) * 0.7);
   }
 }

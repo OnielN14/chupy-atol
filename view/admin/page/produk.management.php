@@ -1,4 +1,4 @@
-<header class="chupy-admin-dashboard-header">
+  <header class="chupy-admin-dashboard-header">
   <h2>Manajemen Produk</h2>
 </header>
 <main class="container">
@@ -74,6 +74,11 @@
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="input-foto">Pilih foto</label>
+            <input id="input-foto" type="file" class="form-control-file" name="fotoProduk[]" value="" multiple accept="image/*">
+          </div>
+
         </form>
       </div>
       <div class="modal-footer">
@@ -134,11 +139,16 @@
             </div>
           </div>
 
+          <div class="form-group">
+            <label for="input-foto">Pilih foto</label>
+            <input id="input-foto" type="file" class="form-control-file" name="fotoProduk[]" value="" multiple accept="image/*">
+          </div>
+
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="submit" form="form-produk-edit" data-dismiss="modal" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="submit" form="form-produk-edit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
 
     </div>
