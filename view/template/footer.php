@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="form-group">
-            <textarea name="pesan" rows="3" id="form-saran-pesan" class="form-control" placeholder="Ketikkan saran "></textarea>
+            <textarea name="pesan" rows="3" id="form-saran-pesan" class="form-control" placeholder="Ketikkan saran " required></textarea>
           </div>
           <div class="chupy-message cover-message hide" id="kotak-saran-message">
             <div class="chupy-message-body">
