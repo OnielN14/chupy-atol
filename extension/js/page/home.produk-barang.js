@@ -6,7 +6,7 @@ var itemShowPerPage = 8
 var pagedItem = []
 
 $.ajax({
-  url:'/api/produk/hewan',
+  url:'/api/produk/kebutuhan',
   method :'GET',
   dataType: 'json'
 }).done(function(response){

@@ -2,6 +2,10 @@ main{
   padding-top: calc(var(--navbar-size) + 16px);
 }
 
+.chupy.chupy-product-pagination.hide{
+  display: none
+}
+
 .chupy.chupy-product-pagination a{
   color: var(--color-primary);
 }

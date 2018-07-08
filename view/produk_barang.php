@@ -43,20 +43,14 @@
             <div class="col-md form-inline">
               <label class="my-1 mr-2" for="filter-kategori">Kategori</label>
               <select class="form-control my-1 mr-2" id="filter-kategori" name="">
-                <option value="0">Reptil</option>
-                <option value="1">Mamalia</option>
-                <option value="2">Burung</option>
+                <option value="-1" disabled selected>Pilih Kategori</option>
+                <option value="0">Semua</option>
               </select>
             </div>
             <div class="col-md form-inline">
               <label class="my-1 mr-2" for="filter-cari">Pencarian</label>
-              <div class="input-group">
-                <input type="text" id="filter-cari"
-                class="form-control my-1" name="" value="">
-                <div class="input-group-append my-1">
-                  <button class="btn btn-primary" type="button">Cari</button>
-                </div>
-              </div>
+              <input type="text" id="filter-cari"
+              class="form-control my-1" name="" value="">
             </div>
           </div>
 
@@ -65,8 +59,8 @@
               <label class="my-1 mr-2" for="filter-harga">Harga</label>
 
               <div class="input-group">
-                <input id="filter-harga" type="text" class="form-control" name="" value="" placeholder="Minimum">
-                <input type="text" class="form-control" name="" value="" placeholder="Maksimum">
+                <input id="filter-harga-min" type="text" class="form-control" name="" value="" placeholder="Minimum">
+                <input id="filter-harga-max" type="text" class="form-control" name="" value="" placeholder="Maksimum">
 
               </div>
             </div>
@@ -84,45 +78,6 @@
 
         <section class="container chupy-product-list">
           <div class="row">
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
-
-            <article class="col-6 col-md-3 chupy-product-card">
-              <a href="/" class="card">
-                <img src="/extension/img/chupy-box-ATOL.png" alt="box ATOL" class="card-img-top">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <p class="card-text">Rp. 69696969</p>
-                </div>
-              </a>
-            </article>
 
 
           </div>
@@ -130,21 +85,19 @@
 
         <nav class="chupy chupy-product-pagination">
           <ul class="pagination justify-content-center">
-            <li class="page-item">
+            <!-- <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previous</span>
               </a>
-            </li>
-            <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-            <li class="page-item">
+            </li> -->
+
+            <!-- <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </nav>
     </section>
@@ -155,6 +108,6 @@
   <?php
     include('template/footer.php');
   ?>
-
+  <script src="/extension/js/page/home.produk-barang.js" charset="utf-8"></script>
 </body>
 </html>

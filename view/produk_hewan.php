@@ -37,7 +37,7 @@
       </section>
     </header>
 
-    <section class="chupy-product-content">
+    <section id="chupy-area" class="chupy-product-content">
         <header class="container chupy-filter">
           <div class="form-row">
             <div class="col-md form-inline">
@@ -49,13 +49,8 @@
             </div>
             <div class="col-md form-inline">
               <label class="my-1 mr-2" for="filter-cari">Pencarian</label>
-              <div class="input-group">
-                <input type="text" id="filter-cari"
-                class="form-control my-1" name="" value="">
-                <div class="input-group-append my-1">
-                  <button class="btn btn-primary" type="button">Cari</button>
-                </div>
-              </div>
+              <input type="text" id="filter-cari"
+              class="form-control my-1" name="" value="" placeholder="Cari nama produk">
             </div>
           </div>
 
@@ -64,8 +59,8 @@
               <label class="my-1 mr-2" for="filter-harga">Harga</label>
 
               <div class="input-group">
-                <input id="filter-harga" type="text" class="form-control" name="" value="" placeholder="Minimum">
-                <input type="text" class="form-control" name="" value="" placeholder="Maksimum">
+                <input id="filter-harga-min" type="text" class="form-control" name="" value="" placeholder="Minimum">
+                <input id="filter-harga-max" type="text" class="form-control" name="" value="" placeholder="Maksimum">
 
               </div>
             </div>
@@ -91,21 +86,7 @@
 
         <nav class="chupy chupy-product-pagination">
           <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+
           </ul>
         </nav>
     </section>
