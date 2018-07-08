@@ -86,7 +86,7 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <a href="#" class="btn btn-primary outline btn-profil-ubah">Ubah</a>
+                                    <a href="/profile/pengaturan" class="btn btn-primary outline btn-profil-ubah">Ubah</a>
                                 </div>
                             </div>
                         </div>

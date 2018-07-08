@@ -158,8 +158,16 @@ $router->post('/api/pengguna/ubah', function(){
 
 $router->post('/api/produk/tambah', function(){
   $produk = new ProdukController();
-  $request = $_POST;
+
+  $arrangeArray = $produk->reArrangeFotoData($_FILES['fotoProduk']);
+
+  $request = [
+    'produkData' => $_POST,
+    'foto' => $arrangeArray
+    ];
   $produk->insert($request);
+  // echo json_encode($request);
+
 });
 $router->post('/api/produk/ubah', function(){
   $produk = new ProdukController();

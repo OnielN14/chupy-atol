@@ -1,4 +1,4 @@
-<header class="chupy-admin-dashboard-header">
+  <header class="chupy-admin-dashboard-header">
   <h2>Manajemen Produk</h2>
 </header>
 <main class="container">
@@ -41,6 +41,10 @@
           <div class="form-group">
             <label for="form-nama" class="col-form-label">Nama</label>
             <input type="text" class="form-control" id="form-nama" name="nama" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="input-foto">Pilih foto</label>
+            <input id="input-foto" type="file" class="form-control-file" name="fotoProduk[]" value="" multiple accept="image/*">
           </div>
           <div class="form-row">
             <div class="form-group col">

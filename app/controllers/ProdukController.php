@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Validation;
 use App\Controller;
 use App\Models\Produk;
+use App\Controllers\FotoProdukController;
 
 class ProdukController extends Controller{
 
@@ -21,18 +22,55 @@ class ProdukController extends Controller{
     echo json_encode($data);
   }
 
+public function reArrangeFotoData( $arr ){
+    foreach( $arr as $key => $all ){
+        foreach( $all as $i => $val ){
+            $new[$i][$key] = $val;
+        }
+    }
+    return $new;
+}
+
 public function insert($data){
     if (session_id() == '') {
         session_start();
     }
 
+    // Processing foto
+
+
     $produk = new Produk();
-    $request = $data;
+    $fotoProdukController = new FotoProdukController();
+
+    $request = $data['produkData'];
+    $rawFotoData = $data['foto'];
+    $requestFoto = [];
 
     if (isset($_SESSION['login_user'])) {
         if ($_SESSION['login_user']['idHakAkses'] == 1) {
 
             $result = $produk->insert($request);
+            $produkData = $produk->fetch_by(['nama' => $request['nama']])[0];
+
+            foreach ($rawFotoData as $fotoData) {
+              $newName = strtolower(Date('Ymd').'-'.rand().'-'.$produkData['id'].'.'.explode('/',$fotoData['type'])[1]);
+              $foto = [
+                'name' => $newName,
+                'type' => $fotoData['type'],
+                'tmp_name' => $fotoData['tmp_name'],
+                'size' => $fotoData['size'],
+                'idProduk' => $produkData['id']
+              ];
+
+              array_push($requestFoto, $foto);
+            }
+
+            $resultFoto = $fotoProdukController->insertMultiple($requestFoto);
+
+            $summary = [
+              $result,
+              $resultFoto
+            ];
 
             $response = [
               'status' => 200,
