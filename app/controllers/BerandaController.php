@@ -16,6 +16,12 @@ class BerandaController extends Controller
         return isset(self::$instance) ? self::$instance : self::$instance = new BerandaController();
     }
 
+    public function __construct(){
+      if(session_id() == ''){
+        session_start();
+      }
+    }
+
     public function index()
     {
         $this->render_page('main-page', ['apikey'=>ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);

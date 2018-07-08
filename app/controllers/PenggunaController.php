@@ -20,16 +20,28 @@ class PenggunaController extends Controller
 
     public function index_register()
     {
-        $this->render_page('registrasi', ['apiKey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+
+      if (isset($_SESSION['login_user'])) {
+        header('Location: /');
+      }
+      else{
+        $this->render_page('registrasi', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+      }
+
     }
 
     public function index_login()
     {
-        $this->render_page('login');
+      if (isset($_SESSION['login_user'])) {
+        header('Location: /');
+      }
+      else{
+        $this->render_page('login', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+      }
     }
 
   public function index_pengaturan(){
-    $this->render_page('pengaturan');
+    $this->render_page('pengaturan', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
   }
 
     public function index_forgot_password()
@@ -38,7 +50,7 @@ class PenggunaController extends Controller
     }
 
   public function index_keranjang(){
-    $this->render_page('keranjang');
+    $this->render_page('keranjang', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
   }
 
   public function index_profil(){
@@ -46,7 +58,7 @@ class PenggunaController extends Controller
     if (isset($_SESSION['login_user'])) {
         if ($_SESSION['login_user']['idHakAkses'] == 1 || $_SESSION['login_user']['idHakAkses'] == 2) {
           $userData = $pengguna->fetch_by(['id' => $_SESSION['login_user']['id']]);
-          $this->render_page('profil',['pengguna'=>$userData[0]]);
+          $this->render_page('profil',['pengguna'=>$userData[0], 'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
         }
         else{
           header('Location: /');

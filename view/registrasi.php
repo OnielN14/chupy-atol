@@ -29,7 +29,7 @@
 
       </div>
       <form class="col-md-8 col-xs-12" action="/api/pengguna/tambah" method="post" id="form-registrasi">
-        <input type="hidden" name="front_end_key" value="<?php echo $apiKey; ?>">
+        <input type="hidden" name="front_end_key" value="<?php echo $apikey; ?>">
         <div class="form-group">
             <label for="form-nama">Nama</label>
             <input id="form-nama" class="form-control" type="text" name="nama" placeholder="Nama Lengkap" autofocus required>

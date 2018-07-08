@@ -82,7 +82,7 @@ function deletePesan(target) {
     $('#chupy-msg').addClass('alert-success')
 
     $('#chupy-msg').find('strong').text('Sukses')
-    $('#chupy-msg').find('strong + span').text('Pesank berhasil dihapus.')
+    $('#chupy-msg').find('strong + span').text('Pesan berhasil dihapus.')
     $('#chupy-msg').addClass('show')
     setTimeout(function() {
       location.reload();
