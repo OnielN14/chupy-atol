@@ -28,6 +28,7 @@
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/produk">Manajemen Produk</a></li>
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/kategori">Manajemen Kategori Produk</a></li>
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/jenis">Manajemen Jenis Produk</a></li>
+      <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/kotak_saran">Kotak Saran</a></li>
     </ul>
   </aside>
 
@@ -58,6 +59,9 @@
                 break;
               case 'jenis':
                 include('page/jenis.management.php');
+                break;
+              case 'kotak_saran':
+                include('page/kotak-saran.management.php');
                 break;
             }
           }
@@ -121,6 +125,13 @@
 
     <?php
               break;
+            case 'kotak_saran':
+    ?>
+
+    <script type="text/javascript" src="/extension/js/page/dashboard.kotak-saran.js">
+    </script>
+
+    <?php
           }
         }
 

@@ -12,6 +12,9 @@ switch (window.location.pathname) {
   case '/admin/dashboard/jenis':
     asideMenus.find('li:nth-child(5) a').addClass('active')
     break;
+  case '/admin/dashboard/kotak_saran':
+    asideMenus.find('li:nth-child(6) a').addClass('active')
+    break;
   default:
     asideMenus.find('li:first-child a').addClass('active')
 }

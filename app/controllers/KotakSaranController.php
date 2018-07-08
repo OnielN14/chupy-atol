@@ -79,7 +79,7 @@ class KotakSaranController extends Controller{
       $response = '';
       if (isset($_SESSION['login_user'])) {
           if ($_SESSION['login_user']['idHakAkses'] == 1) {
-              if ($jenisProduk->delete_by($data)) {
+              if ($kotakSaran->delete_by($data)) {
                   $response = [
                     'status' => 200,
                     'message' => 'Pesan berhasil dihapus'
