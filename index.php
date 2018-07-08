@@ -161,6 +161,7 @@ $router->post('/kotak_saran', function(){
   $kotakSaran = new KotakSaranController();
   $request = $_POST;
   $kotakSaran->insert($request);
+  // echo json_encode($request);
 });
 
 $router->get("/logout", function () {

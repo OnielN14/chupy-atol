@@ -12,7 +12,7 @@ class KotakSaran extends Model{
     $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(email,isiPesan,createdAt) VALUES (:email,:isiPesan,NOW())');
 
     $stmt->bindParam(':email',$data['email']);
-    $stmt->bindParam(':isiPesan',$data['isiPesan']);
+    $stmt->bindParam(':isiPesan',$data['pesan']);
 
     $stmt->execute();
     return $stmt->errorInfo();

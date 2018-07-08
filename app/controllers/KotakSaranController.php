@@ -33,20 +33,13 @@ class KotakSaranController extends Controller{
       $apiKeyData = ApiController::getInstance()->fetch_by(['user'=>$userFrontAPI]);
 
       if (count($apiKeyData) > 0) {
+        $apiData = $apiKeyData[0];
         if (strcmp($request['front_end_key'], $apiData['apikey']) == 0) {
           $result = $kotakSaran->insert($request);
-          if ($result) {
-            $response = [
-              'status' => 200,
-              'pesan' => 'Sukses'
-            ];
-          }
-          else{
-            $response = [
-              'status' => 501,
-              'pesan' => 'Gagal memasukkan data'
-            ];
-          }
+          $response = [
+            'status' => 200,
+            'pesan' => $result
+          ];
         }
         else{
           $response = [

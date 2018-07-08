@@ -28,10 +28,11 @@
         </div>
 
       </div>
-      <div class="col-md-6 col-xs-12">
-        <form class="chupy-footer-description" action="saran" method="post">
+      <div class="col-md-6 col-xs-12 chupy-footer-description">
+        <h2>Saran</h2>
+        <form style="position:relative">
+          <input type="hidden" name="front_end_key" value="<?php echo $apikey; ?>">
           <div class="form-group">
-            <h2><label for="form-saran-pesan">Saran</label></h2>
             <div class="form-row">
               <div class="col-8">
                   <input class="form-control" type="email" name="email" value="" placeholder="E-mail">
@@ -43,6 +44,13 @@
           </div>
           <div class="form-group">
             <textarea name="pesan" rows="3" id="form-saran-pesan" class="form-control" placeholder="Ketikkan saran "></textarea>
+          </div>
+          <div class="chupy-message cover-message hide" id="kotak-saran-message">
+            <div class="chupy-message-body">
+              <p class="chupy-message-loading-text">Mohon tunggu ...</p>
+              <p class="chupy-message-error-text">Terjadi kesalahan </br> <button type="button" data-close="kotak-saran-message" class="btn btn-primary">Tutup</button></p>
+              <p class="chupy-message-text">Pesan Sudah Dikirim </br> <button type="button" data-close="kotak-saran-message" class="btn btn-primary">Tutup</button></p>
+            </div>
           </div>
         </form>
       </div>
@@ -58,5 +66,10 @@
 <script src="/extension/plugins/bootstrap-4.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/extension/js/chupy-header-behaviour.js">
 </script>
+<script type="text/javascript" src="/extension/js/chupy-message-behaviour.js">
+</script>
 <script type="text/javascript" src="/extension/js/chupy-scrolling-behaviour.js">
+</script>
+
+<script type="text/javascript" src="/extension/js/page/footer.kotak-saran.js">
 </script>
