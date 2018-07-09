@@ -36,9 +36,79 @@
                     </section>
             </header>
 
+            <div class="container">
+                <section >
+                    <div class="container py-2">
+                        <div class="card">
+                            <div class="row">
 
-                
-     
+                                <div class="col-xs-4 col-md-4 ">
+                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
+                                </div>
+                                <div class="col-md-8 ">
+                                    <div class="card-block ">
+                                        <h4 class="card-text mt-4">Title</h4>
+                                        <p class="card-text">Rp. 69696969</p>
+                                        <div class="input-group mt-4">
+                                        <a href="#" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
+                                        <a href="#" class="btn btn-primary outline btn-wishlist w-25">Hapus</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                         <div class="container py-2">
+                        <div class="card">
+                            <div class="row">
+
+                                <div class="col-xs-4 col-md-4 ">
+                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
+                                </div>
+                                <div class="col-md-8 ">
+                                    <div class="card-block ">
+                                        <h4 class="card-text mt-4">Title</h4>
+                                        <p class="card-text">Rp. 69696969</p>
+                                        <div class="input-group mt-4">
+                                        <a href="#" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
+                                        <a href="#" class="btn btn-primary outline btn-wishlist w-25">Hapus</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                                     <div class="container pt-2 mb-5">
+                        <div class="card">
+                            <div class="row">
+
+                                <div class="col-xs-4 col-md-4 ">
+                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
+                                </div>
+                                <div class="col-md-8 ">
+                                    <div class="card-block ">
+                                        <h4 class="card-text mt-4">Title</h4>
+                                        <p class="card-text">Rp. 69696969</p>
+                                        <div class="input-group mt-4">
+                                        <a href="#" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
+                                        <a href="#" class="btn btn-primary outline btn-wishlist w-25">Hapus</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+
+
             </div>
         </main>
 
