@@ -59,6 +59,7 @@ $router->get("/pembayaran",function(){
 $router->get("/produk/hewan", function () {
     BerandaController::getInstance()->index_daftar_hewan();
 });
+
 $router->get("/produk/kebutuhan", function () {
     BerandaController::getInstance()->index_daftar_kebutuhan();
 });
