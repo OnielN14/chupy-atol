@@ -160,6 +160,12 @@ $router->get("/profile/pengaturan", function(){
   $pengguna = new PenggunaController();
   $pengguna->index_pengaturan();
 });
+
+$router->get("/profile/wishlist",function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_wishlist();
+});
+
 $router->post('/api/pengguna/hapus', function(){
   $pengguna = new PenggunaController();
   $pengguna->delete();
