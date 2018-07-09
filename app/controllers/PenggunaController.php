@@ -44,6 +44,10 @@ class PenggunaController extends Controller
     $this->render_page('pengaturan', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
   }
 
+  public function index_wishlist(){
+    $this->render_page('wishlist');
+  }
+
     public function index_forgot_password()
     {
         $this->render_page('forgot-password');
