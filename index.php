@@ -1,4 +1,4 @@
-<?php
+  <?php
 require_once __DIR__.'/vendor/autoload.php';
 define('ROOTPATH', __DIR__);
 
@@ -12,7 +12,7 @@ use App\Controllers\KategoriProdukController;
 use App\Controllers\HakAksesController;
 use App\Controllers\ApiController;
 use App\Controllers\KotakSaranController;
-
+use App\File;
 
 $router = new Router();
 
@@ -131,17 +131,6 @@ $router->get('/api/hak_akses', function(){
   $hakAkses->fetch();
 });
 
-$router->get('/api/pengguna', function(){
-  $pengguna = new PenggunaController();
-  $pengguna->fetch();
-});
-
-$router->post('/api/pengguna/tambah', function(){
-  $pengguna = new PenggunaController();
-  $pengguna->insert();
-});
-
-
 $router->get("/profile",function(){
   $pengguna = new PenggunaController();
   $pengguna->index_profil();
@@ -156,20 +145,37 @@ $router->get("/profile/pengaturan", function(){
   $pengguna = new PenggunaController();
   $pengguna->index_pengaturan();
 });
+
+$router->get('/api/pengguna', function(){
+  $pengguna = new PenggunaController();
+  $pengguna->fetch();
+});
+$router->post('/api/pengguna/tambah', function(){
+  $pengguna = new PenggunaController();
+
+  $requestData = [
+    'penggunaData' => $_POST,
+    'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
+  ];
+  $pengguna->insert($requestData);
+});
 $router->post('/api/pengguna/hapus', function(){
   $pengguna = new PenggunaController();
   $pengguna->delete();
 });
-
 $router->post('/api/pengguna/ubah', function(){
   $pengguna = new PenggunaController();
-  $pengguna->update();
+  $requestData = [
+    'penggunaData' => $_POST,
+    'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
+  ];
+  $pengguna->update($requestData);
 });
 
 $router->post('/api/produk/tambah', function(){
   $produk = new ProdukController();
 
-  $arrangeArray = $produk->reArrangeFotoData($_FILES['fotoProduk']);
+  $arrangeArray = File::convertToReadable($_FILES['fotoProduk']);
 
   $request = [
     'produkData' => $_POST,

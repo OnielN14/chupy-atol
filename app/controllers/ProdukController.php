@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Validation;
 use App\Controller;
 use App\Models\Produk;
 use App\Controllers\FotoProdukController;
@@ -25,7 +24,7 @@ class ProdukController extends Controller{
 
     for ($i=0; $i <count($fetchedData) ; $i++) {
       $fotoProdukData = $fotoProduk->fetch_by_produk(['idProduk' => $fetchedData[$i]['id']]);
-      
+
       $fetchedData[$i]['foto'] = $fotoProdukData;
     }
 
@@ -64,7 +63,7 @@ public function insert($data){
             $produkData = end($fetchedData);
 
             foreach ($rawFotoData as $fotoData) {
-              $newName = strtolower(Date('Ymd').'-'.rand().'-'.$produkData['id'].'.'.explode('/',$fotoData['type'])[1]);
+              $newName = strtolower(Date('Ymd').'-'.rand().'-'.$produkData['id'].'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
               $foto = [
                 'name' => $newName,
                 'type' => $fotoData['type'],
@@ -111,7 +110,6 @@ public function insert($data){
       }
 
       $produk = new Produk();
-      $fotoProdukController = new FotoProdukController();
       $request = $data['produkData'];
       $rawFotoData = $data['foto'];
       $requestFoto = [];
@@ -122,7 +120,7 @@ public function insert($data){
               $result = $produk->update($request);
 
               // deleting previous data
-              $fotoProdukController->delete(['idProduk'=>$request['id']]);
+              $this->delete(['idProduk'=>$request['id']]);
 
               foreach ($rawFotoData as $fotoData) {
                 $newName = strtolower(Date('Ymd').'-'.rand().'-'.$request['id'].'.'.explode('/',$fotoData['type'])[1]);
