@@ -45,7 +45,16 @@
                             <div class="row">
 
                                 <div class="col-md-4">
-                                    <img src="/extension/img/chupy-box-ATOL.png" alt="Profil" class="chupy-card-image">
+                                  <?php if ($pengguna['fotoProfile'] == 'none' || $pengguna['fotoProfile'] == NULL){
+                                  ?>
+
+                                    <img src="/extension/img/chupy-box-ATOL.png" alt="Profil" class="chupy-card-image chupy-profile-image">
+                                  <?php
+                                } else{
+                                ?>
+                                  <img src="/extension/upload/<?php echo $pengguna['fotoProfile'] ?>" alt="Profil" class="chupy-card-image chupy-profile-image">
+                                <?php
+                                }?>
                                 </div>
 
                                 <div class="col-md-4">

@@ -7,6 +7,10 @@ main {
     font-weight: 300;
 }
 
+.chupy-profil img.chupy-profile-image{
+  object-fit: cover;
+}
+
 .chupy-card-image {
     height: 150px;
     width: 200px;
