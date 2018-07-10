@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Validation;
+use App\File;
 use App\Controller;
 use App\Models\FotoProduk;
 
@@ -29,12 +29,7 @@ class FotoProdukController extends Controller{
     return $fetchedData;
   }
 
-  public function update($data){
-
-  }
-
   public function insertMultiple($data){
-    $uploadDir = 'extension/upload/';
       if (session_id() == '') {
           session_start();
       }
@@ -44,17 +39,13 @@ class FotoProdukController extends Controller{
 
       $result = $fotoProduk->insertMultiple($request);
       if ($result[0] == 0) {
-        foreach($request as $foto){
-          move_uploaded_file($foto['tmp_name'], $uploadDir.basename($foto['name']));
-
-        }
+        File::uploadMultiFile($request);
       }
       return $response = ['result' => $result];
 
     }
 
     public function delete($requestData){
-      $targetDir = 'extension/upload/';
         if (session_id() == '') {
             session_start();
         }
@@ -63,7 +54,7 @@ class FotoProdukController extends Controller{
 
         $deletedFoto = $fotoProduk->fetch_by($requestData);
         foreach($deletedFoto as $foto){
-          unlink($targetDir.$foto['gambar']);
+          File::deleteFile($foto['gambar']);
         }
 
         $response = '';

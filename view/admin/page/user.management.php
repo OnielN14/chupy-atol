@@ -40,15 +40,21 @@
             <label for="form-nama" class="col-form-label">Nama</label>
             <input type="text" class="form-control" id="form-nama" name="nama" required autofocus>
           </div>
-          <div class="form-group">
-            <div class="">
-              <label for="">Jenis Kelamin</label>
+          <div class="form-row">
+            <div class="form-group col">
+              <div class="">
+                <label for="">Jenis Kelamin</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input id="gender-laki" class="form-check-input" type="radio" name="gender" value="pria" required> <label for="gender-laki" class="form-check-label">Laki-laki</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input id="gender-perempuan" class="form-check-input" type="radio" name="gender" value="wanita"> <label for="gender-perempuan" class="form-check-label">Perempuan</label>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input id="gender-laki" class="form-check-input" type="radio" name="gender" value="pria" required> <label for="gender-laki" class="form-check-label">Laki-laki</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input id="gender-perempuan" class="form-check-input" type="radio" name="gender" value="wanita"> <label for="gender-perempuan" class="form-check-label">Perempuan</label>
+            <div class="form-group col">
+              <label for="form-foto-profil">Pilih Foto</label>
+              <input class="form-control-file" type="file" id="form-foto-profil" name="fotoProfile" value="" accept="image/*">
             </div>
           </div>
           <div class="form-row">
@@ -128,17 +134,27 @@
             <label for="form-edit-nama" class="col-form-label">Nama</label>
             <input type="text" class="form-control" id="form-edit-nama" name="nama" required autofocus>
           </div>
-          <div class="form-group">
-            <div class="">
-              <label for="">Jenis Kelamin</label>
+
+          <div class="form-row">
+
+            <div class="form-group col">
+              <div class="">
+                <label for="">Jenis Kelamin</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input id="gender-edit-laki" class="form-check-input" type="radio" name="gender" value="pria" required> <label for="gender-edit-laki" class="form-check-label">Laki-laki</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input id="gender-edit-perempuan" class="form-check-input" type="radio" name="gender" value="wanita"> <label for="ender-edit-perempuan" class="form-check-label">Perempuan</label>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input id="gender-edit-laki" class="form-check-input" type="radio" name="gender" value="pria" required> <label for="gender-edit-laki" class="form-check-label">Laki-laki</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input id="gender-edit-perempuan" class="form-check-input" type="radio" name="gender" value="wanita"> <label for="ender-edit-perempuan" class="form-check-label">Perempuan</label>
+            <div class="form-group col">
+              <label for="form-edit-foto-profil">Pilih Foto</label>
+              <input class="form-control-file" type="file" id="form-edit--foto-profil" name="fotoProfile" value="" accept="image/*">
             </div>
           </div>
+
+
           <div class="form-row">
             <div class="form-group col">
               <label for="form-edit-no-telepon" class="col-form-label">No. Telepon</label>
@@ -193,7 +209,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="submit" data-dismiss="modal" form="form-user-edit" class="btn btn-primary">Simpan Perubahan</button>
+        <button type="submit" form="form-user-edit" class="btn btn-primary">Simpan Perubahan</button>
       </div>
 
     </div>
