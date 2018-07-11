@@ -48,6 +48,10 @@ class PenggunaController extends Controller
     $this->render_page('wishlist');
   }
 
+  public function index_riwayat_pemesanan(){
+    $this->render_page('riwayat_pemesanan');
+  }
+
     public function index_forgot_password()
     {
         $this->render_page('forgot-password');
