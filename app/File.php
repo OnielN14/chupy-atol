@@ -31,9 +31,15 @@ class File{
 
   public static function deleteFile($fileName){
     if ($fileName != 'none' || $fileName != NULL) {
-      if (file_exists($fileName)) {
+      if (file_exists(self::$uploadDir.$fileName)) {
         unlink(self::$uploadDir.$fileName);
       }
+      else{
+        echo 'nggk ah, kosong, '.$fileName;
+      }
+    }
+    else{
+      echo 'nggk ada fotonya';
     }
   }
 }

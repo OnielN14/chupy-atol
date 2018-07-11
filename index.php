@@ -183,6 +183,11 @@ $router->post('/api/pengguna/profil/ubah', function(){
     'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
   ];
   $pengguna->update_by_user($requestData);
+});
+$router->post('/api/pengguna/profil/ubah/password', function(){
+  $pengguna = new PenggunaController();
+  $requestData = $_POST;
+  $pengguna->update_password_by_user($requestData);
   // echo json_encode($requestData);
 });
 

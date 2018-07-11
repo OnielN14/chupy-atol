@@ -52,8 +52,13 @@ class PenggunaController extends Controller
     }
 
   public function index_pengaturan(){
-    $userData = $_SESSION['login_user'];
-    $this->render_page('pengaturan', ['pengguna' => $userData,'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+    if (isset($_SESSION['login_user'])) {
+      $userData = $_SESSION['login_user'];
+      $this->render_page('pengaturan', ['pengguna' => $userData,'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+    }
+    else{
+      header('Location:/');
+    }
   }
 
     public function index_forgot_password()
@@ -164,6 +169,38 @@ class PenggunaController extends Controller
         echo json_encode($response);
     }
 
+    public function update_password_by_user($requestData){
+      if (session_id() == '') {
+          session_start();
+      }
+
+      $pengguna = new Pengguna();
+      $oldUserData = $pengguna->fetch_by(['id' => $requestData['id']])[0];
+
+      $response = '';
+
+      if (strcmp(sha1($requestData['password']),$oldUserData['password']) == 0) {
+        $newUserData = [
+          'id' => $requestData['id'],
+          'password' => sha1($requestData['newPassword'])
+        ];
+        $result = $pengguna->update_password($newUserData);
+        $response = [
+          'status' => 200,
+          'pesan' => 'Password berhasil diubah',
+          'hasil' => $result
+        ];
+      }
+      else{
+        $response = [
+          'status'=>201,
+          'pesan' => 'Password salah'
+        ];
+      }
+
+      echo json_encode($response);
+    }
+
     public function update_by_user($requestData){
       if (session_id() == '') {
           session_start();
@@ -179,11 +216,29 @@ class PenggunaController extends Controller
 
       $request['id'] = $oldUserData['id'];
 
-      // if ($fotoData['name'] == '') {
-      //   $pengguna->update_by_user_no_photo($request);
-      // }
+      if ($fotoData['name'] == '') {
+        $pengguna->update_by_user_no_photo($request);
+      }
+      else{
+        $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
 
-      echo json_encode($requestData);
+        $namaFoto = $fotoData['name'];
+        $request['fotoProfile'] = $namaFoto;
+        $result = $pengguna->update_by_user_with_photo($request);
+        $response = [
+          'result' => $result,
+          'oldPhoto' => $oldUserData['fotoProfile'],
+          'newPhoto' => $namaFoto
+        ];
+
+        File::deleteFile($oldUserData['fotoProfile']);
+        File::upload($fotoData);
+      }
+
+      $userData = $pengguna->fetch_by(['email' => $request['email']])[0];
+      $_SESSION['login_user'] = $userData;
+
+      echo json_encode($response);
     }
 
     public function update($requestData)
@@ -240,8 +295,8 @@ class PenggunaController extends Controller
                   ];
 
                     $pengguna->update($userData);
-                    File::upload($fotoData);
                     File::deleteFile($oldUserData['fotoProfile']);
+                    File::upload($fotoData);
 
                     $response = [
                       'status' => 200,
