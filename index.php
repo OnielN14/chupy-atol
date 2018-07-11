@@ -276,9 +276,9 @@ $router->get("/logout", function () {
 try {
     $router->dispatch();
 } catch (PDOException $e) {
-    // BerandaController::getInstance()->error_404();
-    print($e);
+    BerandaController::getInstance()->error_404();
+    // print($e);
 } catch (Exception $e) {
-    // BerandaController::getInstance()->error_404();
-    print($e);
+    BerandaController::getInstance()->error_404();
+    // print($e);
 }
