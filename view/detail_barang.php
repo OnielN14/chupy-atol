@@ -38,15 +38,13 @@ include('template/navbar.php');
         <section class="mt-3 ">
             <div class="row ml-2">
                 <div class="col-md-4">
-                    <img src="/extension/img/chupy-box-ATOL.png" alt="Foto Detail Barang" class="img-detail-barang float-center">
+                    <img src="/extension/upload/<?php echo $produk['gambar'] ?>" alt="Foto Detail Barang" class="img-detail-barang float-center">
                 </div>
-
+           
                 <div class="col-md-4">
-                    <h4>Rp.696969696</h4>
+                    <h4><?php echo $produk['nama'] ?></h4>
                     <h5>Deskripsi Produk</h5>
-                    <h6>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsa, fugit corporis! Ipsa aperiam enim nobis
-                        possimus quo quisquam, porro tenetur illum temporibus velit. In autem accusamus impedit praesentium
-                        pariatur similique.</h6>
+                    <h6><?php echo $produk['deskripsi'] ?></h6>
 
                 </div>
 
@@ -55,7 +53,7 @@ include('template/navbar.php');
                         <div class="btn btn-primary mb-3 w-100">Tambah Ke Keranjang</div>
                         <div class="btn btn-primary outline  mb-3 w-100 ">Tambah Ke Wishlist</div>
                     </div>
-                    <h5>Stok : 69</h5>
+                    <h5>Stok : <?php echo $produk['stok'] ?></h5>
 
                 </div>
             </div>
