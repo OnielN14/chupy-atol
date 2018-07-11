@@ -8,6 +8,8 @@
 @import url("components/breadcrumb.css");
 @import url("components/form.css");
 @import url("components/cover-message.css");
+@import url("components/alert.css");
+
 
 a{
   color:var(--color-primary);

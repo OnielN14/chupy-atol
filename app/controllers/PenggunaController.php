@@ -30,6 +30,17 @@ class PenggunaController extends Controller
 
     }
 
+    public function index_berhasil_registrasi($apikey){
+      $apiKeyController = new ApiController();
+      $theApikey = $apiKeyController->fetch_by(['user'=>'front_end'])[0]['apikey'];
+      if (strcmp($apikey, $theApikey) == 0) {
+        $this->render_page('registrasi_success');
+      }
+      else{
+        $this->render_page('404');
+      }
+    }
+
     public function index_login()
     {
       if (isset($_SESSION['login_user'])) {
@@ -166,7 +177,15 @@ class PenggunaController extends Controller
 
         $oldUserData = $pengguna->fetch_by(['email' => $request['email']])[0];
 
-        $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
+        $namaFoto = '';
+        if ($fotoData['name'] != '') {
+          $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
+
+          $namaFoto = $fotoData['name'];
+        }
+        else{
+          $namaFoto = 'none';
+        }
 
         if (isset($request['front_end_key'])) {
             $userFrontAPI = 'front_end';
@@ -193,7 +212,7 @@ class PenggunaController extends Controller
                     'email' => $oldUserData['email'],
                     'noTelepon' => $request['noTelepon'],
                     'password' => $newPassword,
-                    'fotoProfile' => $fotoData['name'],
+                    'fotoProfile' => $namaFoto,
                     'idHakAkses' => 2
                   ];
 
@@ -237,7 +256,7 @@ class PenggunaController extends Controller
                   'noTelepon' => $request['noTelepon'],
                   'password' => $newPassword,
                   'idHakAkses' => $request['idHakAkses'],
-                  'fotoProfile' => $fotoData['name'],
+                  'fotoProfile' => $namaFoto,
                 ];
 
                 $pengguna->update($userData);
@@ -275,9 +294,17 @@ class PenggunaController extends Controller
         $request = $requestData['penggunaData'];
         $fotoData = $requestData['penggunaFoto'];
 
-        $response = '';
+        $namaFoto = '';
+        if ($fotoData['name'] != '') {
+          $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
 
-        $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
+          $namaFoto = $fotoData['name'];
+        }
+        else{
+          $namaFoto = 'none';
+        }
+
+        $response = '';
 
         if (isset($request['front_end_key'])) {
             $userFrontAPI = 'front_end';
@@ -296,11 +323,13 @@ class PenggunaController extends Controller
                       'noTelepon' => $request['noTelepon'],
                       'password' => sha1($request['password']),
                       'idHakAkses' => 2,
-                      'fotoProfile' => $fotoData['name']
+                      'fotoProfile' => $namaFoto
                     ];
 
                     $result = $pengguna->insert($userData);
-                    File::upload($fotoData);
+                    if ($fotoData != '') {
+                      File::upload($fotoData);
+                    }
 
                     $response = [
                       'status' => 200,
@@ -331,11 +360,15 @@ class PenggunaController extends Controller
                 'noTelepon' => $request['noTelepon'],
                 'password' => sha1($request['password']),
                 'idHakAkses' => $request['idHakAkses'],
-                'fotoProfile' => $fotoData['name']
+                'fotoProfile' => $namaFoto
               ];
 
                 $pengguna->insert($userData);
-                File::upload($fotoData);
+                if ($fotoData != '') {
+                  File::upload($fotoData);
+                }
+
+
                 $response = [
                 'status' => 200,
                 'pesan' => 'Sukses'

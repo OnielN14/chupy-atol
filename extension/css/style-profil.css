@@ -9,6 +9,7 @@ main {
 
 .chupy-profil img.chupy-profile-image{
   object-fit: cover;
+  height: 200px!important;
 }
 
 .chupy-card-image {
