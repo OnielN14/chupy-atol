@@ -39,6 +39,10 @@ class BerandaController extends Controller
       $this->render_page('pembayaran');
     }
 
+    public function index_detail_barang(){
+      $this->render_page('detail_barang');
+    }
+
     public function error_404(){
       $this->render_page('404');
     }
