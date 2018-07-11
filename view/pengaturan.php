@@ -53,7 +53,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
-                                    <form action="#" method="post" id="form-profil">
+                                    <form id="form-profil">
                                         <div class="form-group">
                                             <label for="nama" class="font-card-input">Nama</label>
                                             <input type="text" name="nama" id="form-nama" class="form-control" value="<?php echo $pengguna['nama'] ?>">

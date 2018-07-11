@@ -1,5 +1,5 @@
 // disable normal form behaviour
-$('form#form-registrasi').on('keyup keypress', function(e) {
+$('form#form-profil').on('keyup keypress', function(e) {
   var keyCode = e.keyCode || e.which;
   if (keyCode === 13) {
     e.preventDefault();
@@ -7,18 +7,18 @@ $('form#form-registrasi').on('keyup keypress', function(e) {
   }
 });
 
-$('form#form-registrasi').submit(function(e) {
-  registrasi();
+$('form#form-profil').submit(function(e) {
+  updateProfil();
   return false
 })
 
-function registrasi(){
-  let form = document.querySelector('form#form-registrasi')
+function updateProfil(){
+  let form = document.querySelector('form#form-profil')
   let formData = new FormData(form)
 
 
   $.ajax({
-    url:'/api/pengguna/tambah',
+    url:'/api/pengguna/profil/ubah',
     method:'POST',
     dataType: 'json',
     contentType: false,
@@ -49,11 +49,11 @@ function registrasi(){
     $('#chupy-msg').addClass('alert-success')
 
     $('#chupy-msg').find('strong').text('Sukses')
-    $('#chupy-msg').find('strong + span').text('Registrasi berhasil.')
+    $('#chupy-msg').find('strong + span').text('Profil berhasil diubah.')
     $('#chupy-msg').addClass('show')
-    setTimeout(function() {
-      window.location = '/registrasi/berhasil?key='+$('input[name="front_end_key"]').val()
-    }, 1000)
+    // setTimeout(function() {
+    //   window.location = '/registrasi/berhasil?key='+$('input[name="front_end_key"]').val()
+    // }, 1000)
 
   }).fail(function(reponse){
     $('#chupy-msg').addClass('alert-danger')

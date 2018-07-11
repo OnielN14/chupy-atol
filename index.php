@@ -176,6 +176,15 @@ $router->post('/api/pengguna/ubah', function(){
   ];
   $pengguna->update($requestData);
 });
+$router->post('/api/pengguna/profil/ubah', function(){
+  $pengguna = new PenggunaController();
+  $requestData = [
+    'penggunaData' => $_POST,
+    'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
+  ];
+  // $pengguna->update($requestData);
+  echo json_encode($requestData);
+});
 
 $router->post('/api/produk/tambah', function(){
   $produk = new ProdukController();
