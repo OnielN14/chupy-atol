@@ -5,7 +5,7 @@
 -- tabel `apikey`
 CREATE TABLE `apikey` (
   `id` int(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `user` varchar(255) NOT NULL UNIQUE,
+  `user` varchar(255) NOT NULL,
   `apikey` varchar(255) NOT NULL
 ) ENGINE=InnoDB;
 
@@ -47,7 +47,7 @@ CREATE TABLE `pengguna` (
   `alamat` text NOT NULL,
   `tempatLahir` varchar(255) NOT NULL,
   `tanggalLahir` date NOT NULL,
-  `email` varchar(255) UNIQUE NOT NULL,
+  `email` varchar(255) NOT NULL,
   `noTelepon` varchar(65) NOT NULL,
   `password` varchar(255) NOT NULL,
   `createdAt` date NOT NULL,

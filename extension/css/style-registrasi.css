@@ -32,3 +32,18 @@ footer p{
   line-height: 1;
   font-size: 2em;
 }
+
+ .loading-screen{
+   position: absolute;
+   top: 0px;
+   bottom: 0px;
+   right: 0px;
+   left: 0px;
+   background-color: white;
+   z-index: 98;
+   opacity: 0.6;
+ }
+
+ .loading-screen:not(.show){
+   z-index: -1;
+ }

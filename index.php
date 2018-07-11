@@ -47,6 +47,12 @@ $router->get("/registrasi", function () {
     $pengguna->index_register();
 });
 
+$router->get("/registrasi/berhasil", function () {
+    $pengguna = new PenggunaController();
+    $apikey = $_GET['key'];
+    $pengguna->index_berhasil_registrasi($apikey);
+});
+
 $router->get("/forgot-password", function () {
     $pengguna = new PenggunaController();
     $pengguna->index_forgot_password();
@@ -56,8 +62,8 @@ $router->get("/pembayaran",function(){
     BerandaController::getInstance()->index_pembayaran();
 });
 
-$router->get("/produk/detail-barang",function(){
-  BerandaController::getInstance()->index_detail_barang();
+$router->get("/produk/detail-produk/{idProduk}",function($idProduk){
+  BerandaController::getInstance()->detail_produk($idProduk);
 });
 
 $router->get("/produk/hewan", function () {
@@ -172,7 +178,6 @@ $router->get('/api/pengguna', function(){
 });
 $router->post('/api/pengguna/tambah', function(){
   $pengguna = new PenggunaController();
-
   $requestData = [
     'penggunaData' => $_POST,
     'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
@@ -190,6 +195,15 @@ $router->post('/api/pengguna/ubah', function(){
     'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
   ];
   $pengguna->update($requestData);
+});
+$router->post('/api/pengguna/profil/ubah', function(){
+  $pengguna = new PenggunaController();
+  $requestData = [
+    'penggunaData' => $_POST,
+    'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
+  ];
+  $pengguna->update_by_user($requestData);
+  // echo json_encode($requestData);
 });
 
 $router->post('/api/produk/tambah', function(){

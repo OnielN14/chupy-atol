@@ -19,13 +19,15 @@
 
 <?php
       } elseif ($key != $last_key) {
-          $values .= $value.'/'; ?>
+        $values .= $value;
+          ?>
     <li class="breadcrumb-item">
       <a href="<?php echo $values; ?>">
         <?php echo ucfirst($value.'<br>'); ?>
       </a>
     </li>
 <?php
+        $values .= '/'; 
       } else {
           $values .= $value; ?>
     <li class="breadcrumb-item active">
