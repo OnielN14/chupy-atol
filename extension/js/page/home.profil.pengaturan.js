@@ -16,6 +16,7 @@ function updateProfil(){
   let form = document.querySelector('form#form-profil')
   let formData = new FormData(form)
 
+  formData.append('email', $('#form-email').val())
 
   $.ajax({
     url:'/api/pengguna/profil/ubah',
@@ -162,6 +163,7 @@ $('#form-alamat').on('input', function(){
   }
   submitButtonBehaviour()
 })
+
 function submitButtonBehaviour(){
   let submitButton = $('input#btn-profile')
   if (isFormNamaValid && isFormAlamatValid && isFormTeleponValid) {
@@ -171,3 +173,20 @@ function submitButtonBehaviour(){
     submitButton.prop('disabled', true)
   }
 }
+
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('#gambarProfile').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#ubah-foto").change(function() {
+  readURL(this);
+});

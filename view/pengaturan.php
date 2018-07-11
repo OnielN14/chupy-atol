@@ -53,7 +53,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
-                                    <form id="form-profil">
+                                    <form id="form-profil" >
                                         <div class="form-group">
                                             <label for="nama" class="font-card-input">Nama</label>
                                             <input type="text" name="nama" id="form-nama" class="form-control" value="<?php echo $pengguna['nama'] ?>">
@@ -68,7 +68,7 @@
 
                                         <div class="form-group">
                                             <label for="email" class="font-card-input">Email</label>
-                                            <input disabled type="text" name="email" id="email" class="form-control" value="<?php echo $pengguna['email'] ?>">
+                                            <input disabled type="text" name="email" id="form-email" class="form-control" value="<?php echo $pengguna['email'] ?>">
                                             <div class="invalid-feedback">Harap masukkan email dengan benar.</div>
                                         </div>
 

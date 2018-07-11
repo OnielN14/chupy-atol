@@ -50,4 +50,15 @@ class Pengguna extends Model{
 
     return $stmt->execute();
   }
+
+  public function update_by_user_no_photo($newUserData){
+    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat,noTelepon=:noTelepon updatedAt=NOW() WHERE id=:id');
+
+    $stmt->bindParam(':id',$newUserData['id']);
+    $stmt->bindParam(':nama',$newUserData['nama']);
+    $stmt->bindParam(':alamat',$newUserData['alamat']);
+    $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
+
+    return $stmt->execute();
+  }
 }

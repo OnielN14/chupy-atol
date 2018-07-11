@@ -182,8 +182,8 @@ $router->post('/api/pengguna/profil/ubah', function(){
     'penggunaData' => $_POST,
     'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
   ];
-  // $pengguna->update($requestData);
-  echo json_encode($requestData);
+  $pengguna->update_by_user($requestData);
+  // echo json_encode($requestData);
 });
 
 $router->post('/api/produk/tambah', function(){

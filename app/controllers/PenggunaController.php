@@ -164,6 +164,28 @@ class PenggunaController extends Controller
         echo json_encode($response);
     }
 
+    public function update_by_user($requestData){
+      if (session_id() == '') {
+          session_start();
+      }
+
+      $pengguna = new Pengguna();
+      $request = $requestData['penggunaData'];
+      $fotoData = $requestData['penggunaFoto'];
+
+      $response = '';
+
+      $oldUserData = $pengguna->fetch_by(['email' => $request['email']])[0];
+
+      $request['id'] = $oldUserData['id'];
+
+      // if ($fotoData['name'] == '') {
+      //   $pengguna->update_by_user_no_photo($request);
+      // }
+
+      echo json_encode($requestData);
+    }
+
     public function update($requestData)
     {
         if (session_id() == '') {
