@@ -35,6 +35,11 @@ class BerandaController extends Controller
       $this->render_page('produk_barang', ['apikey'=>ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
     }
 
+    public function index_tentang()
+    {
+      $this->render_page('about');
+    }
+
     public function error_404(){
       $this->render_page('404');
     }

@@ -52,13 +52,37 @@ class Pengguna extends Model{
   }
 
   public function update_by_user_no_photo($newUserData){
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat,noTelepon=:noTelepon updatedAt=NOW() WHERE id=:id');
+    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat,noTelepon=:noTelepon, updatedAt=NOW() WHERE id=:id');
 
     $stmt->bindParam(':id',$newUserData['id']);
     $stmt->bindParam(':nama',$newUserData['nama']);
     $stmt->bindParam(':alamat',$newUserData['alamat']);
     $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
 
-    return $stmt->execute();
+    $stmt->execute();
+    return $stmt->errorInfo();
+  }
+
+  public function update_by_user_with_photo($newUserData){
+    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat,noTelepon=:noTelepon, fotoProfile=:fotoProfile, updatedAt=NOW() WHERE id=:id');
+
+    $stmt->bindParam(':id',$newUserData['id']);
+    $stmt->bindParam(':nama',$newUserData['nama']);
+    $stmt->bindParam(':alamat',$newUserData['alamat']);
+    $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
+    $stmt->bindParam(':fotoProfile',$newUserData['fotoProfile']);
+
+    $stmt->execute();
+    return $stmt->errorInfo();
+  }
+
+  public function update_password($userData){
+    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET password=:password, updatedAt=NOW() WHERE id=:id');
+
+    $stmt->bindParam(':id',$userData['id']);
+    $stmt->bindParam(':password',$userData['password']);
+
+    $stmt->execute();
+    return $stmt->errorInfo();
   }
 }

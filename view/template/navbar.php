@@ -9,7 +9,7 @@
 
   <div class="chupy-navbar nav justify-content-end collapse navbar-collapse" id="navbarNav">
   <ul class="navbar-nav">
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link" href="/">Beranda</a>
     </li>
     <li class="nav-item">
@@ -25,7 +25,7 @@
 
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/about">Tentang Kami</a>
+      <a class="nav-link" href="/tentang">Tentang Kami</a>
     </li>
   <?php
     if (isset($_SESSION['login_user'])) {

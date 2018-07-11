@@ -40,7 +40,6 @@
                         </div>
                     </section>
             </header>
-
             <section class="chupy-form-profil">
                 <div class="container">
                     <div class="card card-profile">
@@ -113,7 +112,7 @@
                 </div>
             </section>
 
-            <section class="chupy-form-sandi">
+            <section class="chupy-form-sandi" id="chupy-edit-password-container">
                 <div class="container">
                     <div class="card card-profile">
                         <div class="card-body">
@@ -127,25 +126,27 @@
 
                                 <div class="col-md">
                                 <div class="form-sandi-center">
-                                    <form id="form-password">
+                                    <form id="form-edit-password">
                                         <div class="form-group">
+                                          <input type="hidden" name="front_end_key" value="<?php echo $apikey?>">
+                                          <input type="hidden" name="id" value="<?php echo $pengguna['id'] ?>">
                                             <label for="ksLama" class="font-card-input">Kata Sandi Lama</label>
-                                            <input type="text" name="ksLama" id="form-old-password" class="form-control" placeholder="*******">
+                                            <input type="password" name="password" id="form-old-password" class="form-control" placeholder="*******">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="ksBaru" class="font-card-input">Kata Sandi Baru</label>
-                                            <input type="text" name="ksBaru" id="form-password" class="form-control" placeholder="*******">
+                                            <input type="password" name="newPassword" id="form-password" class="form-control" placeholder="*******">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="kksBaru" class="font-card-input">Ketik Ulang Kata Sandi Baru</label>
-                                            <input type="text" name="kksBaru" id="form-re-password" class="form-control" placeholder="*******">
+                                            <input type="password" name="newRePassword" id="form-re-password" class="form-control" placeholder="*******">
                                             <div class="invalid-feedback">Kata sandi tidak sama.</div>
                                         </div>
 
                                         <div class="form-group">
-                                            <input id="btn-ganti-password" type="button" class="btn btn-primary form-control" value="Ubah Kata Sandi">
+                                            <input id="btn-ganti-password" type="submit" class="btn btn-primary form-control" value="Ubah Kata Sandi" disabled>
                                         </div>
                                     </form>
                                     </div>
