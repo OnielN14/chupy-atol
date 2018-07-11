@@ -110,6 +110,7 @@ public function insert($data){
       }
 
       $produk = new Produk();
+      $fotoProdukController = new FotoProdukController;
       $request = $data['produkData'];
       $rawFotoData = $data['foto'];
       $requestFoto = [];
@@ -120,7 +121,7 @@ public function insert($data){
               $result = $produk->update($request);
 
               // deleting previous data
-              $this->delete(['idProduk'=>$request['id']]);
+              $fotoProdukController->delete(['idProduk'=>$request['id']]);
 
               foreach ($rawFotoData as $fotoData) {
                 $newName = strtolower(Date('Ymd').'-'.rand().'-'.$request['id'].'.'.explode('/',$fotoData['type'])[1]);
