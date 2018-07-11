@@ -35,9 +35,9 @@
                         </div>
                     </section>
             </header>
-            <div class="container-fluid">
-               
-                    <div class="card">
+            <div class="container-fluid ">
+
+                <div class="card mt-3 mb-5">
                     <section>
                         <div class="card-body">
                             <div class="row px-5 mt-3">
@@ -69,43 +69,106 @@
 
                                 </div>
                             </div>
-                            <hr>
+                         
                         </div>
-                        </section>
-                <section>
-                <div class="container py-3">
-                        <div class="card">
-                            <div class="row">
+                    </section>
+                    <hr>
+                    <section class="mt-3 mb-5">
+                        <div class="container py-3">
+                            <div class="card">
+                                <div class="row">
 
-                                <div class="col-xs-6 col-md-4  chupy-keranjang-card">
-                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
-                                </div>
-
-
-                                <div class="col-md-4 chupy-keranjang-card">
-                                    <div class="card-block ">
-                                        <h5 class="card-title">Title</h5>
-                                        <p class="card-text">Rp. 69696969</p>
-                                       
+                                    <div class="col-xs-6 col-md-4  ">
+                                        <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
                                     </div>
-                                </div>
 
-                                <div class="col-md-4 chupy-keranjang-card">
-                                    <div class="card-block ">
-                                        <h5 class="card-title">Jumlah</h5>
-                                        <p class="card-text">2</p>
-                                        <a href="#" class="btn btn-primary btn-keranjang">Lihat Detail</a>
+
+                                    <div class="col-md-4 mt-4">
+                                        <div class="card-block ">
+                                            <h5 class="card-title">Title</h5>
+                                            <p class="card-text">Rp. 69696969</p>
+
+                                        </div>
                                     </div>
-                                </div>
 
+                                    <div class="col-md-4 mt-4">
+                                        <div class="card-block ">
+                                            <h5 class="card-title">Jumlah</h5>
+                                            <p class="card-text">2</p>
+                                            <a href="#" class="btn btn-primary btn-riwayat-pesan">Lihat Detail</a>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                    </div>
-              
-            
+
+                        <div class="container py-3">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-xs-6 col-md-4  ">
+                                        <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
+                                    </div>
+
+
+                                    <div class="col-md-4 mt-4">
+                                        <div class="card-block ">
+                                            <h5 class="card-title">Title</h5>
+                                            <p class="card-text">Rp. 69696969</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mt-4">
+                                        <div class="card-block ">
+                                            <h5 class="card-title">Jumlah</h5>
+                                            <p class="card-text">2</p>
+                                            <a href="#" class="btn btn-primary btn-riwayat-pesan">Lihat Detail</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container py-3">
+                            <div class="card">
+                                <div class="row">
+
+                                    <div class="col-xs-6 col-md-4  ">
+                                        <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
+                                    </div>
+
+
+                                    <div class="col-md-4 mt-4">
+                                        <div class="card-block ">
+                                            <h5 class="card-title">Title</h5>
+                                            <p class="card-text">Rp. 69696969</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 mt-4">
+                                        <div class="card-block ">
+                                            <h5 class="card-title">Jumlah</h5>
+                                            <p class="card-text">2</p>
+                                            <a href="#" class="btn btn-primary btn-riwayat-pesan">Lihat Detail</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+
             </div>
+        </main>
+        <?php
+    include('template/footer.php');
+  ?>
 
 </body>
 
