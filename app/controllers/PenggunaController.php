@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Validation;
 use App\Controller;
+use App\File;
 use App\Models\Pengguna;
 use App\Models\HakAkses;
 use App\Models\ApiKey;
@@ -120,28 +120,31 @@ class PenggunaController extends Controller
         $user = new Pengguna();
         $request = $_POST;
         $data = [
-      'id' => $request['id']
-    ];
+          'id' => $request['id']
+        ];
 
         $response = '';
         if (isset($_SESSION['login_user'])) {
             if ($_SESSION['login_user']['idHakAkses'] == 1) {
+
+                $oldUserData = $user->fetch_by($data)[0];
+                File::deleteFile($oldUserData['fotoProfile']);
                 if ($user->delete_by($data)) {
                     $response = [
-            'status' => 200,
-            'message' => 'Pengguna berhasil dihapus'
-          ];
+                      'status' => 200,
+                      'message' => 'Pengguna berhasil dihapus'
+                    ];
                 } else {
                     $response = [
-            'status' => 501,
-            'message' => 'Terjadi Kesalahan'
-          ];
+                      'status' => 501,
+                      'message' => 'Terjadi Kesalahan'
+                    ];
                 }
             } else {
                 $response = [
-          'status' => 500,
-          'message' => 'Tidak diizinkan'
-        ];
+                  'status' => 500,
+                  'message' => 'Tidak diizinkan'
+                ];
             }
         } else {
             $response = [
@@ -153,18 +156,21 @@ class PenggunaController extends Controller
         echo json_encode($response);
     }
 
-    public function update()
+    public function update($requestData)
     {
         if (session_id() == '') {
             session_start();
         }
         $hakAkses = new HakAkses();
         $pengguna = new Pengguna();
-        $request = $_POST;
+        $request = $requestData['penggunaData'];
+        $fotoData = $requestData['penggunaFoto'];
 
         $response = '';
 
         $oldUserData = $pengguna->fetch_by(['email' => $request['email']])[0];
+
+        $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
 
         if (isset($request['front_end_key'])) {
             $userFrontAPI = 'front_end';
@@ -182,35 +188,38 @@ class PenggunaController extends Controller
                     }
 
                     $userData = [
-            'id' => $oldUserData['id'],
-            'nama' => $request['nama'],
-            'alamat' => $request['alamat'],
-            'gender' => $request['gender'],
-            'tempatLahir' => $request['tempatLahir'],
-            'tanggalLahir' => $request['tanggalLahir'],
-            'email' => $oldUserData['email'],
-            'noTelepon' => $request['noTelepon'],
-            'password' => $newPassword,
-            'idHakAkses' => 2
-          ];
+                    'id' => $oldUserData['id'],
+                    'nama' => $request['nama'],
+                    'alamat' => $request['alamat'],
+                    'gender' => $request['gender'],
+                    'tempatLahir' => $request['tempatLahir'],
+                    'tanggalLahir' => $request['tanggalLahir'],
+                    'email' => $oldUserData['email'],
+                    'noTelepon' => $request['noTelepon'],
+                    'password' => $newPassword,
+                    'fotoProfile' => $fotoData['name'],
+                    'idHakAkses' => 2
+                  ];
 
                     $pengguna->update($userData);
+                    File::upload($fotoData);
+                    File::deleteFile($oldUserData['fotoProfile']);
 
                     $response = [
-            'status' => 200,
-            'pesan' => 'Sukses'
-          ];
+                      'status' => 200,
+                      'pesan' => 'Sukses'
+                    ];
                 } else {
                     $response = [
-            'status' => 502,
-            'pesan' => 'Akses tidak dikenali'
-          ];
+                      'status' => 502,
+                      'pesan' => 'Akses tidak dikenali'
+                    ];
                 }
             } else {
                 $response = [
-          'status' => 501,
-          'pesan' => 'Akses tidak diizinkan'
-        ];
+                  'status' => 501,
+                  'pesan' => 'Akses tidak diizinkan'
+                ];
             }
         } elseif (isset($_SESSION['login_user'])) {
             if ($_SESSION['login_user']['idHakAkses'] == 1) {
@@ -222,52 +231,57 @@ class PenggunaController extends Controller
                 }
 
                 $userData = [
-          'id' => $oldUserData['id'],
-          'nama' => $request['nama'],
-          'alamat' => $request['alamat'],
-          'gender' => $request['gender'],
-          'tempatLahir' => $request['tempatLahir'],
-          'tanggalLahir' => $request['tanggalLahir'],
-          'email' => $oldUserData['email'],
-          'noTelepon' => $request['noTelepon'],
-          'password' => $newPassword,
-          'idHakAkses' => $request['idHakAkses']
-        ];
+                  'id' => $oldUserData['id'],
+                  'nama' => $request['nama'],
+                  'alamat' => $request['alamat'],
+                  'gender' => $request['gender'],
+                  'tempatLahir' => $request['tempatLahir'],
+                  'tanggalLahir' => $request['tanggalLahir'],
+                  'email' => $oldUserData['email'],
+                  'noTelepon' => $request['noTelepon'],
+                  'password' => $newPassword,
+                  'idHakAkses' => $request['idHakAkses'],
+                  'fotoProfile' => $fotoData['name'],
+                ];
 
                 $pengguna->update($userData);
-
+                File::upload($fotoData);
+                File::deleteFile($oldUserData['fotoProfile']);
                 $response = [
-          'status' => 200,
-          'pesan' => 'Sukses',
-          'oldData' => $oldUserData,
-          'newData' => $request
-        ];
+                'status' => 200,
+                'pesan' => 'Sukses',
+                'oldData' => $oldUserData,
+                'newData' => $request
+              ];
             } else {
                 $response = [
-          'status' => 502,
-          'pesan' => 'Akses tidak dikenali'
-        ];
+                  'status' => 502,
+                  'pesan' => 'Akses tidak dikenali'
+                ];
             }
         } else {
             $response = [
-        'status' => 501,
-        'pesan' => 'Akses tidak diizinkan'
-      ];
+              'status' => 501,
+              'pesan' => 'Akses tidak diizinkan'
+            ];
         }
 
         echo json_encode($response);
     }
 
-    public function insert()
+    public function insert($requestData)
     {
         if (session_id() == '') {
             session_start();
         }
         $hakAkses = new HakAkses();
         $pengguna = new Pengguna();
-        $request = $_POST;
+        $request = $requestData['penggunaData'];
+        $fotoData = $requestData['penggunaFoto'];
 
         $response = '';
+
+        $fotoData['name'] = strtolower('user-'.pathinfo($fotoData['name'],PATHINFO_FILENAME).'.'.pathinfo($fotoData['name'], PATHINFO_EXTENSION));
 
         if (isset($request['front_end_key'])) {
             $userFrontAPI = 'front_end';
@@ -275,26 +289,28 @@ class PenggunaController extends Controller
 
             if (count($apiKeyData) > 0) {
                 $apiData = $apiKeyData[0];
-
                 if (strcmp($request['front_end_key'], $apiData['apikey']) == 0) {
                     $userData = [
-            'nama' => $request['nama'],
-            'alamat' => $request['alamat'],
-            'gender' => $request['gender'],
-            'tempatLahir' => $request['tempatLahir'],
-            'tanggalLahir' => $request['tanggalLahir'],
-            'email' => $request['email'],
-            'noTelepon' => $request['noTelepon'],
-            'password' => sha1($request['password']),
-            'idHakAkses' => 2
-          ];
+                      'nama' => $request['nama'],
+                      'alamat' => $request['alamat'],
+                      'gender' => $request['gender'],
+                      'tempatLahir' => $request['tempatLahir'],
+                      'tanggalLahir' => $request['tanggalLahir'],
+                      'email' => $request['email'],
+                      'noTelepon' => $request['noTelepon'],
+                      'password' => sha1($request['password']),
+                      'idHakAkses' => 2,
+                      'fotoProfile' => $fotoData['name']
+                    ];
 
                     $result = $pengguna->insert($userData);
+                    File::upload($fotoData);
+
                     $response = [
-            'status' => 200,
-            'pesan' => 'Sukses',
-            'hasil' => $result
-          ];
+                      'status' => 200,
+                      'pesan' => 'Sukses',
+                      'hasil' => $result
+                    ];
                 } else {
                     $response = [
             'status' => 502,
@@ -310,33 +326,35 @@ class PenggunaController extends Controller
         } elseif (isset($_SESSION['login_user'])) {
             if ($_SESSION['login_user']['idHakAkses'] == 1) {
                 $userData = [
-          'nama' => $request['nama'],
-          'alamat' => $request['alamat'],
-          'gender' => $request['gender'],
-          'tempatLahir' => $request['tempatLahir'],
-          'tanggalLahir' => $request['tanggalLahir'],
-          'email' => $request['email'],
-          'noTelepon' => $request['noTelepon'],
-          'password' => sha1($request['password']),
-          'idHakAkses' => $request['idHakAkses']
-        ];
+                'nama' => $request['nama'],
+                'alamat' => $request['alamat'],
+                'gender' => $request['gender'],
+                'tempatLahir' => $request['tempatLahir'],
+                'tanggalLahir' => $request['tanggalLahir'],
+                'email' => $request['email'],
+                'noTelepon' => $request['noTelepon'],
+                'password' => sha1($request['password']),
+                'idHakAkses' => $request['idHakAkses'],
+                'fotoProfile' => $fotoData['name']
+              ];
 
                 $pengguna->insert($userData);
+                File::upload($fotoData);
                 $response = [
-          'status' => 200,
-          'pesan' => 'Sukses'
-        ];
+                'status' => 200,
+                'pesan' => 'Sukses'
+              ];
             } else {
                 $response = [
-          'status' => 502,
-          'pesan' => 'Akses tidak dikenali'
-        ];
+                'status' => 502,
+                'pesan' => 'Akses tidak dikenali'
+              ];
             }
         } else {
             $response = [
-        'status' => 501,
-        'pesan' => 'Akses tidak diizinkan'
-      ];
+              'status' => 501,
+              'pesan' => 'Akses tidak diizinkan'
+            ];
         }
 
         echo json_encode($response);
