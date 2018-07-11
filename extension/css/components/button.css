@@ -12,6 +12,11 @@
   cursor: not-allowed;
 }
 
+.btn:not(:disabled):hover {
+    color: var(--color-primary) !important;
+    background-color: white !important;
+}
+
 
 .btn.btn-light {
     background-color: white !important;
@@ -27,9 +32,4 @@
 .btn.btn-primary.outline:hover {
     color: white !important;
     background-color: var(--color-primary) !important;
-}
-
-.btn.btn-primary:not(:disabled):hover {
-    color: var(--color-primary) !important;
-    background-color: white !important;
 }

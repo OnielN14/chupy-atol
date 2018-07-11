@@ -135,7 +135,7 @@
     include('template/footer-secure.php');
   ?>
   <script src="/extension/js/validation.js"></script>
-  <script type="text/javascript" src="/extension/js/page/produk.registrasi.js">
+  <script type="text/javascript" src="/extension/js/page/home.registrasi.js">
   </script>
 </body>
 </html>

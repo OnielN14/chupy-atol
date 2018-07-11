@@ -52,7 +52,8 @@ class PenggunaController extends Controller
     }
 
   public function index_pengaturan(){
-    $this->render_page('pengaturan', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+    $userData = $_SESSION['login_user'];
+    $this->render_page('pengaturan', ['pengguna' => $userData,'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
   }
 
     public function index_forgot_password()

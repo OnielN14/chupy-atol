@@ -70,6 +70,9 @@
 </script>
 <script type="text/javascript" src="/extension/js/chupy-scrolling-behaviour.js">
 </script>
+<script type="text/javascript" src="/extension/js/chupy-alert-behaviour.js">
+</script>
+
 
 <script type="text/javascript" src="/extension/js/page/footer.kotak-saran.js">
 </script>
