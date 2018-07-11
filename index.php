@@ -160,6 +160,11 @@ $router->get("/profile/wishlist",function(){
   $pengguna->index_wishlist();
 });
 
+$router->get("/profile/riwayat-pemesanan",function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_riwayat_pemesanan();
+});
+
 
 $router->get('/api/pengguna', function(){
   $pengguna = new PenggunaController();
