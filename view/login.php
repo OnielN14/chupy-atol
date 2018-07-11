@@ -20,6 +20,7 @@
     <?php include('template/header-secure.php') ?>
     <section class=" text-center">
       <h1>Masuk</h1>
+      <p> <a href="/">Kembali ke beranda</a> </p>
       <p>Silakan mengisi isian di bawah untuk masuk.</p>
       <p>Belu punya akun? <a href="/registrasi">Daftar di sini</a></p>
     </section>

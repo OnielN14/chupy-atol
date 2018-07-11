@@ -37,7 +37,8 @@
 .chupy-navbar .nav-link:hover,
 .chupy-navbar .nav-link:focus,
 .chupy-navbar > .navbar-nav .active > .nav-link,
-.chupy-navbar .navbar-nav .show > .nav-link{
+.chupy-navbar .navbar-nav .show > .nav-link,
+.chupy-navbar > .navbar-nav .active > .dropdown > .nav-link{
   background-color: var(--color-primary);
   color: white!important;
 }

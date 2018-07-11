@@ -58,6 +58,10 @@ $router->get("/forgot-password", function () {
     $pengguna->index_forgot_password();
 });
 
+$router->get("/tentang", function () {
+  BerandaController::getInstance()->index_tentang();
+});
+
 $router->get("/pembayaran",function(){
     BerandaController::getInstance()->index_pembayaran();
 });
@@ -203,6 +207,11 @@ $router->post('/api/pengguna/profil/ubah', function(){
     'penggunaFoto' => File::convertToReadable($_FILES['fotoProfile'])
   ];
   $pengguna->update_by_user($requestData);
+});
+$router->post('/api/pengguna/profil/ubah/password', function(){
+  $pengguna = new PenggunaController();
+  $requestData = $_POST;
+  $pengguna->update_password_by_user($requestData);
   // echo json_encode($requestData);
 });
 
@@ -267,9 +276,9 @@ $router->get("/logout", function () {
 try {
     $router->dispatch();
 } catch (PDOException $e) {
-    // BerandaController::getInstance()->error_404();
-    print($e);
+    BerandaController::getInstance()->error_404();
+    // print($e);
 } catch (Exception $e) {
-    // BerandaController::getInstance()->error_404();
-    print($e);
+    BerandaController::getInstance()->error_404();
+    // print($e);
 }

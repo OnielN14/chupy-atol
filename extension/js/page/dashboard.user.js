@@ -260,9 +260,9 @@ function tambahUser() {
     $('#chupy-msg').find('strong').text('Sukses')
     $('#chupy-msg').find('strong + span').text('Pengguna berhasil ditambahkan.')
     $('#chupy-msg').addClass('show')
-    // setTimeout(function() {
-    //   location.reload();
-    // }, 1000)
+    setTimeout(function() {
+      location.reload();
+    }, 1000)
   }).fail(function(response) {
     $('#chupy-msg').addClass('alert-danger')
 
