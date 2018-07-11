@@ -62,9 +62,18 @@ $router->get("/tentang", function () {
   BerandaController::getInstance()->index_tentang();
 });
 
+$router->get("/pembayaran",function(){
+    BerandaController::getInstance()->index_pembayaran();
+});
+
+$router->get("/produk/detail-barang",function(){
+  BerandaController::getInstance()->index_detail_barang();
+});
+
 $router->get("/produk/hewan", function () {
     BerandaController::getInstance()->index_daftar_hewan();
 });
+
 $router->get("/produk/kebutuhan", function () {
     BerandaController::getInstance()->index_daftar_kebutuhan();
 });
@@ -155,6 +164,17 @@ $router->get("/profile/pengaturan", function(){
   $pengguna = new PenggunaController();
   $pengguna->index_pengaturan();
 });
+
+$router->get("/profile/wishlist",function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_wishlist();
+});
+
+$router->get("/profile/riwayat-pemesanan",function(){
+  $pengguna = new PenggunaController();
+  $pengguna->index_riwayat_pemesanan();
+});
+
 
 $router->get('/api/pengguna', function(){
   $pengguna = new PenggunaController();
