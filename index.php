@@ -56,8 +56,8 @@ $router->get("/pembayaran",function(){
     BerandaController::getInstance()->index_pembayaran();
 });
 
-$router->get("/produk/detail-barang",function(){
-  BerandaController::getInstance()->index_detail_barang();
+$router->get("/produk/detail-produk/{idProduk}",function($idProduk){
+  BerandaController::getInstance()->detail_produk($idProduk);
 });
 
 $router->get("/produk/hewan", function () {

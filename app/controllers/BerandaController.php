@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Validation;
 use App\Controller;
+use App\Models\Produk;
 use App\Controllers\ApiController;
 
 class BerandaController extends Controller
@@ -45,5 +46,14 @@ class BerandaController extends Controller
 
     public function error_404(){
       $this->render_page('404');
+    }
+
+    public function detail_produk($idProduk){
+        $produk = new Produk();
+        $listProduk = $produk->fetch_by_produk(["idProduk"=>$idProduk]);
+        var_dump($listProduk);
+        // $this->render_page('detail_barang',["listProduk"=>$listProduk]);
+        
+
     }
 }
