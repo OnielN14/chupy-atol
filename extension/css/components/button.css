@@ -4,6 +4,20 @@
   color:white!important;
 }
 
+.btn:disabled,
+.btn.disabled{
+  background-color: gray;
+  border-color: gray;
+  color:white;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):hover {
+    color: var(--color-primary) !important;
+    background-color: white !important;
+}
+
+
 .btn.btn-light {
     background-color: white !important;
     border-color: white !important;
@@ -12,20 +26,10 @@
 
 .btn.btn-primary.outline {
     background-color: white !important;
-    /* border-color:white !important; */
     color: var(--color-primary) !important;
 }
 
 .btn.btn-primary.outline:hover {
     color: white !important;
-    /* border-color:white !important; */
-    /* color: var(--color-primary) !important; */
     background-color: var(--color-primary) !important;
-    /* border-color: var(--color-primary) !important; */
-}
-
-.btn.btn-primary:hover {
-    color: var(--color-primary) !important;
-    background-color: white !important;
-    /* border-color: var(--color-primary) !important; */
 }

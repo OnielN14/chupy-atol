@@ -24,8 +24,8 @@ class File{
   }
 
   public static function uploadMultiFile($dataFile){
-    foreach($request as $foto){
-      move_uploaded_file($foto['tmp_name'], self::$$uploadDir.basename($foto['name']));
+    foreach($dataFile as $foto){
+      move_uploaded_file($foto['tmp_name'], self::$uploadDir.basename($foto['name']));
     }
   }
 
