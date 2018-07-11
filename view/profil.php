@@ -20,16 +20,15 @@
 
         <main class="container-fluid chupy-keranjang">
             <header>
-                <?php
+      <?php
         include('template/breadcrumb.php')
       ?>
-
-                    <section class="chupy-profil-header">
-                        <div class="col-md">
-                            <h1>Profil</h1>
-                            <h5>Ringkasan akun dan riwayat pembelian mu.</h5>
-                        </div>
-                    </section>
+                <section class="chupy-profil-header">
+                    <div class="col-md">
+                        <h1>Profil</h1>
+                        <h5>Ringkasan akun dan riwayat pembelian mu.</h5>
+                    </div>
+                </section>
             </header>
 
             <section class="chupy-profil">

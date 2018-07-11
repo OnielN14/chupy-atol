@@ -8,7 +8,7 @@ class DBConnection{
 
   private $host = "localhost";
   private $user = "root"; # isi dengan username database
-  private $pass = "1234"; # isi dengan password database
+  private $pass = ""; # isi dengan password database
   private $dbname = "db_atol_chupy";
   private $error;
   private $koneksi;

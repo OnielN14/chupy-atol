@@ -25,7 +25,7 @@
 
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/about">Tentang Kami</a>
+      <a class="nav-link" href="/tentang">Tentang Kami</a>
     </li>
   <?php
     if (isset($_SESSION['login_user'])) {

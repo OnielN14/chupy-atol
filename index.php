@@ -58,6 +58,10 @@ $router->get("/forgot-password", function () {
     $pengguna->index_forgot_password();
 });
 
+$router->get("/tentang", function () {
+  BerandaController::getInstance()->index_tentang();
+});
+
 $router->get("/produk/hewan", function () {
     BerandaController::getInstance()->index_daftar_hewan();
 });
