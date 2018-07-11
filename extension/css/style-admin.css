@@ -43,16 +43,12 @@
 }
 
 .chupy-admin #page-wrapper>main .chupy-alert.fixed {
-  box-shadow: var(--navbar-shadow);
-  position: fixed;
-  left: 57%;
-  transform: translateX(-50%);
+  /* box-shadow: var(--navbar-shadow);
+  position: fixed; */
+  left: 57%!important;
+  /* transform: translateX(-50%);
   margin-top: 15px;
-  z-index: 99;
-}
-
-.chupy-admin #page-wrapper>main .chupy-alert.fixed:not(.show){
-  z-index:-1;
+  z-index: 99; */
 }
 
 .chupy-admin #page-wrapper .container, .chupy-admin #page-wrapper .container-fluid {

@@ -17,9 +17,18 @@
 <body>
 
   <main class="container">
+
+    <div id="chupy-msg" class="chupy-alert fixed alert alert-warning alert-dismissible fade" role="alert">
+      <strong>Holy guacamole!</strong> <span> You should check in on some of those fields below.</span>
+      <button type="button" class="close" data-hide="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
     <?php include('template/header-secure.php') ?>
     <section class=" text-center">
       <h1>Registrasi</h1>
+      <p> <a href="/">Kembali ke beranda</a> </p>
       <p>Silakan mengisi isian di bawah untuk membuat akun baru.</p>
       <p>Sudah punya akun? <a href="/login">Login di sini</a></p>
     </section>
@@ -28,7 +37,10 @@
       <div class="col-md col-xs">
 
       </div>
-      <form class="col-md-8 col-xs-12" action="/api/pengguna/tambah" method="post" id="form-registrasi">
+      <form class="col-md-8 col-xs-12" id="form-registrasi">
+        <div class="loading-screen">
+
+        </div>
         <input type="hidden" name="front_end_key" value="<?php echo $apikey; ?>">
         <div class="form-group">
             <label for="form-nama">Nama</label>
@@ -75,7 +87,7 @@
         <div class="form-group">
             <label for="form-email">Email</label>
             <input id="form-email" class="form-control" type="email" name="email" placeholder="Contoh: emailmu@email.com" required>
-            <div class="invalid-feedback">Harap masukkan nomor telepon dengan benar.</div>
+            <div class="invalid-feedback">Harap masukkan email dengan benar.</div>
         </div>
 
         <div class="form-group">
@@ -93,7 +105,12 @@
         <div class="form-group">
             <label for="form-re-password">Ketik Ulang Kata Sandi</label>
             <input id="form-re-password" class="form-control" type="password" name="password" placeholder="Masukkan kembali kata sandi" required>
-            <div class="invalid-feedback">Harap isi kata sandi dengan benar.</div>
+            <div class="invalid-feedback">Kata sandi tidak sama.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="form-foto-profil">Foto Profil</label>
+          <input id="form-foto-profil" class="form-control-file" type="file" name="fotoProfile" value="" accept="image/*">
         </div>
 
         <div class="form-check">
@@ -103,7 +120,8 @@
           </div>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Daftar">
+        <input type="submit" class="btn btn-primary my-2" value="Daftar" disabled>
+        <p > <a href="/">Kembali ke beranda</a> </p>
       </form>
 
       <div class="col-md col-xs">
@@ -116,9 +134,8 @@
   <?php
     include('template/footer-secure.php');
   ?>
-
-
   <script src="/extension/js/validation.js"></script>
-
+  <script type="text/javascript" src="/extension/js/page/home.registrasi.js">
+  </script>
 </body>
 </html>

@@ -7,8 +7,19 @@ main {
     font-weight: 300;
 }
 
-form input[type=text] {
-    width: 300px;
+.img-holder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#gambarProfile{
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+#ubah-foto-area input[type="file"]{
+  display: none;
 }
 
 .chupy-form-profil {
@@ -34,7 +45,7 @@ form input[type=text] {
 }
 
 #btn-profile {
-    margin-top: 70%;
+    margin-top: 32px;
 }
 
 .font-card-input {
