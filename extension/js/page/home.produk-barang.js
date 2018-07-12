@@ -37,7 +37,7 @@ categorized = filteredDataGlobalHewan = produkHewan = response.data.sort(functio
 })
 
 $.ajax({
-  url:'/api/kategori_produk/jenis/1',
+  url:'/api/kategori_produk/jenis/2',
   method :'GET',
   dataType: 'json'
 }).done(function(response){
