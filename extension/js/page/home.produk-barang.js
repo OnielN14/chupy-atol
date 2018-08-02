@@ -36,11 +36,11 @@ $.ajax({
 })
 
 $.ajax({
-    url: '/api/kategori_produk/jenis/1',
-    method: 'GET',
-    dataType: 'json'
-}).done(function(response) {
-    produkKategori = response.data
+  url:'/api/kategori_produk/jenis/2',
+  method :'GET',
+  dataType: 'json'
+}).done(function(response){
+  produkKategori = response.data
 
     let options = []
     for (let item of produkKategori) {
