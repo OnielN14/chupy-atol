@@ -38,7 +38,7 @@
         <form id="form-user-new">
           <div class="form-group">
             <label for="form-nama" class="col-form-label">Nama</label>
-            <input type="text" class="form-control" id="form-nama" name="nama" required autofocus>
+            <input type="text" class="form-control" id="form-nama" name="nama" pattern="[A-Za-z\s ]{1,50 }"  title="Hanya boleh huruf" placeholder="Masukan nama" required autofocus>
           </div>
           <div class="form-row">
             <div class="form-group col">
@@ -54,17 +54,17 @@
             </div>
             <div class="form-group col">
               <label for="form-foto-profil">Pilih Foto</label>
-              <input class="form-control-file" type="file" id="form-foto-profil" name="fotoProfile" value="" accept="image/*">
+              <input class="form-control-file" type="file" id="form-foto-profil" name="fotoProfile" value="" accept="image/jpeg,image/jpg,image/png">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col">
               <label for="form-no-telepon" class="col-form-label">No. Telepon</label>
-              <input type="text" name="noTelepon" class="form-control" id="form-no-telepon" required>
+              <input type="tel" name="noTelepon" class="form-control" id="form-no-telepon"  pattern='\d{1,15}' placeholder="081xxxxxxxxx (12 digit)" required>
             </div>
             <div class="form-group col">
               <label for="form-email" class="col-form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="form-email" required>
+              <input type="email" name="email" class="form-control" id="form-email" placeholder="example@gmail.com" required>
             </div>
           </div>
 

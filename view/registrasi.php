@@ -111,6 +111,7 @@
         <div class="form-group">
           <label for="form-foto-profil">Foto Profil</label>
           <input id="form-foto-profil" class="form-control-file" type="file" name="fotoProfile" value="" accept="image/*">
+          <div class="invalid-feedback">Harap masukan format foto dengan benar (png,jpg,jpeg)</div>
         </div>
 
         <div class="form-check">
