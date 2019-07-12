@@ -48,7 +48,9 @@ class Produk extends Model{
 
   public function fetch_by_produk($produkData)
   {
-    $stmt = $this->connection->getConnected()->prepare('SELECT fotoproduk.id AS id, gambar, produk.id AS idProduk,nama,deskripsi,stok,harga FROM produk JOIN fotoproduk ON fotoproduk.idProduk = produk.id WHERE fotoproduk.idProduk = :idProduk');
+    $stmt = $this->connection->getConnected()->prepare('SELECT `produk`.`id`, nama, deskripsi, stok, harga, `fotoproduk`.`gambar` AS gambar FROM `produk`
+    LEFT JOIN `fotoproduk` ON `fotoproduk`.`idProduk` = `produk`.`id`
+    WHERE `produk`.`id` = :idProduk');
 
     $stmt->bindParam(':idProduk',$produkData['idProduk']);
 
