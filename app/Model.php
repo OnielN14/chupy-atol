@@ -34,7 +34,7 @@ abstract class Model{
       $i = 0;
       foreach ($data as $key => $value) {
           if ($i != 0) {
-              $condition .= ", ";
+              $condition .= " AND ";
           }
           $condition .= $key.'=:'.$key;
           $i += 1;
