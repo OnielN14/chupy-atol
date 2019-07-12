@@ -7,6 +7,7 @@ use App\File;
 use App\Models\Pengguna;
 use App\Models\HakAkses;
 use App\Models\WishItem;
+use App\Models\Cart;
 use App\Models\ApiKey;
 use App\Controllers\ApiController;
 
@@ -70,8 +71,6 @@ class PenggunaController extends Controller
         'count' => count($fetchedData),
         'data' => $fetchedData
     ];
-    
-    // echo json_encode($data);
 
     $this->render_page('wishlist', ['data' =>$data]);
   }
@@ -86,7 +85,19 @@ class PenggunaController extends Controller
     }
 
   public function index_keranjang(){
-    $this->render_page('keranjang', ['apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+
+    $idPengguna = $_SESSION['login_user']['id'];
+    $cart = new Cart();
+    $fetchedData = $cart->fetch_detail_by_user($idPengguna);
+    $data = [
+        'count' => count($fetchedData),
+        'data' => $fetchedData
+    ];
+    
+    $this->render_page('keranjang', [
+      'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey'],
+      'data'=>$data
+      ]);
   }
 
   public function index_profil(){
