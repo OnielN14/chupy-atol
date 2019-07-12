@@ -13,6 +13,7 @@ use App\Controllers\HakAksesController;
 use App\Controllers\ApiController;
 use App\Controllers\KotakSaranController;
 use App\Controllers\WishItemController;
+use App\Controllers\CartController;
 use App\File;
 
 $router = new Router();
@@ -285,6 +286,30 @@ $router->post('/api/wishlist/hapus', function(){
   $request['idPengguna'] = $_SESSION['login_user']['id'];
   $wishItemController->delete($request);
 });
+
+
+$router->get('/api/cart', function(){
+  $cartController = new CartController();
+  $request= [
+    'idPengguna' => $_SESSION['login_user']['id']
+  ];
+  $cartController->fetch_by($request);
+});
+
+$router->post('/api/cart/tambah', function(){
+  $cartController = new CartController();
+  $request = $_POST;
+  $request['idPengguna'] = $_SESSION['login_user']['id'];
+  $cartController->insert($request);
+});
+
+$router->post('/api/cart/hapus', function(){
+  $cartController = new CartController();
+  $request = $_POST;
+  $request['idPengguna'] = $_SESSION['login_user']['id'];
+  $cartController->delete($request);
+});
+
 
 $router->get("/logout", function () {
     session_start();
