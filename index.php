@@ -12,6 +12,7 @@ use App\Controllers\KategoriProdukController;
 use App\Controllers\HakAksesController;
 use App\Controllers\ApiController;
 use App\Controllers\KotakSaranController;
+use App\Controllers\WishItemController;
 use App\File;
 
 $router = new Router();
@@ -261,6 +262,28 @@ $router->post('/api/kotak_saran/hapus', function(){
   $kotakSaran = new KotakSaranController();
   $request = $_POST;
   $kotakSaran->delete($request);
+});
+
+$router->get('/api/wishlist', function(){
+  $wishItemController = new WishItemController();
+  $request= [
+    'idPengguna' => $_SESSION['login_user']['id']
+  ];
+  $wishItemController->fetch_by($request);
+});
+
+$router->post('/api/wishlist/tambah', function(){
+  $wishItemController = new WishItemController();
+  $request = $_POST;
+  $request['idPengguna'] = $_SESSION['login_user']['id'];
+  $wishItemController->insert($request);
+});
+
+$router->post('/api/wishlist/hapus', function(){
+  $wishItemController = new WishItemController();
+  $request = $_POST;
+  $request['idPengguna'] = $_SESSION['login_user']['id'];
+  $wishItemController->delete($request);
 });
 
 $router->get("/logout", function () {

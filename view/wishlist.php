@@ -20,38 +20,52 @@
 
     <?php
     include('template/navbar.php');
-  ?>
+    ?>
 
-        <main class="container-fluid chupy-keranjang">
-            <header>
+    <main class="container-fluid chupy-keranjang">
+        <header>
+            <?php
+            include('template/breadcrumb.php')
+            ?>
+
+            <section class="chupy-wishlist-header">
+                <div class="col-md">
+                    <h1>Daftar Keinginanmu</h1>
+                    <?php
+                    if ($data['count']) {
+                        ?>
+                        <h5>Ada <?php echo $data['count'] ?> barang yang kamu inginkan.</h5>
+                    <?php
+                } else {
+                    ?>
+                        <h5>Kamu belum menambahkan barang.</h5>
+                    <?php
+                }
+                ?>
+                </div>
+            </section>
+        </header>
+
+        <div class="container">
+            <section>
+
                 <?php
-        include('template/breadcrumb.php')
-      ?>
+                foreach ($data['data'] as $item) {
+                    ?>
 
-                    <section class="chupy-wishlist-header">
-                        <div class="col-md">
-                            <h1>Daftar Keinginanmu</h1>
-                            <h5>Ada 2 barang yang kamu inginkan.</h5>
-                        </div>
-                    </section>
-            </header>
-
-            <div class="container">
-                <section >
                     <div class="container py-2">
                         <div class="card">
                             <div class="row">
-
                                 <div class="col-xs-4 col-md-4 ">
-                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
+                                    <img src="<?php echo isset($item['gambar']) ? '/extension/upload/' . $item['gambar'] : '/extension/img/chupy-box-ATOL.png' ?>" class="chupy-card-image">
                                 </div>
                                 <div class="col-md-8 ">
                                     <div class="card-block ">
-                                        <h4 class="card-text mt-4">Title</h4>
-                                        <p class="card-text">Rp. 69696969</p>
+                                        <h4 class="card-text mt-4"><?php echo $item['nama'] ?></h4>
+                                        <p class="card-text">Rp. <?php echo $item['harga'] ?></p>
                                         <div class="input-group mt-4">
-                                        <a href="#" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
-                                        <a href="#" class="btn btn-primary outline btn-wishlist w-25">Hapus</a>
+                                            <a href="/produk/detail-produk/<?php echo $item['id'] ?>" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
+                                            <button data-item="<?php echo $item['id'] ?>" class="btn btn-primary outline btn-wishlist w-25 deleteWishedItem">Hapus</button>
                                         </div>
                                     </div>
                                 </div>
@@ -60,62 +74,20 @@
                         </div>
                     </div>
 
-                         <div class="container py-2">
-                        <div class="card">
-                            <div class="row">
+                <?php
+            }
+            ?>
 
-                                <div class="col-xs-4 col-md-4 ">
-                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
-                                </div>
-                                <div class="col-md-8 ">
-                                    <div class="card-block ">
-                                        <h4 class="card-text mt-4">Title</h4>
-                                        <p class="card-text">Rp. 69696969</p>
-                                        <div class="input-group mt-4">
-                                        <a href="#" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
-                                        <a href="#" class="btn btn-primary outline btn-wishlist w-25">Hapus</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                                     <div class="container pt-2 mb-5">
-                        <div class="card">
-                            <div class="row">
-
-                                <div class="col-xs-4 col-md-4 ">
-                                    <img src="/extension/img/chupy-box-ATOL.png" class="chupy-card-image">
-                                </div>
-                                <div class="col-md-8 ">
-                                    <div class="card-block ">
-                                        <h4 class="card-text mt-4">Title</h4>
-                                        <p class="card-text">Rp. 69696969</p>
-                                        <div class="input-group mt-4">
-                                        <a href="#" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
-                                        <a href="#" class="btn btn-primary outline btn-wishlist w-25">Hapus</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+            </section>
+        </div>
+    </main>
 
 
-
-
-            </div>
-        </main>
-
-
-        <?php
+    <?php
     include('template/footer.php');
-  ?>
+    ?>
+
+    <script src="/extension/js/page/home.profile-wishlist.js" charset="utf-8"></script>
 </body>
 
 </html>

@@ -20,27 +20,27 @@
 <body>
 
     <?php
-include('template/navbar.php');
-?>
+    include('template/navbar.php');
+    ?>
 
     <main class="container-fluid chupy-keranjang">
         <header>
             <?php
-    include('template/breadcrumb.php')
-  ?>
-                <section class="chupy-detail-header">
-                    <div class="col-md">
-                        <h1>Detail Rincian Barang</h1>
-                    </div>
-                </section>
+            include('template/breadcrumb.php')
+            ?>
+            <section class="chupy-detail-header">
+                <div class="col-md">
+                    <h1>Detail Rincian Barang</h1>
+                </div>
+            </section>
         </header>
 
         <section class="mt-3 ">
             <div class="row ml-2">
                 <div class="col-md-4">
-                    <img src="<?php echo isset($produk['gambar']) ? '/extension/upload/'.$produk['gambar'] : '/extension/img/chupy-box-ATOL.png'  ?>" alt="Foto Detail Barang" class="img-detail-barang float-center">
+                    <img src="<?php echo isset($produk['gambar']) ? '/extension/upload/' . $produk['gambar'] : '/extension/img/chupy-box-ATOL.png'  ?>" alt="Foto Detail Barang" class="img-detail-barang float-center">
                 </div>
-           
+
                 <div class="col-md-4">
                     <h4><?php echo $produk['nama'] ?></h4>
                     <h5>Deskripsi Produk</h5>
@@ -49,11 +49,20 @@ include('template/navbar.php');
                 </div>
 
                 <div class="col-md-4">
-                    <div class="btn-group-vertical w-75">
-                        <div class="btn btn-primary mb-3 w-100">Tambah Ke Keranjang</div>
-                        <div class="btn btn-primary outline  mb-3 w-100 ">Tambah Ke Wishlist</div>
+                    <div class="w-75">
+                        <div class="mb-3 form-group">
+                            <label for="jumlah-pesanan">Jumlah yang dipesan :</label>
+                            <input id="jumlah-pesanan" class="form-control" type="number" min="0" max="<?php echo $produk['stok'] ?>" value="0">
+                            <input type="hidden" name="idProduk" value="<?php echo $produk['id'] ?>">
+                        </div>
+                        <button id="addToCart" class="btn btn-primary mb-3 w-100">Tambah Ke Keranjang</button>
+                        <button id="addToWishlist" class="btn btn-primary outline mb-3 w-100">
+                            Tambah Ke Wishlist
+                        </button>
                     </div>
-                    <h5>Stok : <?php echo $produk['stok'] ?></h5>
+                    <h5>
+                        Stok : <?php echo $produk['stok'] ?>
+                    </h5>
 
                 </div>
             </div>
@@ -111,7 +120,8 @@ include('template/navbar.php');
 
     <?php
     include('template/footer.php');
-  ?>
-</body>
+    ?>
 
+    <script src="/extension/js/page/home.detail-barang.js" charset="utf-8"></script>
+</body>
 </html>

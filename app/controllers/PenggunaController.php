@@ -6,6 +6,7 @@ use App\Controller;
 use App\File;
 use App\Models\Pengguna;
 use App\Models\HakAkses;
+use App\Models\WishItem;
 use App\Models\ApiKey;
 use App\Controllers\ApiController;
 
@@ -62,7 +63,17 @@ class PenggunaController extends Controller
   }
 
   public function index_wishlist(){
-    $this->render_page('wishlist');
+    $idPengguna = $_SESSION['login_user']['id'];
+    $wishItem = new WishItem();
+    $fetchedData = $wishItem->fetch_detail_by_user($idPengguna);
+    $data = [
+        'count' => count($fetchedData),
+        'data' => $fetchedData
+    ];
+    
+    // echo json_encode($data);
+
+    $this->render_page('wishlist', ['data' =>$data]);
   }
 
   public function index_riwayat_pemesanan(){
