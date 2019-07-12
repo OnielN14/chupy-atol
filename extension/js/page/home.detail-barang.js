@@ -1,4 +1,5 @@
 let userWishList = []
+let userCart = []
 let idProduk = ''
 
 
@@ -8,6 +9,12 @@ $(document).ready(function () {
     $.ajax('/api/wishlist', { dataType: 'json' })
         .done(function (response) {
             userWishList = response.data
+            setProductHadWished(idProduk)
+        })
+
+    $.ajax('/api/cart', { dataType: 'json' })
+        .done(function (response) {
+            userCart = response.data
             setProductHadWished(idProduk)
         })
 
@@ -27,23 +34,47 @@ $('#addToWishlist').on('click', function () {
 })
 
 $('#addToCart').on('click', function () {
-    $('#addToWishlist').attr('disabled', true)
+    let jumlahBarang = $('input#jumlah-pesanan').val();
+    $.ajax({
+        url: '/api/cart/tambah',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            idProduk: idProduk,
+            jumlah: jumlahBarang
+        }
+    }).done(function (response) {
+        console.log(response);
+        
+        // document.location.reload()
+    })
 })
 
 
 function setProductHadWished(idProduk) {
-    if (isProductWished(idProduk)) {
+    if (isProductExistInList(idProduk, userWishList)) {
         $('#addToWishlist').attr('disabled', true)
     }
     else {
         $('#addToWishlist').attr('disabled', false)
     }
+}
 
+function setProductHadInCart(idProduk){
+    let button = $('#addToCart')
+    if (isProductExistInList(idProduk, userCart)) {
+        button.attr('disabled', true)
+        button.val('Sudah Di Keranjang')
+    }
+    else {
+        button.attr('disabled', false)
+        button.val('Tambah Ke Keranjang')
+    }
 }
 
 
-function isProductWished(idProduk) {
-    return userWishList.find(function (item) {
+function isProductExistInList(idProduk, list) {
+    return list.find(function (item) {
         return item.idProduk == idProduk
     })
 }
