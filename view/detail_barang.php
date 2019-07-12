@@ -38,7 +38,7 @@ include('template/navbar.php');
         <section class="mt-3 ">
             <div class="row ml-2">
                 <div class="col-md-4">
-                    <img src="/extension/upload/<?php echo $produk['gambar'] ?>" alt="Foto Detail Barang" class="img-detail-barang float-center">
+                    <img src="<?php echo isset($produk['gambar']) ? '/extension/upload/'.$produk['gambar'] : '/extension/img/chupy-box-ATOL.png'  ?>" alt="Foto Detail Barang" class="img-detail-barang float-center">
                 </div>
            
                 <div class="col-md-4">
