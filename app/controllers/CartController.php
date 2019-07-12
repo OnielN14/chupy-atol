@@ -60,4 +60,35 @@ class CartController extends Controller
         }
         echo json_encode($response);
     }
+
+    public function delete($requestData)
+    {
+        if (session_id() == '') {
+            session_start();
+        }
+
+        $cart = new Cart();
+
+        $response = '';
+        if (isset($_SESSION['login_user'])) {
+            if ($cart->delete_by($requestData)) {
+                $response = [
+                    'status' => 200,
+                    'message' => 'Barang berhasil dihapus'
+                ];
+            } else {
+                $response = [
+                    'status' => 200,
+                    'message' => 'Akses diizinkan tapi terjadi kesalahan saat menghapus'
+                ];
+            }
+        } else {
+            $response = [
+                'status' => 501,
+                'pesan' => 'Akses tidak diizinkan'
+            ];
+        }
+
+        echo json_encode($response);
+    }
 }
