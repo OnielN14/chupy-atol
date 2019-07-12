@@ -15,7 +15,7 @@ $(document).ready(function () {
     $.ajax('/api/cart', { dataType: 'json' })
         .done(function (response) {
             userCart = response.data
-            setProductHadWished(idProduk)
+            setProductHadInCart(idProduk)
         })
 
 })
@@ -44,9 +44,7 @@ $('#addToCart').on('click', function () {
             jumlah: jumlahBarang
         }
     }).done(function (response) {
-        console.log(response);
-        
-        // document.location.reload()
+        document.location.reload()
     })
 })
 
@@ -64,11 +62,11 @@ function setProductHadInCart(idProduk){
     let button = $('#addToCart')
     if (isProductExistInList(idProduk, userCart)) {
         button.attr('disabled', true)
-        button.val('Sudah Di Keranjang')
+        button.text('Sudah Di Keranjang')
     }
     else {
         button.attr('disabled', false)
-        button.val('Tambah Ke Keranjang')
+        button.text('Tambah Ke Keranjang')
     }
 }
 
