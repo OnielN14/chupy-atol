@@ -38,3 +38,9 @@
     color: white !important;
     background-color: var(--color-primary) !important;
 }
+
+.btn.btn-text{
+    padding:0px!important;
+    margin:0px!important;
+    background: none;
+}
