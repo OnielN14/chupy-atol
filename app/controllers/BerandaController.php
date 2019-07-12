@@ -56,7 +56,6 @@ class BerandaController extends Controller
     public function detail_produk($idProduk){
         $produk = new Produk();
         $listProduk = $produk->fetch_by_produk(["idProduk"=>$idProduk]);
-        // echo json_encode($listProduk);
         $this->render_page('detail_barang',["produk"=>$listProduk[0]]);
     }
 }
