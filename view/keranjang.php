@@ -12,7 +12,7 @@
     <title>Chupy | Keranjang</title>
     <link rel="stylesheet" href="/extension/plugins/bootstrap-4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/extension/css/chupy-style.css">
-    <link rel="stylesheet" href="/extension/css/style-keranjang.css">
+    <link rel="stylesheet" href="/extension/css/style-keranjang_and_wishlist.css">
     <link rel="stylesheet" href="/extension/css/components/button.css">
 
 </head>
@@ -23,7 +23,7 @@
     include('template/navbar.php');
     ?>
 
-    <main class="container-fluid chupy-keranjang">
+    <main class="container-fluid chupy-wishlist_keranjang-header">
         <header>
             <?php
             include('template/breadcrumb.php')
@@ -55,31 +55,39 @@
                 foreach ($data['data'] as $item) {
                     ?>
 
-                    <div class="container py-3">
+                    <div class="container py-2">
                         <div class="card">
                             <div class="row">
-
-                                <div class="col-xs-6 col-md-4  chupy-keranjang-card">
+                                <div class="col-xs-4 col-md-4">
                                     <img src="<?php echo isset($item['gambar']) ? '/extension/upload/' . $item['gambar'] : '/extension/img/chupy-box-ATOL.png' ?>" class="chupy-card-image">
                                 </div>
 
-
-                                <div class="col-md-4 chupy-keranjang-card">
+                                <div class="col-md-8">
                                     <div class="card-block ">
-                                        <h5 class="card-title"><?php echo $item['nama'] ?></h5>
-                                        <p class="card-text">Rp. <?php echo $item['harga'] ?></p>
-                                        <a href="/produk/detail-produk/<?php echo $item['id'] ?>" class="btn btn-primary btn-keranjang">Lihat Detail</a>
+                                        <h4 class="card-text mt-4"><?php echo $item['nama'] ?></h4>
+                                        <div class="row">
+                                            <p class="card-text col">
+                                                <label for="">Harga : </label>
+                                                <span> Rp. <?php echo $item['harga'] ?></span>
+
+                                            </p>
+                                            <p class="card-text col">
+                                                <label for="">Jumlah Barang : </label>
+                                                <span class="jumlah-text"><?php echo $item['jumlah'] ?> pcs</span>
+                                                <?php
+                                                /*
+                                                (<button data-item="<?php echo $item['id'] ?>" class="btn btn-text ubah-jumlah">Ubah</button>)
+                                                */
+                                                ?>
+                                            </p>
+                                        </div>
+
+                                        <div class="input-group">
+                                            <a href="/produk/detail-produk/<?php echo $item['id'] ?>" class="btn btn-primary w-25 mr-3">Lihat Detail</a>
+                                            <button data-item="<?php echo $item['id'] ?>" class="btn btn-primary outline w-25 deleteCartItem">Hapus</button>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-4 chupy-keranjang-card">
-                                    <div class="card-block ">
-                                        <h5 class="card-title">Jumlah</h5>
-                                        <p class="card-text"><?php echo $item['jumlah'] ?></p>
-                                        <button data-item="<?php echo $item['id'] ?>" class="btn btn-primary outline btn-keranjang-hapus">Ubah</button>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

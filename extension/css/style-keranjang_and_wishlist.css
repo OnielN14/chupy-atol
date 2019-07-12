@@ -2,8 +2,8 @@ main {
     padding-top: calc(var(--navbar-size) + 16px);
 }
 
-.chupy-wishlist-header h1,
-.chupy-wishlist-header h5 {
+.chupy-wishlist_keranjang-header h1,
+.chupy-wishlist_keranjang-header h5 {
     font-weight: 300;
 }
 

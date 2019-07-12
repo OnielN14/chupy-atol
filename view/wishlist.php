@@ -12,7 +12,7 @@
     <title>Chupy | Wishlist</title>
     <link rel="stylesheet" href="/extension/plugins/bootstrap-4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/extension/css/chupy-style.css">
-    <link rel="stylesheet" href="/extension/css/style-wishlist.css">
+    <link rel="stylesheet" href="/extension/css/style-keranjang_and_wishlist.css">
 
 </head>
 
@@ -22,7 +22,7 @@
     include('template/navbar.php');
     ?>
 
-    <main class="container-fluid chupy-keranjang">
+    <main class="container-fluid chupy-wishlist_keranjang-header">
         <header>
             <?php
             include('template/breadcrumb.php')
@@ -64,8 +64,8 @@
                                         <h4 class="card-text mt-4"><?php echo $item['nama'] ?></h4>
                                         <p class="card-text">Rp. <?php echo $item['harga'] ?></p>
                                         <div class="input-group mt-4">
-                                            <a href="/produk/detail-produk/<?php echo $item['id'] ?>" class="btn btn-primary btn-wishlist w-25 mr-3">Lihat Detail</a>
-                                            <button data-item="<?php echo $item['id'] ?>" class="btn btn-primary outline btn-wishlist w-25 deleteWishedItem">Hapus</button>
+                                            <a href="/produk/detail-produk/<?php echo $item['id'] ?>" class="btn btn-primary w-25 mr-3">Lihat Detail</a>
+                                            <button data-item="<?php echo $item['id'] ?>" class="btn btn-primary outline w-25 deleteWishedItem">Hapus</button>
                                         </div>
                                     </div>
                                 </div>
