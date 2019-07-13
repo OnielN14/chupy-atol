@@ -24,6 +24,10 @@ insert  into `apikey`(`id`,`user`,`apikey`) values (1,'front_end','1bf5f3f041297
 
 insert  into `daftarkeinginan`(`idPengguna`,`idProduk`) values (1,1),(1,2);
 
+/*Data for the table `detail_pemesanan` */
+
+insert  into `detail_pemesanan`(`idTransaksi`,`idProduk`,`jumlah`) values ('TRNX-057-13072019',5,2),('TRNX-057-13072019',1,1),('TRNX-144-13072019',4,5);
+
 /*Data for the table `fotoproduk` */
 
 insert  into `fotoproduk`(`id`,`gambar`,`createdAt`,`updatedAt`,`idProduk`) values (1,'20190712-1950897156-5.jpeg','2019-07-12','2019-07-12',5),(2,'20190712-1037102187-4.jpeg','2019-07-12','2019-07-12',4),(3,'20190712-1022682525-1.png','2019-07-12','2019-07-12',1),(4,'20190712-1121459769-2.jpeg','2019-07-12','2019-07-12',2),(6,'20190712-836264349-3.jpeg','2019-07-12','2019-07-12',3);
@@ -42,9 +46,13 @@ insert  into `kategoriproduk`(`id`,`nama`,`idJenis`) values (1,'Mamalia',1),(2,'
 
 /*Data for the table `keranjang` */
 
-insert  into `keranjang`(`idPengguna`,`idProduk`,`jumlah`,`createdAt`,`updatedAt`) values (1,5,2,'2019-07-12','2019-07-12'),(1,1,1,'2019-07-12','2019-07-12');
+insert  into `keranjang`(`idPengguna`,`idProduk`,`jumlah`,`createdAt`,`updatedAt`) values (1,4,5,'2019-07-14','2019-07-14');
 
 /*Data for the table `kotaksarandankeluhan` */
+
+/*Data for the table `pemesanan` */
+
+insert  into `pemesanan`(`id`,`tanggalTransaksi`,`idPengguna`,`statusBayar`,`isTransaksi`,`alamatPengiriman`,`kontak`,`buktiBayar`,`hash`) values ('TRNX-057-13072019','2019-07-13 22:18:12',1,'\0','','Jl. Tubagus Ismail Bawah No. 46 RT 004/002, Bandung','0857XXXXXX','user-payment-proof-8a552ed865c1c1f7e66a207594ddf3-3_caters_fox_dive_04.jpg','8a552ed865c1c1f7e66a207594ddf3'),('TRNX-144-13072019','2019-07-14 01:39:43',1,'\0','','Jl. Sekeloa, Bandung','0815XXXX',NULL,'96ed7cf7ead5b47af75ccb1ecde40d');
 
 /*Data for the table `pengguna` */
 
