@@ -83,7 +83,7 @@ CREATE TABLE `daftarkeinginan` (
 
 -- tabel `fotproduk`
 CREATE TABLE `fotoproduk` (
-  `id` int(3) PRIMARY KEY AUTO_INCREMENT,
+  `id` int(3) PRIMARY KEY,
   `gambar` varchar(255) NOT NULL,
   `createdAt` date NOT NULL,
   `updatedAt` date NOT NULL,
@@ -96,6 +96,7 @@ CREATE TABLE `fotoproduk` (
 CREATE TABLE `keranjang` (
   `idPengguna` int(3) NOT NULL,
   `idProduk` int(3) NOT NULL,
+  `jumlah` int NOT NULL,
   `createdAt` date NOT NULL,
   `updatedAt` date NOT NULL,
 
@@ -104,12 +105,25 @@ CREATE TABLE `keranjang` (
 ) ENGINE=InnoDB;
 
 -- tabel `pemesanan`
-CREATE TABLE `pemesanan` (
-  `id` varchar(101) PRIMARY KEY,
-  `tanggalPemesanan` date NOT NULL,
+CREATE TABLE `pemesanan`(
+  `id` VARCHAR(101) PRIMARY KEY,
+  `tanggalTransaksi` date NOT NULL,
   `idPengguna` int(3) NOT NULL,
-  `idProduk` int(3) NOT NULL,
-
-  CONSTRAINT `fk_order_id_produk` FOREIGN KEY (`idProduk`) REFERENCES `produk` (`id`),
+  `statusBayar` bit NOT NULL,
+  `alamatPengiriman` VARCHAR(255) NOT NULL,
+  `buktiBayar` VARCHAR(255) NOT NULL,
+  
   CONSTRAINT `fk_order_id_pengguna` FOREIGN KEY (`idPengguna`) REFERENCES `pengguna` (`id`)
-) ENGINE=InnoDB;
+)ENGINE=InnoDB;
+
+-- tabel `detail_pemesanan`
+CREATE TABLE `detail_pemesanan` (
+  `idTransaksi` VARCHAR(101) NOT NULL,
+  `idProduk` int(3) NOT NULL,
+  `jumlah` int NOT NULL,
+  
+  CONSTRAINT `fk_order_id_produk` FOREIGN KEY (`idProduk`) REFERENCES `produk` (`id`),
+  CONSTRAINT `fk_order_id_transaksi` FOREIGN KEY (`idTransaksi`) REFERENCES `pemesanan` (`id`)
+)ENGINE=InnoDB;
+    
+  
