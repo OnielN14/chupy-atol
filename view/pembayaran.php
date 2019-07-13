@@ -5,6 +5,15 @@ $parsedDate = getdate(strtotime($strToTimeFormat));
 $transactionDate = $parsedDate['mday'] . ' ' . $parsedDate['month'] . ' ' . $parsedDate['year'];
 
 $isTransactionAccepted = $data['orderData']['isTransaksi'] ? true : false;
+
+$statusPemesanan = '';
+if ($data['orderData']['statusBayar'] == 1 && $data['orderData']['buktiBayar']) {
+    $statusPemesanan = 'Lunas';
+} else if (!$data['orderData']['statusBayar'] && $data['orderData']['buktiBayar']) {
+    $statusPemesanan = 'Sedang Dikonfirmasi';
+} else {
+    $statusPemesanan = 'Belum Bayar';
+}
 ?>
 
 <!DOCTYPE html>
@@ -159,26 +168,36 @@ $isTransactionAccepted = $data['orderData']['isTransaksi'] ? true : false;
                                         <div class="pembayaran-info-detail">
                                             <p>Status :
                                             </p>
-                                            <h5><?php echo $data['orderData']['statusBayar'] ? 'Lunas' : 'Belum Bayar' ?></h5>
+                                            <h5><?php echo $statusPemesanan ?></h5>
                                         </div>
-                                        <div class="pembayaran-info-detail">
-                                            <p>
-                                                Silakan lakukan transfer ke rekening di bawah :
-                                            </p>
-                                            <h4>BNI 23124129XXX</h4>
-                                            <h5>A/N : Chupy Corp</h5>
-                                        </div>
-                                        <hr>
-                                        <form id="form-bukti-bayar">
-                                            <div class="input-group pembayaran-upload-area">
-                                                <div class="input-group-prepend">
-                                                    <label for="buktiBayar" class="input-group-text">Unggah Bukti Pembayaran :</label>
-                                                </div>
-                                                <input id="buktiBayar" type="file" class="form-control" name="buktiBayar">
-                                                <div class="input-group-append">
-                                                    <button type="button" class="btn btn-primary" id="upload-bukti" disabled>Unggah</button></div>
+
+
+                                        <?php
+                                        if ($statusPemesanan == 'Belum Bayar') {
+                                            ?>
+                                            <div class="pembayaran-info-detail">
+                                                <p>
+                                                    Silakan lakukan transfer ke rekening di bawah :
+                                                </p>
+                                                <h4>BNI 23124129XXX</h4>
+                                                <h5>A/N : Chupy Corp</h5>
                                             </div>
-                                        </form>
+
+                                            <hr>
+                                            <form id="form-bukti-bayar">
+                                                <div class="input-group pembayaran-upload-area">
+                                                    <div class="input-group-prepend">
+                                                        <label for="buktiBayar" class="input-group-text">Unggah Bukti Pembayaran :</label>
+                                                    </div>
+                                                    <input id="buktiBayar" type="file" class="form-control" name="buktiBayar">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-primary" id="upload-bukti" disabled>Unggah</button></div>
+                                                </div>
+                                            </form>
+
+                                        <?php
+                                    }
+                                    ?>
                                     </div>
                                 </div>
                             </div>

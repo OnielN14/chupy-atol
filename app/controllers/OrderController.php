@@ -125,7 +125,7 @@ class orderController extends Controller
     }
 
     private function transactionProofFileNameGenerator($imageData, $transactionHash){
-        return strtolower('user-payment-proof-'.$transactionHash.'-'.pathinfo($imageData['name'], PATHINFO_FILENAME).'.'.pathinfo($imageData['name'], PATHINFO_EXTENSION));
+        return strtolower('user-payment-proof-'.$transactionHash.'.'.pathinfo($imageData['name'], PATHINFO_EXTENSION));
     }
 
     public function renderTransactionPage($transactionHash)
