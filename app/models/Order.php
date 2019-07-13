@@ -22,5 +22,4 @@ class Order extends Model
         $stmt->execute();
         return $stmt->errorInfo();
     }
-
 }
