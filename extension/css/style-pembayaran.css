@@ -25,7 +25,23 @@ h6 {
     height: 50px;
 }
 
+.pembeli-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.pembeli-info > .nama{
+    margin-left: 10px;
+}
 
-/* .card-header-pembeli {
-    text-align: center
-} */
+.pembayaran-tabel-total{
+    font-weight: bold;
+}
+
+.pembayaran-bank-info{
+    text-align: center;
+}
+
+.pembayaran-bank-info > .pembayaran-info-detail > p{
+    margin:0px;
+}
