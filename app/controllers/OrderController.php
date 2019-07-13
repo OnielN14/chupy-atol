@@ -43,18 +43,30 @@ class orderController extends Controller
         }
 
         $order = new Order();
-        // $orderDetail = new OrderDetail();
-        $request = $data;
+        $orderDetail = new OrderDetail();
+
         $request['idTransaksi'] = $this->idGenerator();
+        $request['idPengguna'] = $data['idPengguna'];
+        $request['alamatPengiriman'] = $data['userData']['alamat'];
+        
+        $modifiedCartData = [];
+        foreach($data['cartData'] as $item){
+            $item['idTransaksi'] = $request['idTransaksi'];
+            array_push($modifiedCartData, $item);
+        }
+
+        $request['data'] = $modifiedCartData;
 
         if (isset($_SESSION['login_user'])) {
 
-            $result = $order->insert($request);
-            // $orderDetail->insertMultiple($request['data']);
+            $order->insert($request);
+            $orderDetail->insertMultiple($request['data']);
+
+            $fetchedData = $order->fetch_by(['id' => $request['idTransaksi']]);
 
             $response = [
                 'status' => 200,
-                'pesan' => $result
+                'transaksiHash' => $fetchedData[0]['hash']
             ];
         } else {
             $response = [
@@ -66,9 +78,10 @@ class orderController extends Controller
     }
 
     public function idGenerator(){
-        $dataIndex = $this->raw_query('SELECT COUNT(*) FROM '.$this->modelName);
+        $order = new Order();
+        $dataIndex = $order->raw_query('SELECT COUNT(*) AS jumlah FROM '.$order->getModelName());
         $currentDate = date('dmY');
-        return 'TRNX-'.$dataIndex.mt_rand(1,99).'-'.$currentDate;
+        return 'TRNX-'.$dataIndex[0]['jumlah'].mt_rand(1,99).'-'.$currentDate;
     }
 
     public function renderTransactionPage($transactionHash)

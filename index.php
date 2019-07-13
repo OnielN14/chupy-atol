@@ -312,6 +312,7 @@ $router->post('/api/cart/hapus', function(){
 });
 
 $router->post('/api/order/tambah', function(){
+  $orderController = new OrderController();
   $cartController = new CartController();
   $payload = [
     'idPengguna' => $_SESSION['login_user']['id']
@@ -328,7 +329,8 @@ $router->post('/api/order/tambah', function(){
     'noTelepon' => $_SESSION['login_user']['noTelepon'],
   ];
 
-  $cartController->render_page('pembayaran', ['data' => $payload]);
+  $orderController->insert($payload);
+  // $cartController->render_page('pembayaran', ['data' => $payload]);
 });
 
 $router->get('/pembayaran/{transactionHash}', function($transactionHash){
