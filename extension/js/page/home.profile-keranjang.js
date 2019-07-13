@@ -19,9 +19,15 @@ $('button#lanjut-pemesanan').on('click', function(){
         method:'POST',
         dataType:'json'
     }).done(function(response){
-        console.log(response);
-        
-        // document.location.href('/pembayaran')
+        if(response){
+            switch(response.status){
+                case 200:
+                    document.location.href = `/pembayaran/${response.transaksiHash}`;
+                    break;
+                default:
+                    console.log(response);
+            }
+        }
     })
 })
 
