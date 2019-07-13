@@ -120,12 +120,14 @@ $isTransactionAccepted = $data['orderData']['isTransaksi'] ? true : false;
                                                 <td class="text-right">Rp. <?php echo $totalBiaya ?></td>
                                             </tr>
                                         </table>
+                                        <input type="hidden" name="transaction-valid-status" value="<?php echo $data['orderData']['isTransaksi'] ?>">
+                                        <input type="hidden" name="transaction-hash" value="<?php echo $data['orderData']['hash'] ?>">
                                     </div>
                                     <?php
                                     if (!$isTransactionAccepted) {
                                         ?>
                                         <div class="row mt-4">
-                                            <button id="button-transaksi" class="btn btn-primary form-control">Lakukan Pembayaran</button>
+                                            <button id="button-transaksi" class="btn btn-primary form-control">Lanjutkan Ke Pembayaran</button>
                                         </div>
                                     <?php
                                 }
@@ -141,7 +143,7 @@ $isTransactionAccepted = $data['orderData']['isTransaksi'] ? true : false;
                 if ($isTransactionAccepted) {
                     ?>
 
-                    <div class="row my-5">
+                    <section id="pembayaran" class="row my-5">
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">
@@ -167,19 +169,21 @@ $isTransactionAccepted = $data['orderData']['isTransaksi'] ? true : false;
                                             <h5>A/N : Chupy Corp</h5>
                                         </div>
                                         <hr>
-                                        <div class="input-group pembayaran-upload-area">
-                                            <div class="input-group-prepend">
-                                                <label for="buktiBayar" class="input-group-text">Unggah Bukti Pembayaran :</label>
+                                        <form id="form-bukti-bayar">
+                                            <div class="input-group pembayaran-upload-area">
+                                                <div class="input-group-prepend">
+                                                    <label for="buktiBayar" class="input-group-text">Unggah Bukti Pembayaran :</label>
+                                                </div>
+                                                <input id="buktiBayar" type="file" class="form-control" name="buktiBayar">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary" id="upload-bukti" disabled>Unggah</button></div>
                                             </div>
-                                            <input id="buktiBayar" type="file" class="form-control" name="buktiBayar">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary">Unggah</button></div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
                 <?php
             }
@@ -196,10 +200,6 @@ $isTransactionAccepted = $data['orderData']['isTransaksi'] ? true : false;
     ?>
 
     <script src="/extension/js/page/home.pembayaran.js" charset="utf-8"></script>
-    <?php
-    print_r($parsedDate);
-    // print_r($data);
-    ?>
 </body>
 
 </html>
