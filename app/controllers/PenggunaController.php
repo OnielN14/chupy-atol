@@ -10,6 +10,7 @@ use App\Models\WishItem;
 use App\Models\Cart;
 use App\Models\ApiKey;
 use App\Controllers\ApiController;
+use App\Controllers\OrderController;
 
 class PenggunaController extends Controller
 {
@@ -102,10 +103,16 @@ class PenggunaController extends Controller
 
   public function index_profil(){
     $pengguna = new Pengguna();
+    $orderController = new OrderController();
+    ob_start();
+    $orderController->fetch_by(['idPengguna'=>$_SESSION['login_user']['id']]);
+    $ouput = ob_get_clean();
+    $userOrderData = json_decode($ouput,true);
+
     if (isset($_SESSION['login_user'])) {
         if ($_SESSION['login_user']['idHakAkses'] == 1 || $_SESSION['login_user']['idHakAkses'] == 2) {
           $userData = $pengguna->fetch_by(['id' => $_SESSION['login_user']['id']]);
-          $this->render_page('profil',['pengguna'=>$userData[0], 'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
+          $this->render_page('profil',['pengguna'=>$userData[0], 'orderData' => $userOrderData['data'], 'apikey' => ApiController::getInstance()->fetch_by(['user'=>'front_end'])[0]['apikey']]);
         }
         else{
           header('Location: /');

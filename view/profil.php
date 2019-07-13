@@ -1,4 +1,44 @@
+<?php
 
+function dateParserTransaksi($targetDate)
+{
+    $parsedDate = date_parse($targetDate);
+    $strToTimeFormat = $parsedDate['year'] . '-' . $parsedDate['month'] . '-' . $parsedDate['day'];
+    $parsedDate = getdate(strtotime($strToTimeFormat));
+    return $parsedDate['mday'] . ' ' . $parsedDate['month'] . ' ' . $parsedDate['year'];
+}
+
+function statusPemesanan($orderItem)
+{
+    $statusPemesanan = '';
+    if ($orderItem['statusBayar'] == 1 && $orderItem['buktiBayar']) {
+        $statusPemesanan = 'Lunas';
+    } else if (!$orderItem['statusBayar'] && $orderItem['buktiBayar']) {
+        $statusPemesanan = 'Sedang Dikonfirmasi';
+    } else {
+        $statusPemesanan = 'Belum Bayar';
+    }
+
+    return $statusPemesanan;
+}
+
+function orderTotalBudget($orderItem)
+{
+    $sum = 0;
+    foreach ($orderItem['productData'] as $product) {
+        $totalPerProduct = $product['jumlah'] * $product['harga'];
+
+        $sum += $totalPerProduct;
+    }
+
+    return $sum;
+}
+
+usort($orderData, function ($a, $b) {
+    return $a['tanggalTransaksi'] < $b['tanggalTransaksi'];
+})
+
+?>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -16,132 +56,106 @@
 <body>
     <?php
     include('template/navbar.php');
-  ?>
+    ?>
 
-        <main class="container-fluid chupy-keranjang">
-            <header>
-      <?php
-        include('template/breadcrumb.php')
-      ?>
-                <section class="chupy-profil-header">
-                    <div class="col-md">
-                        <h1>Profil</h1>
-                        <h5>Ringkasan akun dan riwayat pembelian mu.</h5>
-                    </div>
-                </section>
-            </header>
+    <main class="container-fluid chupy-keranjang">
+        <header>
+            <?php
+            include('template/breadcrumb.php')
+            ?>
+            <section class="chupy-profil-header">
+                <div class="col-md">
+                    <h1>Profil</h1>
+                    <h5>Ringkasan akun dan riwayat pembelian mu.</h5>
+                </div>
+            </section>
+        </header>
 
-            <section class="chupy-profil">
-                <div class="container py-3">
-                    <div class="card">
+        <section class="chupy-profil">
+            <div class="container py-3">
+                <div class="card">
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md">
-                                    <h4 class="text-akun">Ringkasan Akun</h4>
-                                </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md">
+                                <h4 class="text-akun">Ringkasan Akun</h4>
                             </div>
-                            <div class="row">
+                        </div>
+                        <div class="row">
 
-                                <div class="col-md-4">
-                                  <?php if ($pengguna['fotoProfile'] == 'none' || $pengguna['fotoProfile'] == NULL){
-                                  ?>
+                            <div class="col-md-4">
+                                <?php if ($pengguna['fotoProfile'] == 'none' || $pengguna['fotoProfile'] == NULL) {
+                                    ?>
 
                                     <img src="/extension/img/chupy-box-ATOL.png" alt="Profil" class="chupy-card-image chupy-profile-image">
-                                  <?php
-                                } else{
-                                ?>
-                                  <img src="/extension/upload/<?php echo $pengguna['fotoProfile'] ?>" alt="Profil" class="chupy-card-image chupy-profile-image">
                                 <?php
-                                }?>
-                                </div>
+                            } else {
+                                ?>
+                                    <img src="/extension/upload/<?php echo $pengguna['fotoProfile'] ?>" alt="Profil" class="chupy-card-image chupy-profile-image">
+                                <?php
+                            } ?>
+                            </div>
 
-                                <div class="col-md-4">
-                                    <table>
-                                        <tr>
-                                            <td colspan="3">
-                                                <h5><?php echo $pengguna['nama'] ?></h5>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>No.HP</h6>
-                                            </td>
-                                            <td>:</td>
-                                            <td>
-                                                <h6><?php echo $pengguna['noTelepon'] ?></h6>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>Email</h6>
-                                            </td>
-                                            <td>:</td>
-                                            <td>
-                                                <h6><?php echo $pengguna['email'] ?></h6>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <h6>Alamat</h6>
-                                            </td>
-                                            <td>:</td>
-                                            <td>
-                                                <h6><?php echo $pengguna['alamat'] ?></h6>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                            <div class="col-md-4">
+                                <table>
+                                    <tr>
+                                        <td colspan="3">
+                                            <h5><?php echo $pengguna['nama'] ?></h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>No.HP</h6>
+                                        </td>
+                                        <td>:</td>
+                                        <td>
+                                            <h6><?php echo $pengguna['noTelepon'] ?></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>Email</h6>
+                                        </td>
+                                        <td>:</td>
+                                        <td>
+                                            <h6><?php echo $pengguna['email'] ?></h6>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>Alamat</h6>
+                                        </td>
+                                        <td>:</td>
+                                        <td>
+                                            <h6><?php echo $pengguna['alamat'] ?></h6>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
 
-                                <div class="col-md-4">
-                                    <a href="/profile/pengaturan" class="btn btn-primary outline btn-profil-ubah">Ubah</a>
-                                </div>
+                            <div class="col-md-4">
+                                <a href="/profile/pengaturan" class="btn btn-primary outline btn-profil-ubah">Ubah</a>
                             </div>
                         </div>
                     </div>
-            </section>
+                </div>
+        </section>
 
-            <section class="chupy-riwayat-pembelian">
-                <div class="container py-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md">
-                                    <h4 class="text-akun">Riwayat Pembelianmu</h4>
-                                </div>
+        <section class="chupy-riwayat-pembelian">
+            <div class="container py-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md">
+                                <h4 class="text-akun">Riwayat Pembelianmu</h4>
                             </div>
-                            <div class="row">
-                                <div class="container py-3">
-                                    <div class="card card-pembelian">
-                                        <div class="card-body">
-                                            <div class="row data-pembelian">
-                                                <div class="col-md-3">
-                                                    <h2>#2</h2>
-                                                </div>
-                                                <div class="col-md-3 ">
-                                                    <h5 class="font-riwayat-pembelian">Tanggal Pembelian</h5>
-                                                    <h6>12 Januari 2018</h6>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h5 class="font-riwayat-pembelian">Status Pembelian</h5>
-                                                    <h6>Belum Dibayar</h6>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h5 class="font-riwayat-pembelian">Total Pembelian</h5>
-                                                    <h6>Rp. 69696969</h6>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md btn-riwayat-pembelian">
-                                                    <a href="#" class="btn btn-primary mr-3 float-right ">Lihat Detail</a>
-                                                    <a href="#" class="btn btn-primary mr-3 float-right ">Bayar</a>
+                        </div>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php
+                        $countOrder = count($orderData);
+                        foreach ($orderData as $orderItem) {
+
+                            ?>
 
                             <div class="row">
                                 <div class="container py-3">
@@ -149,79 +163,52 @@
                                         <div class="card-body">
                                             <div class="row data-pembelian">
                                                 <div class="col-md-3">
-                                                    <h2>#1</h2>
+                                                    <h2>#<?php echo $countOrder ?></h2>
                                                 </div>
                                                 <div class="col-md-3 ">
                                                     <h5 class="font-riwayat-pembelian">Tanggal Pembelian</h5>
-                                                    <h6>12 Januari 2018</h6>
+                                                    <h6><?php echo dateParserTransaksi($orderItem['tanggalTransaksi']) ?></h6>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <h5 class="font-riwayat-pembelian">Status Pembelian</h5>
-                                                    <h6>Selesai</h6>
+                                                    <h6><?php echo statusPemesanan($orderItem) ?></h6>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <h5 class="font-riwayat-pembelian">Total Pembelian</h5>
-                                                    <h6>Rp. 69696969</h6>
+                                                    <h6>Rp. <?php echo orderTotalBudget($orderItem) ?></h6>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md btn-riwayat-pembelian">
-                                                    <a href="#" class="btn btn-primary mr-3 float-right ">Lihat Detail</a>
-
-
+                                                    <a href="/pembayaran/<?php echo $orderItem['hash'] ?>" class="btn btn-primary mr-3 float-right ">Lihat Detail</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                </div>
-                                <div class="container py-3">
-                                <div class="row">
-
-                                        <div class="col-md">
-                                            <nav class="chupy chupy-product-pagination">
-                                                <ul class="pagination justify-content-center">
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#" aria-label="Previous">
-                                                            <span aria-hidden="true">&laquo;</span>
-                                                            <span class="sr-only">Previous</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">1</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">2</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#">3</a>
-                                                    </li>
-                                                    <li class="page-item">
-                                                        <a class="page-link" href="#" aria-label="Next">
-                                                            <span aria-hidden="true">&raquo;</span>
-                                                            <span class="sr-only">Next</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <?php
+                            $countOrder--;
+                        }
+                        ?>
                     </div>
+                </div>
 
 
-            </section>
+        </section>
 
 
 
-        </main>
+    </main>
 
-  <?php
+    <?php
     include('template/footer.php');
-  ?>
+    ?>
+
+    <?php
+    print_r($orderData);
+    ?>
 </body>
 
 </html>
