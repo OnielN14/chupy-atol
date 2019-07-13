@@ -1,5 +1,7 @@
 <?php
 
+$totalPembayaran = 0;
+
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +55,9 @@
 
                 <?php
                 foreach ($data['data'] as $item) {
+                    $totalHarga = $item['jumlah']*$item['harga'];
+
+                    $totalPembayaran += $totalHarga;
                     ?>
 
                     <div class="container py-2">
@@ -66,20 +71,27 @@
                                     <div class="card-block ">
                                         <h4 class="card-text mt-4"><?php echo $item['nama'] ?></h4>
                                         <div class="row">
-                                            <p class="card-text col">
+                                            <div class="card-text col">
                                                 <label for="">Harga : </label>
                                                 <span> Rp. <?php echo $item['harga'] ?></span>
 
-                                            </p>
-                                            <p class="card-text col">
+                                            </div>
+                                            <div class="card-text col">
                                                 <label for="">Jumlah Barang : </label>
                                                 <span class="jumlah-text"><?php echo $item['jumlah'] ?> pcs</span>
                                                 <?php
                                                 /*
                                                 (<button data-item="<?php echo $item['id'] ?>" class="btn btn-text ubah-jumlah">Ubah</button>)
-                                                */
+                                            */
                                                 ?>
-                                            </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col"></div>
+                                            <div class="col">
+                                                <label for="">Total Harga : </label>
+                                                <span class="jumlah-text">Rp. <?php echo $totalHarga?></span>
+                                            </div>
                                         </div>
 
                                         <div class="input-group">
@@ -102,19 +114,19 @@
             if ($data['data']) {
                 ?>
                 <hr class="divider">
-                <section class="chupy-keranjang-bayar">
+                <section>
                     <div class="container py-3">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4 class="float-left">Total Pembayaran</h4>
+                                <h4 class="float-left">Total Biaya</h4>
                             </div>
                             <div class="col-md-6 ">
-                                <h4 class="float-right">Rp.90000000</h4>
+                                <h4 class="float-right">Rp. <?php echo $totalPembayaran ?></h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md">
-                                <a href="#" class="btn btn-primary float-right btn-beli">BELI</a>
+                                <button id="lanjut-pemesanan" class="btn btn-primary float-right btn-beli">Lanjutkan ke Pembayaran</button>
                             </div>
                         </div>
 

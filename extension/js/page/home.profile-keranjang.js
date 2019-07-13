@@ -11,3 +11,17 @@ $('button.deleteCartItem').on('click', function(){
         document.location.reload()
     })
 })
+
+$('button#lanjut-pemesanan').on('click', function(){
+    let buttonContext = $(this)
+    $.ajax({
+        url:'/api/order/tambah',
+        method:'POST',
+        dataType:'json'
+    }).done(function(response){
+        console.log(response);
+        
+        // document.location.href('/pembayaran')
+    })
+})
+
