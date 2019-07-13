@@ -14,6 +14,7 @@ use App\Controllers\ApiController;
 use App\Controllers\KotakSaranController;
 use App\Controllers\WishItemController;
 use App\Controllers\CartController;
+use App\Controllers\OrderController;
 use App\File;
 
 $router = new Router();
@@ -310,6 +311,30 @@ $router->post('/api/cart/hapus', function(){
   $cartController->delete($request);
 });
 
+$router->post('/api/order/tambah', function(){
+  $cartController = new CartController();
+  $payload = [
+    'idPengguna' => $_SESSION['login_user']['id']
+  ];
+  ob_start();
+  $cartController->fetch_by($payload);
+  $userShoppingCart = ob_get_clean();
+  
+  $payload['cartData'] = json_decode($userShoppingCart,true)['data'];
+  $payload['userData'] = [
+    'id' => $_SESSION['login_user']['id'],
+    'nama' => $_SESSION['login_user']['nama'],
+    'alamat' => $_SESSION['login_user']['alamat'],
+    'noTelepon' => $_SESSION['login_user']['noTelepon'],
+  ];
+
+  $cartController->render_page('pembayaran', ['data' => $payload]);
+});
+
+$router->get('/pembayaran/{transactionHash}', function($transactionHash){
+  $orderController = new OrderController();
+  $orderController->renderTransactionPage($transactionHash);
+});
 
 $router->get("/logout", function () {
     session_start();

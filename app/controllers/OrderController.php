@@ -24,6 +24,18 @@ class orderController extends Controller
         echo json_encode($data);
     }
 
+    public function fetch_by($data)
+    {
+        $order = new Order();
+        $fetchedData = $order->fetch_by($data);
+        $data = [
+            'count' => count($fetchedData),
+            'data' => $fetchedData
+        ];
+
+        echo json_encode($data);
+    }
+
     public function insert($data)
     {
         if (session_id() == '') {
@@ -56,6 +68,18 @@ class orderController extends Controller
     public function idGenerator(){
         $dataIndex = $this->raw_query('SELECT COUNT(*) FROM '.$this->modelName);
         $currentDate = date('dmY');
-        return 'TRNX/'.$dataIndex.mt_rand(1,99).'/'.$currentDate;
+        return 'TRNX-'.$dataIndex.mt_rand(1,99).'-'.$currentDate;
+    }
+
+    public function renderTransactionPage($transactionHash)
+    {
+        $payload = [
+            'idPengguna' => $_SESSION['login_user']['id'],
+            'hash' => $transactionHash
+        ];
+        ob_start();
+        $this->fetch_by($payload);
+        $fetchedData = ob_get_clean();
+        $this->render_page('pembayaran', ['data' => $fetchedData]);
     }
 }
