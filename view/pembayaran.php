@@ -110,7 +110,7 @@
                                         </table>
                                     </div>
                                     <div class="row mt-4">
-                                        <button id="buttonTransaksi" class="btn btn-primary form-control">Lakukan Pembayaran</button>
+                                        <button id="button-transaksi" class="btn btn-primary form-control">Lakukan Pembayaran</button>
                                     </div>
                                 </div>
                             </div>
@@ -121,36 +121,39 @@
                 <div class="row my-5">
                     <div class="col">
                         <div class="card">
-                            <form action="#" method="post">
-                                <div class="card-header">
-                                    <h4>Pembayaran</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="pembayaran-bank-info">
-                                        <div class="pembayaran-info-detail">
-                                            <p>ID Transaksi :
-                                            </p>
-                                            <h5>TRNX/XXX/XXXX</h5>
+                            <div class="card-header">
+                                <h4>Pembayaran</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="pembayaran-bank-info">
+                                    <div class="pembayaran-info-detail">
+                                        <p>ID Transaksi :
+                                        </p>
+                                        <h5>TRNX/XXX/XXXX</h5>
+                                    </div>
+                                    <div class="pembayaran-info-detail">
+                                        <p>Status :
+                                        </p>
+                                        <h5>Belum Lunas</h5>
+                                    </div>
+                                    <div class="pembayaran-info-detail">
+                                        <p>
+                                            Silakan lakukan transfer ke rekening di bawah :
+                                        </p>
+                                        <h4>BNI 23124129XXX</h4>
+                                        <h5>A/N : Chupy Corp</h5>
+                                    </div>
+                                    <hr>
+                                    <div class="input-group pembayaran-upload-area">
+                                        <div class="input-group-prepend">
+                                            <label for="buktiBayar" class="input-group-text">Unggah Bukti Pembayaran :</label>
                                         </div>
-                                        <div class="pembayaran-info-detail">
-                                            <p>Status :
-                                            </p>
-                                            <h5>Belum Lunas</h5>
-                                        </div>
-                                        <div class="pembayaran-info-detail">
-                                            <p>
-                                                Silakan lakukan transfer ke rekening di bawah :
-                                            </p>
-                                            <h4>BNI 23124129XXX</h4>
-                                            <h5>A/N : Chupy Corp</h5>
-                                        </div>
-                                        <hr>
-                                        <div>
-                                            Unggah Bukti Pembayaran : <input type="file" name="buktiBayar">
-                                        </div>
+                                        <input id="buktiBayar" type="file" class="form-control" name="buktiBayar">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary">Unggah</button></div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

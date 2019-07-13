@@ -45,3 +45,11 @@ h6 {
 .pembayaran-bank-info > .pembayaran-info-detail > p{
     margin:0px;
 }
+
+@media screen and (min-width:768px){
+    .pembayaran-upload-area{
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+}
