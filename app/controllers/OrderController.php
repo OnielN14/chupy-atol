@@ -30,10 +30,21 @@ class orderController extends Controller
         $order = new Order();
         $orderDetail = new OrderDetail();
         $orderData = $order->fetch_by($data);
-        $orderDataDetail = $orderDetail->fetch_produk_detail_by_transaction($orderData[0]['id']);
+        
+        $result = [];
+        if(count($orderData) > 1){
+            foreach($orderData as $item){
+                $item['productData'] = $orderDetail->fetch_produk_detail_by_transaction($item['id']);
 
-        $result = $orderData[0];
-        $result['productData'] = $orderDataDetail;
+                array_push($result, $item);
+            }
+        }
+        else{
+            $orderDataDetail = $orderDetail->fetch_produk_detail_by_transaction($orderData[0]['id']);
+            $result = $orderData[0];
+            $result['productData'] = $orderDataDetail;
+        }
+
         $data = [
             'count' => count($orderData),
             'data' => $result
@@ -54,6 +65,7 @@ class orderController extends Controller
         $request['idTransaksi'] = $this->idGenerator();
         $request['idPengguna'] = $data['idPengguna'];
         $request['alamatPengiriman'] = $data['userData']['alamat'];
+        $request['kontak'] = $data['userData']['noTelepon'];
         
         $modifiedCartData = [];
         foreach($data['cartData'] as $item){
