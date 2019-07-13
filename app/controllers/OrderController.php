@@ -27,10 +27,15 @@ class orderController extends Controller
     public function fetch_by($data)
     {
         $order = new Order();
-        $fetchedData = $order->fetch_by($data);
+        $orderDetail = new OrderDetail();
+        $orderData = $order->fetch_by($data);
+        $orderDataDetail = $orderDetail->fetch_produk_detail_by_transaction($orderData[0]['id']);
+
+        $result = $orderData[0];
+        $result['productData'] = $orderDataDetail;
         $data = [
-            'count' => count($fetchedData),
-            'data' => $fetchedData
+            'count' => count($orderData),
+            'data' => $result
         ];
 
         echo json_encode($data);
@@ -92,7 +97,17 @@ class orderController extends Controller
         ];
         ob_start();
         $this->fetch_by($payload);
-        $fetchedData = ob_get_clean();
-        $this->render_page('pembayaran', ['data' => $fetchedData]);
+        $fetchedData = json_decode(ob_get_clean(),true);
+
+        if($fetchedData['data']){
+            $orderData = $fetchedData['data'];
+            $payload['userData'] = [
+                'nama' => $_SESSION['login_user']['nama']
+            ];
+            $payload['orderData'] = $orderData;
+
+            $this->render_page('pembayaran', ['data' => $payload]);
+        }
+
     }
 }

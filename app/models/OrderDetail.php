@@ -42,4 +42,17 @@ class OrderDetail extends Model
     
         return $stmt->errorInfo();
       }
+
+    public function fetch_produk_detail_by_transaction($idTransaksi)
+    {
+        $stmt = $this->connection->getConnected()->prepare('SELECT `produk`.`nama`, `produk`.`harga`, `detail_pemesanan`.`jumlah` FROM `detail_pemesanan` 
+        LEFT JOIN `produk` ON `produk`.`id` = `detail_pemesanan`.`idProduk`
+        WHERE `detail_pemesanan`.`idTransaksi` = :idTransaksi');
+    
+        $stmt->bindParam(':idTransaksi',$idTransaksi);
+    
+        $stmt->execute();
+        $stmt->setFetchMode($this->fetchMode);
+        return $stmt->fetchAll();
+    }
 }
