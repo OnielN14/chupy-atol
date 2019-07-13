@@ -300,6 +300,7 @@ $router->post('/api/cart/tambah', function(){
   $cartController->insert($request);
 });
 
+
 $router->post('/api/cart/hapus', function(){
   $cartController = new CartController();
   $request = $_POST;
@@ -340,7 +341,7 @@ $router->post('/api/order/konfirmasi-bayar', function(){
     'data' => $_POST,
     'files' => File::convertToReadable($_FILES['buktiBayar'])
   ];
-  
+
   $orderController->confirmPayment($payload);
 });
 
