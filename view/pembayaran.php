@@ -161,6 +161,8 @@
     <?php
     include('template/footer.php');
     ?>
+
+    <script src="/extension/js/page/home.pembayaran.js" charset="utf-8"></script>
 </body>
 
 </html>
