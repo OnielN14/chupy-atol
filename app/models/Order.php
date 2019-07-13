@@ -10,13 +10,14 @@ class Order extends Model
 
     public function insert($item)
     {
-        $stmt = $this->connection->getConnected()->prepare('INSERT INTO ' . $this->modelName . '(id,idPengguna, tanggalTransaksi, statusBayar, alamatPengiriman, buktiBayar, hash) VALUES (:id, :idPengguna, NOW(), false, :alamatPengiriman, :buktiBayar)');
+        $stmt = $this->connection->getConnected()->prepare('INSERT INTO ' . $this->modelName . '(id,idPengguna, tanggalTransaksi, statusBayar, isTransaksi, alamatPengiriman, hash) VALUES (:id, :idPengguna, NOW(), 0, 0, :alamatPengiriman, :hash)');
+        
+        $transactionHash = substr(sha1($item['idTransaksi']),10);
 
         $stmt->bindParam(':id', $item['idTransaksi']);
         $stmt->bindParam(':idPengguna', $item['idPengguna']);
         $stmt->bindParam(':alamatPengiriman', $item['alamatPengiriman']);
-        $stmt->bindParam(':buktiBayar', $item['buktiBayar']);
-        $stmt->bindParam(':hash', substr(sha1($item['idTransaksi']),10));
+        $stmt->bindParam(':hash', $transactionHash);
 
         $stmt->execute();
         return $stmt->errorInfo();
