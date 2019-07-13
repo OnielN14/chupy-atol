@@ -85,7 +85,8 @@
                             <div class="card-body">
                                 <div class="container">
                                     <div class="row">
-                                        <table class="table">
+                                        <p class="col-12 text-right">Tanggal Transaksi : 13 Juli 2019</p>
+                                        <table class="col-12 table">
                                             <tr>
                                                 <th>Nama Barang</th>
                                                 <th>Banyak yang dibeli</th>
