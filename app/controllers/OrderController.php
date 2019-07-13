@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\File;
 
 class orderController extends Controller
 {
@@ -87,6 +88,44 @@ class orderController extends Controller
         $dataIndex = $order->raw_query('SELECT COUNT(*) AS jumlah FROM '.$order->getModelName());
         $currentDate = date('dmY');
         return 'TRNX-'.$dataIndex[0]['jumlah'].mt_rand(1,99).'-'.$currentDate;
+    }
+
+    public function confirmAsValidTransaction($payload)
+    {
+        $order = new Order();
+        $result = $order->raw_query('UPDATE '.$order->getModelName().' SET isTransaksi=1, alamatPengiriman="'.$payload['alamatPengiriman'].'", kontak="'.$payload['kontak'].'" WHERE hash="'.$payload['transactionHash'].'"');
+        echo json_encode(['status'=>200]);
+    }
+
+    public function confirmPayment($payload){
+        $response = '';
+
+        if($payload['files']){
+            $order = new Order();
+
+            $payload['files']['name'] = $this->transactionProofFileNameGenerator($payload['files'], $payload['data']['transactionHash']);
+
+            $order->raw_query('UPDATE '.$order->getModelName().' SET buktiBayar="'.$payload['files']['name'].'" WHERE hash="'.$payload['data']['transactionHash'].'"');
+
+            File::upload($payload['files']);
+
+            $response = [
+                'status' => 200,
+                'pesan' => 'Sukses'
+            ];
+        }
+        else{
+            $response = [
+                'status' => 203,
+                'pesan' => 'Berkas tidak ada'
+            ];
+        }
+
+        echo json_encode($response);
+    }
+
+    private function transactionProofFileNameGenerator($imageData, $transactionHash){
+        return strtolower('user-payment-proof-'.$transactionHash.'-'.pathinfo($imageData['name'], PATHINFO_FILENAME).'.'.pathinfo($imageData['name'], PATHINFO_EXTENSION));
     }
 
     public function renderTransactionPage($transactionHash)

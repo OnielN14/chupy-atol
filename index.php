@@ -65,10 +65,6 @@ $router->get("/tentang", function () {
   BerandaController::getInstance()->index_tentang();
 });
 
-$router->get("/pembayaran",function(){
-    BerandaController::getInstance()->index_pembayaran();
-});
-
 $router->get("/produk/detail-produk/{idProduk}",function($idProduk){
   BerandaController::getInstance()->detail_produk($idProduk);
 });
@@ -330,7 +326,22 @@ $router->post('/api/order/tambah', function(){
   ];
 
   $orderController->insert($payload);
-  // $cartController->render_page('pembayaran', ['data' => $payload]);
+});
+
+$router->post('/api/order/konfirmasi-transaksi', function(){
+  $orderController = new OrderController();
+  $payload = $_POST['validSign'];
+  $orderController->confirmAsValidTransaction($payload);
+});
+
+$router->post('/api/order/konfirmasi-bayar', function(){
+  $orderController = new OrderController();
+  $payload = [
+    'data' => $_POST,
+    'files' => File::convertToReadable($_FILES['buktiBayar'])
+  ];
+  
+  $orderController->confirmPayment($payload);
 });
 
 $router->get('/pembayaran/{transactionHash}', function($transactionHash){
