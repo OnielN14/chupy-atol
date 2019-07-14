@@ -66,7 +66,8 @@
           <h5>Ringkasan Belanja</h5>
         </div>
         <div class="card-body">
-          <table class="table">
+          <input type="hidden" id="transaksi-hash">
+          <table id="transaksi-produk-table" class="table">
             <tr id="transaksi-product-list-header">
               <th>Nama Barang</th>
               <th>Banyak yang dibeli</th>

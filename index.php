@@ -350,6 +350,12 @@ $router->post('/api/order/upload-bukti-bayar', function(){
   $orderController->uploadPaymentProof($payload);
 });
 
+$router->post('/api/order/konfirmasi-bayar', function(){
+  $orderController = new OrderController();
+  $payload = $_POST;
+  $orderController->confirmPaymentByAdmin($payload);
+});
+
 $router->get('/pembayaran/{transactionHash}', function($transactionHash){
   $orderController = new OrderController();
   $orderController->renderTransactionPage($transactionHash);

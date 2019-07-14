@@ -131,6 +131,34 @@ class orderController extends Controller
         return 'TRNX-'.$dataIndex[0]['jumlah'].mt_rand(1,99).'-'.$currentDate;
     }
 
+    public function confirmPaymentByAdmin($payload)
+    {
+        $response = 'test';
+        if(isset($_SESSION['login_user'])){
+            if($_SESSION['login_user']['idHakAkses'] ==1){
+                $orderInstance = new Order();
+                $result = $orderInstance->raw_query('UPDATE '.$orderInstance->getModelName().' SET statusBayar=1 WHERE hash="'.$payload['transactionHash'].'"');
+
+                $response = [
+                    'status'=>200,
+                    'pesan' => 'Pembayaran Dikonfirmasi',
+                    'data' => $result
+                ];
+            }
+            else{
+                $response = [
+                    'status'=>403,
+                    'pesan' => 'Akses Tidak Diizinkan'
+                ];
+            }
+        }
+        else{
+            throw new Exception("Error Processing Request", 1);
+        }
+
+        echo json_encode($response);
+    }
+
     public function confirmAsValidTransaction($payload)
     {
         $order = new Order();
