@@ -98,7 +98,7 @@ let isFormFotoValid
 
 $('#form-nama').on('input', function() {
     let val = $(this).val()
-    let regExp = new RegExp('[a-zA-Z ]  ', '')
+    let regExp = new RegExp('[a-zA-Z ]', 'g')
     if (val.match(regExp)) {
         $(this).removeClass('is-invalid')
         isFormNamaValid = true
