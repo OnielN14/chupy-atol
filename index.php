@@ -26,7 +26,7 @@ $router->get("/", function () {
     BerandaController::getInstance()->index();
 });
 
-$router->map(['GET'],['/admin/dashboard','/admin/dashboard/user', '/admin/dashboard/produk', '/admin/dashboard/kategori', '/admin/dashboard/jenis','/admin/dashboard/kotak_saran'], function () {
+$router->map(['GET'],['/admin/dashboard','/admin/dashboard/user', '/admin/dashboard/produk', '/admin/dashboard/kategori', '/admin/dashboard/jenis','/admin/dashboard/kotak_saran', '/admin/dashboard/transaksi'], function () {
     $admin = new AdminController();
     $admin->index();
 });
@@ -308,6 +308,11 @@ $router->post('/api/cart/hapus', function(){
   $cartController->delete($request);
 });
 
+$router->get('/api/order', function(){
+  $orderController = new OrderController();
+  $orderController->fetchDetail();
+});
+
 $router->post('/api/order/tambah', function(){
   $orderController = new OrderController();
   $cartController = new CartController();
@@ -335,14 +340,14 @@ $router->post('/api/order/konfirmasi-transaksi', function(){
   $orderController->confirmAsValidTransaction($payload);
 });
 
-$router->post('/api/order/konfirmasi-bayar', function(){
+$router->post('/api/order/upload-bukti-bayar', function(){
   $orderController = new OrderController();
   $payload = [
     'data' => $_POST,
     'files' => File::convertToReadable($_FILES['buktiBayar'])
   ];
 
-  $orderController->confirmPayment($payload);
+  $orderController->uploadPaymentProof($payload);
 });
 
 $router->get('/pembayaran/{transactionHash}', function($transactionHash){
