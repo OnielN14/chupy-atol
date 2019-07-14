@@ -54,7 +54,7 @@ uploadPaymentProofButton.on('click', function(){
     formData.append('transactionHash', $('input[name="transaction-hash"]').val())
 
     $.ajax({
-        url:'/api/order/konfirmasi-bayar',
+        url:'/api/order/upload-bukti-bayar',
         method:'POST',
         dataType: 'json',
         contentType: false,
