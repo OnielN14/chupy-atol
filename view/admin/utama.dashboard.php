@@ -24,6 +24,7 @@
   <aside class="chupy-admin-aside" id="side-wrapper">
     <ul class="nav flex-column">
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard">Dashboard</a></li>
+      <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/transaksi">Manajemen Transaksi</a></li>
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/user">Manajemen Pengguna</a></li>
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/produk">Manajemen Produk</a></li>
       <li class="nav-item"> <a class="nav-link" href="/admin/dashboard/kategori">Manajemen Kategori Produk</a></li>
@@ -62,6 +63,9 @@
                 break;
               case 'kotak_saran':
                 include('page/kotak-saran.management.php');
+                break;
+              case 'transaksi':
+                include('page/transaksi.management.php');
                 break;
             }
           }
@@ -132,6 +136,15 @@
     </script>
 
     <?php
+              break;
+              case 'transaksi':
+    ?>
+
+    <script type="text/javascript" src="/extension/js/page/dashboard.transaksi.js">
+    </script>
+
+    <?php
+              break;
           }
         }
 
