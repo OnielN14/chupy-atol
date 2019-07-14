@@ -330,7 +330,6 @@ $router->post('/api/order/tambah', function(){
     'alamat' => $_SESSION['login_user']['alamat'],
     'noTelepon' => $_SESSION['login_user']['noTelepon'],
   ];
-
   $orderController->insert($payload);
 });
 

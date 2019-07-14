@@ -68,7 +68,7 @@
             </div>
         </section>
 
-        <section class="chupy-detail-barang">
+        <!-- <section class="chupy-detail-barang">
             <hr class="mx-3">
             <h5 class="mx-3">Barang Lainnya</h5>
             <div class="row ml-2">
@@ -114,7 +114,7 @@
 
 
             </div>
-        </section>
+        </section> -->
 
     </main>
 

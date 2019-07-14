@@ -34,9 +34,11 @@ function orderTotalBudget($orderItem)
     return $sum;
 }
 
-usort($orderData, function ($a, $b) {
-    return $a['tanggalTransaksi'] < $b['tanggalTransaksi'];
-})
+if (count($orderData) > 1) {
+    usort($orderData, function ($a, $b) {
+        return $a['tanggalTransaksi'] < $b['tanggalTransaksi'];
+    });
+}
 
 ?>
 
@@ -97,7 +99,7 @@ usort($orderData, function ($a, $b) {
                             </div>
 
                             <div class="col-md-4">
-                                <table>
+                                <table class="table">
                                     <tr>
                                         <td colspan="3">
                                             <h5><?php echo $pengguna['nama'] ?></h5>
@@ -148,48 +150,55 @@ usort($orderData, function ($a, $b) {
                         <div class="row">
                             <div class="col-md">
                                 <h4 class="text-akun">Riwayat Pembelianmu</h4>
+                                <?php
+                                if (!$orderData) {
+                                    ?>
+                                    <h5 class="text-akun">Kamu belum melakukan transaksi.</h5>
+                                <?php
+                            }
+                            ?>
                             </div>
                         </div>
 
-                        <?php
-                        $countOrder = count($orderData);
-                        foreach ($orderData as $orderItem) {
-
-                            ?>
-
-                            <div class="row">
-                                <div class="container py-3">
-                                    <div class="card card-pembelian">
-                                        <div class="card-body">
-                                            <div class="row data-pembelian">
-                                                <div class="col-md-3">
-                                                    <h2>#<?php echo $countOrder ?></h2>
+                        <?php 
+                        if ($orderData) {
+                            $countOrder = count($orderData);
+                            foreach ($orderData as $orderItem) {
+                                ?>
+                                <div class="row">
+                                    <div class="container py-3">
+                                        <div class="card card-pembelian">
+                                            <div class="card-body">
+                                                <div class="row data-pembelian">
+                                                    <div class="col-md-3">
+                                                        <h2>#<?php echo $countOrder ?></h2>
+                                                    </div>
+                                                    <div class="col-md-3 ">
+                                                        <h5 class="font-riwayat-pembelian">Tanggal Pembelian</h5>
+                                                        <h6><?php echo dateParserTransaksi($orderItem['tanggalTransaksi']) ?></h6>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h5 class="font-riwayat-pembelian">Status Pembelian</h5>
+                                                        <h6><?php echo statusPemesanan($orderItem) ?></h6>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <h5 class="font-riwayat-pembelian">Total Pembelian</h5>
+                                                        <h6>Rp. <?php echo orderTotalBudget($orderItem) ?></h6>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-3 ">
-                                                    <h5 class="font-riwayat-pembelian">Tanggal Pembelian</h5>
-                                                    <h6><?php echo dateParserTransaksi($orderItem['tanggalTransaksi']) ?></h6>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h5 class="font-riwayat-pembelian">Status Pembelian</h5>
-                                                    <h6><?php echo statusPemesanan($orderItem) ?></h6>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h5 class="font-riwayat-pembelian">Total Pembelian</h5>
-                                                    <h6>Rp. <?php echo orderTotalBudget($orderItem) ?></h6>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md btn-riwayat-pembelian">
-                                                    <a href="/pembayaran/<?php echo $orderItem['hash'] ?>" class="btn btn-primary mr-3 float-right ">Lihat Detail</a>
+                                                <div class="row">
+                                                    <div class="col-md btn-riwayat-pembelian">
+                                                        <a href="/pembayaran/<?php echo $orderItem['hash'] ?>" class="btn btn-primary mr-3 float-right ">Lihat Detail</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <?php
-                            $countOrder--;
+                                <?php
+                                $countOrder--;
+                            }
                         }
                         ?>
                     </div>
@@ -204,10 +213,6 @@ usort($orderData, function ($a, $b) {
 
     <?php
     include('template/footer.php');
-    ?>
-
-    <?php
-    print_r($orderData);
     ?>
 </body>
 

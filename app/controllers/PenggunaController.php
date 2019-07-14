@@ -109,6 +109,8 @@ class PenggunaController extends Controller
     $ouput = ob_get_clean();
     $userOrderData = json_decode($ouput,true);
 
+    // print_r($userOrderData);
+
     if (isset($_SESSION['login_user'])) {
         if ($_SESSION['login_user']['idHakAkses'] == 1 || $_SESSION['login_user']['idHakAkses'] == 2) {
           $userData = $pengguna->fetch_by(['id' => $_SESSION['login_user']['id']]);

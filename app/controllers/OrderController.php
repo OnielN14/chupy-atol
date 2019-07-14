@@ -70,8 +70,8 @@ class orderController extends Controller
         }
         else{
             $orderDataDetail = $orderDetail->fetch_produk_detail_by_transaction($orderData[0]['id']);
-            $result = $orderData[0];
-            $result['productData'] = $orderDataDetail;
+            $orderData[0]['productData'] = $orderDataDetail;
+            $result = $orderData;
         }
 
         $data = [
@@ -208,7 +208,7 @@ class orderController extends Controller
         $fetchedData = json_decode(ob_get_clean(),true);
 
         if($fetchedData['data']){
-            $orderData = $fetchedData['data'];
+            $orderData = $fetchedData['data'][0];
             $payload['userData'] = [
                 'nama' => $_SESSION['login_user']['nama']
             ];
