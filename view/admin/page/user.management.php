@@ -10,7 +10,7 @@
 
 
       <section class="chupy-data-list">
-        <table id="table-user-list">
+        <table class="table" id="table-user-list">
           <thead>
             <tr>
               <th>Nama</th>

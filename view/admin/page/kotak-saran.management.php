@@ -6,7 +6,7 @@
 
 
     <section class="chupy-data-list">
-      <table id="table-jenis-list">
+      <table class="table" id="table-jenis-list">
         <thead>
           <tr>
             <!-- <th>Id</th> -->

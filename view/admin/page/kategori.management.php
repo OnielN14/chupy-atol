@@ -9,7 +9,7 @@
 
 
     <section class="chupy-data-list">
-      <table id="table-produk-list">
+      <table class="table" id="table-produk-list">
         <thead>
           <tr>
             <th>Id</th>
