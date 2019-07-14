@@ -22,4 +22,16 @@ class Order extends Model
         $stmt->execute();
         return $stmt->errorInfo();
     }
+
+    public function fetch_buyer_info($hash){
+        $stmt = $this->connection->getConnected()->prepare('SELECT `pengguna`.`nama` from `pemesanan` 
+        LEFT JOIN `pengguna` ON `pengguna`.`id` = `pemesanan`.`idPengguna`
+        WHERE `pemesanan`.`hash` = :hash');
+
+        $stmt->bindParam(':hash', $hash);
+
+        $stmt->execute();
+        $stmt->setFetchMode($this->fetchMode);
+        return $stmt->fetchAll();
+    }
 }

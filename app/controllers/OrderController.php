@@ -25,6 +25,35 @@ class orderController extends Controller
         echo json_encode($data);
     }
 
+    public function fetchDetail()
+    {
+        $order = new Order();
+        $orderDetail = new OrderDetail();
+        $orderData = $order->fetch();
+
+        $result = [];
+        if(count($orderData) > 1){
+            foreach($orderData as $item){
+                $item['productData'] = $orderDetail->fetch_produk_detail_by_transaction($item['id']);
+                $item['userData'] = $order->fetch_buyer_info($item['hash'])[0];
+
+                array_push($result, $item);
+            }
+        }
+        else{
+            $orderDataDetail = $orderDetail->fetch_produk_detail_by_transaction($orderData[0]['id']);
+            $result = $orderData[0];
+            $result['productData'] = $orderDataDetail;
+        }
+
+        $data = [
+            'count' => count($result),
+            'data' => $result
+        ];
+
+        echo json_encode($data);
+    }
+
     public function fetch_by($data)
     {
         $order = new Order();
@@ -109,7 +138,7 @@ class orderController extends Controller
         echo json_encode(['status'=>200]);
     }
 
-    public function confirmPayment($payload){
+    public function uploadPaymentProof($payload){
         $response = '';
 
         if($payload['files']){
