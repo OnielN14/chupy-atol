@@ -37,3 +37,13 @@ $.ajax({
 }).done(function(response){
   $('#data-pesan').find('.data-count-indicator').html(response.count)
 })
+
+$.ajax({
+  url:'/api/order',
+  method:'get',
+  dataType:'json'
+}).done(function(response){
+  $('#data-transaksi').find('.data-count-indicator').html(response.count)
+})
+
+

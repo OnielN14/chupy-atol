@@ -29,5 +29,10 @@
         <h3 class="card-body"><span class="data-count-indicator">0</span> <span class="data-name-indicator">Pesan</span></h3>
       </a>
     </div>
+    <div class="col-3 my-1">
+      <a id="data-transaksi" href="dashboard/transaksi" class="card chupy-admin-dashboard-card ">
+        <h3 class="card-body"><span class="data-count-indicator">0</span> <span class="data-name-indicator">Transaksi</span></h3>
+      </a>
+    </div>
   </div>
 </main>
