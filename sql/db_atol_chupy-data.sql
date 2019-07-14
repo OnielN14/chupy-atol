@@ -52,7 +52,7 @@ insert  into `keranjang`(`idPengguna`,`idProduk`,`jumlah`,`createdAt`,`updatedAt
 
 /*Data for the table `pemesanan` */
 
-insert  into `pemesanan`(`id`,`tanggalTransaksi`,`idPengguna`,`statusBayar`,`isTransaksi`,`alamatPengiriman`,`kontak`,`buktiBayar`,`hash`) values ('TRNX-057-13072019','2019-07-13 22:18:12',1,'\0','','Jl. Tubagus Ismail Bawah No. 46 RT 004/002, Bandung','0857XXXXXX','user-payment-proof-8a552ed865c1c1f7e66a207594ddf3-3_caters_fox_dive_04.jpg','8a552ed865c1c1f7e66a207594ddf3'),('TRNX-144-13072019','2019-07-14 01:39:43',1,'\0','','Jl. Sekeloa, Bandung','0815XXXX',NULL,'96ed7cf7ead5b47af75ccb1ecde40d');
+insert  into `pemesanan`(`id`,`tanggalTransaksi`,`idPengguna`,`statusBayar`,`isTransaksi`,`alamatPengiriman`,`kontak`,`buktiBayar`,`hash`) values ('TRNX-057-13072019','2019-07-13 22:18:12',1,'','','Jl. Tubagus Ismail Bawah No. 46 RT 004/002, Bandung','0857XXXXXX','user-payment-proof-8a552ed865c1c1f7e66a207594ddf3-3_caters_fox_dive_04.jpg','8a552ed865c1c1f7e66a207594ddf3'),('TRNX-144-13072019','2019-07-14 01:39:43',1,'\0','','Jl. Sekeloa, Bandung','0815XXXX',NULL,'96ed7cf7ead5b47af75ccb1ecde40d');
 
 /*Data for the table `pengguna` */
 
