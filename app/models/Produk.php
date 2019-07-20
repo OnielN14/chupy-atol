@@ -17,45 +17,18 @@ class Produk extends Model{
   }
 
   public function insert($produkData){
-      $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(nama,deskripsi,stok,harga,createdAt,updatedAt,idKategori,idJenis) VALUES (:nama,:deskripsi,:stok,:harga,NOW(),NOW(),:idKategori,:idJenis)');
-
-      $stmt->bindParam(':nama',$produkData['nama']);
-      $stmt->bindParam(':deskripsi',$produkData['deskripsi']);
-      $stmt->bindParam(':stok',$produkData['stok']);
-      $stmt->bindParam(':harga',$produkData['harga']);
-      $stmt->bindParam(':idJenis',$produkData['idJenis']);
-      $stmt->bindParam(':idKategori',$produkData['idKategori']);
-
-      $stmt->execute();
-      return $stmt->errorInfo();
+      return $this->raw_query('INSERT INTO '.$this->modelName.'(nama,deskripsi,stok,harga,createdAt,updatedAt,idKategori,idJenis) VALUES ("'.$produkData['nama'].'","'.$produkData['deskripsi'].'","'.$produkData['stok'].'","'.$produkData['harga'].'",NOW(),NOW(),"'.$produkData['idKategori'].'","'.$produkData['idJenis'].'")');
   }
 
   public function update($newProdukData)
   {
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, deskripsi=:deskripsi, stok=:stok, harga=:harga, idJenis=:idJenis, idKategori=:idKategori, updatedAt=NOW() WHERE id=:id');
-
-    $stmt->bindParam(':id',$newProdukData['id']);
-    $stmt->bindParam(':nama',$newProdukData['nama']);
-    $stmt->bindParam(':deskripsi',$newProdukData['deskripsi']);
-    $stmt->bindParam(':stok',$newProdukData['stok']);
-    $stmt->bindParam(':harga',$newProdukData['harga']);
-    $stmt->bindParam(':idJenis',$newProdukData['idJenis']);
-    $stmt->bindParam(':idKategori',$newProdukData['idKategori']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('UPDATE  '.$this->modelName.' SET nama="'.$newProdukData['nama'].'", deskripsi="'.$newProdukData['deskripsi'].'", stok="'.$newProdukData['stok'].'", harga="'.$newProdukData['harga'].'", idJenis="'.$newProdukData['idJenis'].'", idKategori="'.$newProdukData['idKategori'].'", updatedAt=NOW() WHERE id="'.$newProdukData['id'].'"');
   }
 
   public function fetch_by_produk($produkData)
   {
-    $stmt = $this->connection->getConnected()->prepare('SELECT `produk`.`id`, nama, deskripsi, stok, harga, `fotoproduk`.`gambar` AS gambar FROM `produk`
+    return $this->raw_query('SELECT `produk`.`id`, nama, deskripsi, stok, harga, `fotoproduk`.`gambar` AS gambar FROM `produk`
     LEFT JOIN `fotoproduk` ON `fotoproduk`.`idProduk` = `produk`.`id`
-    WHERE `produk`.`id` = :idProduk');
-
-    $stmt->bindParam(':idProduk',$produkData['idProduk']);
-
-    $stmt->execute();
-    $stmt->setFetchMode($this->fetchMode);
-    return $stmt->fetchAll();
+    WHERE `produk`.`id` = "'.$produkData['idProduk'].'"');
   }
 }

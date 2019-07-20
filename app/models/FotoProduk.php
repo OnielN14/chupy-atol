@@ -10,23 +10,11 @@ class FotoProduk extends Model{
 
   public function fetch_by_produk($produkData)
   {
-    $stmt = $this->connection->getConnected()->prepare('SELECT fotoproduk.id AS id, gambar, produk.id AS idProduk FROM fotoproduk LEFT JOIN produk ON fotoproduk.idProduk = produk.id WHERE fotoproduk.idProduk = :idProduk');
-
-    $stmt->bindParam(':idProduk',$produkData['idProduk']);
-
-    $stmt->execute();
-    $stmt->setFetchMode($this->fetchMode);
-    return $stmt->fetchAll();
+    return $this->raw_query('SELECT fotoproduk.id AS id, gambar, produk.id AS idProduk FROM fotoproduk LEFT JOIN produk ON fotoproduk.idProduk = produk.id WHERE fotoproduk.idProduk = "'.$produkData['idProduk'].'"');
   }
 
   public function insert($fotoData){
-    $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(gambar,createdAt,updatedAt, idProduk) VALUES (:gambar,NOW(),NOW(),:idProduk)');
-
-    $stmt->bindParam(':gambar',$fotoData['gambar']);
-    $stmt->bindParam(':idProduk',$fotoData['idProduk']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('INSERT INTO '.$this->modelName.'(gambar,createdAt,updatedAt, idProduk) VALUES ("'.$fotoData['gambar'].'",NOW(),NOW(),"'.$fotoData['idProduk'].'")');
   }
 
   public function insertMultiple($multipleFotoData){
@@ -52,13 +40,8 @@ class FotoProduk extends Model{
 
   public function update($jenisProdukData)
   {
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama WHERE id=:id');
 
-    $stmt->bindParam(':id',$jenisProdukData['id']);
-    $stmt->bindParam(':nama',$jenisProdukData['nama']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('UPDATE  '.$this->modelName.' SET nama="'.$jenisProdukData['nama'].'" WHERE id="'.$jenisProdukData['id'].'"');
   }
 
 }

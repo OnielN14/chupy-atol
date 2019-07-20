@@ -9,26 +9,14 @@ class WishItem extends Model{
 
     public function insert($wishItem)
     {
-        $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(idPengguna,idProduk) VALUES (:idPengguna, :idProduk)');
-
-        $stmt->bindParam(':idPengguna',$wishItem['idPengguna']);
-        $stmt->bindParam(':idProduk',$wishItem['idProduk']);
-    
-        $stmt->execute();
-        return $stmt->errorInfo();
+        return $this->raw_query('INSERT INTO '.$this->modelName.'(idPengguna,idProduk) VALUES ("'.$wishItem['idPengguna'].'", "'.$wishItem['idProduk'].'")');
     }
 
     public function fetch_detail_by_user($idPengguna)
     {
-        $stmt = $this->connection->getConnected()->prepare('SELECT `produk`.`id`, `produk`.`nama`, `produk`.`harga`, `fotoproduk`.`gambar` FROM `daftarkeinginan` 
+        return $this->raw_query('SELECT `produk`.`id`, `produk`.`nama`, `produk`.`harga`, `fotoproduk`.`gambar` FROM `daftarkeinginan` 
         LEFT JOIN `produk` ON `daftarkeinginan`.`idProduk` = `produk`.`id` 
         LEFT JOIN `fotoproduk` ON `fotoproduk`.`idProduk` = `produk`.`id` 
-        WHERE `daftarkeinginan`.`idPengguna` = :idPengguna');
-    
-        $stmt->bindParam(':idPengguna',$idPengguna);
-    
-        $stmt->execute();
-        $stmt->setFetchMode($this->fetchMode);
-        return $stmt->fetchAll();
+        WHERE `daftarkeinginan`.`idPengguna` = "'.$idPengguna.'"');
     }
 }

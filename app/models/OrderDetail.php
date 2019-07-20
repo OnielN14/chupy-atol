@@ -10,14 +10,7 @@ class OrderDetail extends Model
 
     public function insert($item)
     {
-        $stmt = $this->connection->getConnected()->prepare('INSERT INTO ' . $this->modelName . '(idTransaksi, idProduk, jumlah) VALUES (:idTransaksi, :idProduk, :jumlah)');
-
-        $stmt->bindParam(':idTransaksi', $item['idTransaksi']);
-        $stmt->bindParam(':idProduk', $item['idProduk']);
-        $stmt->bindParam(':jumlah', $item['jumlah']);
-
-        $stmt->execute();
-        return $stmt->errorInfo();
+        return $this->raw_query('INSERT INTO ' . $this->modelName . '(idTransaksi, idProduk, jumlah) VALUES ("'.$item['idTransaksi'].'", "'.$item['idProduk'].'", "'.$item['jumlah'].'")');
     }
 
     public function insertMultiple($multipleData){
@@ -45,14 +38,8 @@ class OrderDetail extends Model
 
     public function fetch_produk_detail_by_transaction($idTransaksi)
     {
-        $stmt = $this->connection->getConnected()->prepare('SELECT `produk`.`nama`, `produk`.`harga`, `detail_pemesanan`.`jumlah` FROM `detail_pemesanan` 
+        return $this->raw_query('SELECT `produk`.`nama`, `produk`.`harga`, `detail_pemesanan`.`jumlah` FROM `detail_pemesanan` 
         LEFT JOIN `produk` ON `produk`.`id` = `detail_pemesanan`.`idProduk`
-        WHERE `detail_pemesanan`.`idTransaksi` = :idTransaksi');
-    
-        $stmt->bindParam(':idTransaksi',$idTransaksi);
-    
-        $stmt->execute();
-        $stmt->setFetchMode($this->fetchMode);
-        return $stmt->fetchAll();
+        WHERE `detail_pemesanan`.`idTransaksi` = "'.$idTransaksi.'"');
     }
 }

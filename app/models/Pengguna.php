@@ -17,72 +17,23 @@ class Pengguna extends Model{
   }
 
   public function insert($userData){
-      $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(nama,alamat,gender,tempatLahir, tanggalLahir, email,noTelepon,password,createdAt,updatedAt,fotoProfile,idHakAkses,confirmed) VALUES (:nama,:alamat,:gender,:tempatLahir,DATE(:tanggalLahir), :email,:noTelepon,:password,NOW(),NOW(),:fotoProfile,:hakAkses,0)');
-
-      $stmt->bindParam(':nama',$userData['nama']);
-      $stmt->bindParam(':alamat',$userData['alamat']);
-      $stmt->bindParam(':gender',$userData['gender']);
-      $stmt->bindParam(':tempatLahir',$userData['tempatLahir']);
-      $stmt->bindParam(':tanggalLahir',$userData['tanggalLahir']);
-      $stmt->bindParam(':email',$userData['email']);
-      $stmt->bindParam(':noTelepon',$userData['noTelepon']);
-      $stmt->bindParam(':password',$userData['password']);
-      $stmt->bindParam(':hakAkses',$userData['idHakAkses']);
-      $stmt->bindParam(':fotoProfile',$userData['fotoProfile']);
-
-      return $stmt->execute();
+      return $this->raw_query('INSERT INTO '.$this->modelName.'(nama,alamat,gender,tempatLahir, tanggalLahir, email,noTelepon,password,createdAt,updatedAt,fotoProfile,idHakAkses,confirmed) VALUES ("'.$userData['nama'].'","'.$userData['alamat'].'","'.$userData['gender'].'","'.$userData['tempatLahir'].'",DATE("'.$userData['tanggalLahir'].'"), "'.$userData['email'].'","'.$userData['noTelepon'].'","'.$userData['password'].'",NOW(),NOW(),"'.$userData['fotoProfile'].'","'.$userData['idHakAkses'].'",0)');
   }
 
   public function update($newUserData)
   {
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat, gender=:gender, tempatLahir=:tempatLahir, tanggalLahir=DATE(:tanggalLahir), noTelepon=:noTelepon, password=:password, fotoProfile=:fotoProfile,idHakAkses=:idHakAkses, updatedAt=NOW() WHERE id=:id');
-
-    $stmt->bindParam(':id',$newUserData['id']);
-    $stmt->bindParam(':nama',$newUserData['nama']);
-    $stmt->bindParam(':alamat',$newUserData['alamat']);
-    $stmt->bindParam(':gender',$newUserData['gender']);
-    $stmt->bindParam(':tempatLahir',$newUserData['tempatLahir']);
-    $stmt->bindParam(':tanggalLahir',$newUserData['tanggalLahir']);
-    $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
-    $stmt->bindParam(':password',$newUserData['password']);
-    $stmt->bindParam(':idHakAkses',$newUserData['idHakAkses']);
-    $stmt->bindParam(':fotoProfile',$newUserData['fotoProfile']);
-
-    return $stmt->execute();
+    return $this->raw_query('UPDATE  '.$this->modelName.' SET nama="'.$newUserData['nama'].'", alamat="'.$newUserData['alamat'].'", gender="'.$newUserData['gender'].'", tempatLahir="'.$newUserData['tempatLahir'].'", tanggalLahir=DATE("'.$newUserData['tanggalLahir'].'"), noTelepon="'.$newUserData['noTelepon'].'", password="'.$newUserData['password'].'", fotoProfile="'.$newUserData['fotoProfile'].'",idHakAkses="'.$newUserData['idHakAkses'].'", updatedAt=NOW() WHERE id="'.$newUserData['id'].'"');
   }
 
   public function update_by_user_no_photo($newUserData){
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat,noTelepon=:noTelepon, updatedAt=NOW() WHERE id=:id');
-
-    $stmt->bindParam(':id',$newUserData['id']);
-    $stmt->bindParam(':nama',$newUserData['nama']);
-    $stmt->bindParam(':alamat',$newUserData['alamat']);
-    $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('UPDATE  '.$this->modelName.' SET nama="'.$newUserData['nama'].'", alamat="'.$newUserData['alamat'].'",noTelepon="'.$newUserData['noTelepon'].'", updatedAt=NOW() WHERE id="'.$newUserData['id'].'"');
   }
 
   public function update_by_user_with_photo($newUserData){
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET nama=:nama, alamat=:alamat,noTelepon=:noTelepon, fotoProfile=:fotoProfile, updatedAt=NOW() WHERE id=:id');
-
-    $stmt->bindParam(':id',$newUserData['id']);
-    $stmt->bindParam(':nama',$newUserData['nama']);
-    $stmt->bindParam(':alamat',$newUserData['alamat']);
-    $stmt->bindParam(':noTelepon',$newUserData['noTelepon']);
-    $stmt->bindParam(':fotoProfile',$newUserData['fotoProfile']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('UPDATE  '.$this->modelName.' SET nama="'.$newUserData['nama'].'", alamat="'.$newUserData['alamat'].'",noTelepon="'.$newUserData['noTelepon'].'", fotoProfile="'.$newUserData['fotoProfile'].'", updatedAt=NOW() WHERE id="'.$newUserData['id'].'"');
   }
 
   public function update_password($userData){
-    $stmt = $this->connection->getConnected()->prepare('UPDATE  '.$this->modelName.' SET password=:password, updatedAt=NOW() WHERE id=:id');
-
-    $stmt->bindParam(':id',$userData['id']);
-    $stmt->bindParam(':password',$userData['password']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('UPDATE  '.$this->modelName.' SET password="'.$userData['password'].'", updatedAt=NOW() WHERE id="'.$userData['id'].'"');
   }
 }

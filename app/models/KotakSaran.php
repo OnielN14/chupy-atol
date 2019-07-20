@@ -9,12 +9,6 @@ class KotakSaran extends Model{
   protected $modelName = "kotaksarandankeluhan";
 
   public function insert($data){
-    $stmt = $this->connection->getConnected()->prepare('INSERT INTO '.$this->modelName.'(email,isiPesan,createdAt) VALUES (:email,:isiPesan,NOW())');
-
-    $stmt->bindParam(':email',$data['email']);
-    $stmt->bindParam(':isiPesan',$data['pesan']);
-
-    $stmt->execute();
-    return $stmt->errorInfo();
+    return $this->raw_query('INSERT INTO '.$this->modelName.'(email,isiPesan,createdAt) VALUES ("'.$data['email'].'","'.$data['email'].'",NOW())');
   }
 }
