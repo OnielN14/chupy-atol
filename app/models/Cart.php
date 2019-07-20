@@ -6,7 +6,7 @@ use App\Model;
 
 class Cart extends Model{
 
-    protected $modelName = "Keranjang";
+    protected $modelName = "keranjang";
 
     public function insert($item)
     {
