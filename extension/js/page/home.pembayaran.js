@@ -62,7 +62,7 @@ uploadPaymentProofButton.on('click', function(){
         data:formData
     }).done(function(response){
         console.log(response);
-        
+        document.location.reload()
     })
 })
 
