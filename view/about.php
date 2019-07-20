@@ -37,31 +37,31 @@
 
         <div class="col">
           <article class="chupy-profile-team text-center">
-            <img src="/extension/img/dev-team/picture1.png" alt="profile-foto" class="my-2 ">
+            <img src="/extension/img/dev-team/Picture1.png" alt="profile-foto" class="my-2 ">
             <h3>Moch. Indra Yudha Lakaselindra</h3>
           </article>
         </div>
         <div class="col">
           <article class="chupy-profile-team text-center">
-            <img src="/extension/img/dev-team/picture2.png" alt="profile-foto" class="my-2 ">
+            <img src="/extension/img/dev-team/Picture2.png" alt="profile-foto" class="my-2 ">
             <h3>Maulvi Inayat Ali</h3>
           </article>
         </div>
         <div class="col">
           <article class="chupy-profile-team text-center">
-            <img src="/extension/img/dev-team/picture3.png" alt="profile-foto" class="my-2 ">
+            <img src="/extension/img/dev-team/Picture3.png" alt="profile-foto" class="my-2 ">
             <h3>Tribuana Andhika Perkasa</h3>
           </article>
         </div>
         <div class="col">
           <article class="chupy-profile-team text-center">
-            <img src="/extension/img/dev-team/picture4.png" alt="profile-foto" class="my-2 ">
+            <img src="/extension/img/dev-team/Picture4.png" alt="profile-foto" class="my-2 ">
             <h3>Daniyal Ahmad Rizaldhi</h3>
           </article>
         </div>
         <div class="col">
           <article class="chupy-profile-team text-center">
-            <img src="/extension/img/dev-team/picture5.png" alt="profile-foto" class="my-2 ">
+            <img src="/extension/img/dev-team/Picture5.png" alt="profile-foto" class="my-2 ">
             <h3>Ivan Rivaldi</h3>
           </article>
         </div>
