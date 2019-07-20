@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8b66d5f3d1a40113c41eb3f91760ba0",
+    "content-hash": "7f635d30ddbb746d1f39baa6b56f485e",
     "packages": [
         {
             "name": "miladrahimi/phprouter",
