@@ -1,0 +1,46 @@
+.btn.btn-primary{
+  background-color: var(--color-primary) !important;
+  border-color:var(--color-primary) !important;
+  color:white!important;
+}
+
+.btn:disabled,
+.btn.disabled{
+  background-color: gray!important;
+  border-color: gray!important;
+  color:white;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):hover {
+    color: var(--color-primary) !important;
+    background-color: white !important;
+}
+
+
+.btn.btn-light {
+    background-color: white !important;
+    border-color: white !important;
+    color: var(--color-primary) !important;
+}
+
+.btn.btn-primary.outline {
+    background-color: white !important;
+    color: var(--color-primary) !important;
+}
+
+.btn.btn-primary.outline:disabled {
+    background-color: white !important;
+    color: gray !important;
+}
+
+.btn.btn-primary.outline:not(:disabled):hover {
+    color: white !important;
+    background-color: var(--color-primary) !important;
+}
+
+.btn.btn-text{
+    padding:0px!important;
+    margin:0px!important;
+    background: none;
+}
