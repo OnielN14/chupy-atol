@@ -135,7 +135,7 @@ class PenggunaController extends Controller
       'password' => sha1($_POST['user_pass'])
     ];
 
-        $userData = $pengguna->fetch_by(['email'=>$requestUser['email']])[0];
+        $userData = $pengguna->fetch_login_data(['email'=>$requestUser['email']])[0];
 
         if (strcmp($requestUser['password'], $userData['password']) == 0) {
             $_SESSION['login_user'] = $userData;

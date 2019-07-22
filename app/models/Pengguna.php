@@ -16,6 +16,11 @@ class Pengguna extends Model{
     return $stmt->fetchAll();
   }
 
+  public function fetch_login_data($data)
+  {
+    return $this->raw_query('SELECT * FROM '.$this->modelName.' WHERE email="'.$data['email'].'"');
+  }
+
   public function insert($userData){
       return $this->raw_query('INSERT INTO '.$this->modelName.'(nama,alamat,gender,tempatLahir, tanggalLahir, email,noTelepon,password,createdAt,updatedAt,fotoProfile,idHakAkses,confirmed) VALUES ("'.$userData['nama'].'","'.$userData['alamat'].'","'.$userData['gender'].'","'.$userData['tempatLahir'].'",DATE("'.$userData['tanggalLahir'].'"), "'.$userData['email'].'","'.$userData['noTelepon'].'","'.$userData['password'].'",NOW(),NOW(),"'.$userData['fotoProfile'].'","'.$userData['idHakAkses'].'",0)');
   }
